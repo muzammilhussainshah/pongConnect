@@ -124,7 +124,7 @@ export default function SignUp({navigation, route}) {
             style={{
               color: Colors.White,
               fontFamily: '600',
-              fontSize: scale(15),
+              fontSize: scale(13),
               marginBottom: 10,
             }}>
             USER NAME
@@ -140,7 +140,7 @@ export default function SignUp({navigation, route}) {
             style={{
               color: Colors.White,
               fontFamily: '600',
-              fontSize: scale(15),
+              fontSize: scale(13),
               marginBottom: 10,
             }}>
             EMAIL ADDRESS
@@ -164,7 +164,7 @@ export default function SignUp({navigation, route}) {
                 style={{
                   color: Colors.White,
                   fontFamily: '600',
-                  fontSize: scale(15),
+                  fontSize: scale(13),
                   marginBottom: 10,
                 }}>
                 PHONE NUMBER
@@ -185,11 +185,7 @@ export default function SignUp({navigation, route}) {
               alignItems: 'center',
               marginTop: 10,
             }}>
-            {loading ? (
-              <LoadingButtonCustom />
-            ) : (
-              <ButtonCustom onPress={() => userLogin()} title="NEXT>" />
-            )}
+            {loading ? <LoadingButtonCustom /> : <ButtonCustom title="NEXT >" />}
           </View>
         </View>
         <Text

@@ -122,11 +122,7 @@ export default function Login({navigation}) {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            {loader ? (
-              <LoadingButtonCustom />
-            ) : (
-              <ButtonCustom onPress={() => userLogin()} title="Login" />
-            )}
+            {loader ? <LoadingButtonCustom /> : <ButtonCustom title="Login" />}
           </View>
           <Text
             style={{

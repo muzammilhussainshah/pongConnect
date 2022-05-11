@@ -39,7 +39,7 @@ export default function TextInputCustom(props) {
             flex: 1,
             height: scale(40),
             paddingHorizontal: 15,
-            color: Colors.Black,
+            color: Colors.White,
             fontSize: scale(14),
           },
           textInputStyles,
