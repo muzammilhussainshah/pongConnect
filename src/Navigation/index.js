@@ -1,10 +1,13 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React, {useEffect} from 'react';
+import {LogBox} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import {Provider} from 'react-redux';
 import {Home, PostDetail, Login, SignUp} from '../Screens';
 import {store} from '../Store/store';
+
+LogBox.ignoreAllLogs(true);
 
 const AppNavigation = () => {
   const AppStack = createNativeStackNavigator();

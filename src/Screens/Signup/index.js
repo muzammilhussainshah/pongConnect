@@ -1,13 +1,7 @@
 import React, {useState} from 'react';
-import {
-  Image,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
-  Dimensions,
-} from 'react-native';
+import {Image, Text, TouchableOpacity, View, Dimensions} from 'react-native';
 import ActionSheet, {SheetManager} from 'react-native-actions-sheet';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import ImageCropPicker from 'react-native-image-crop-picker';
 import Back from '../../Components/Back';
 import ImgBg from '../../Components/BackgroundImage';
@@ -59,7 +53,7 @@ export default function SignUp({navigation, route}) {
             <TouchableOpacity
               onPress={() => {
                 //actionSheetRef.hide()
-                imageChange('camera');
+                imageChange('Male');
               }}
               style={{
                 paddingVertical: 12,
@@ -71,7 +65,7 @@ export default function SignUp({navigation, route}) {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                imageChange('gallery');
+                imageChange('Female');
               }}
               style={{paddingVertical: 12, alignItems: 'center'}}>
               <Text style={{color: 'rgb(0,88,200)', fontSize: 18}}>Female</Text>
@@ -97,15 +91,16 @@ export default function SignUp({navigation, route}) {
         </View>
       </ActionSheet>
       <HeaderCustom back={true} nav={goBack} />
-      <ScrollView
-        style={{flex: 1}}
-        showsVerticalScrollIndicator={false}
+      <KeyboardAwareScrollView
         contentContainerStyle={{
+          flex: 1,
           flexGrow: 1,
           padding: 20,
           alignItems: 'center',
           justifyContent: 'space-evenly',
-        }}>
+        }}
+        style={{width: '100%'}}
+        showsVerticalScrollIndicator={false}>
         <View style={{width: '100%'}}>
           <View style={{marginBottom: 20, alignSelf: 'center'}}>
             <Image
@@ -185,7 +180,11 @@ export default function SignUp({navigation, route}) {
               alignItems: 'center',
               marginTop: 10,
             }}>
-            {loading ? <LoadingButtonCustom /> : <ButtonCustom title="NEXT >" />}
+            {loading ? (
+              <LoadingButtonCustom />
+            ) : (
+              <ButtonCustom title="NEXT >" />
+            )}
           </View>
         </View>
         <Text
@@ -197,7 +196,7 @@ export default function SignUp({navigation, route}) {
           Copyright© 2021 Atalon Ventures (International) Limited All Rights
           Reserved.
         </Text>
-      </ScrollView>
+      </KeyboardAwareScrollView>
     </ImgBg>
   );
 }

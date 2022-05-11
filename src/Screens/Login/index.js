@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {ScrollView, Text, View, Image} from 'react-native';
+import {Text, View, Image} from 'react-native';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import ImgBg from '../../Components/BackgroundImage';
 import Logo from '../../Components/Logo';
 import ButtonCustom from '../../Components/ButtonCustom';
@@ -21,14 +22,15 @@ export default function Login({navigation}) {
   const userLogin = () => {};
   return (
     <ImgBg>
-      <ScrollView
-        style={{flex: 1}}
+      <KeyboardAwareScrollView
         contentContainerStyle={{
           flexGrow: 1,
           paddingHorizontal: 20,
           alignItems: 'center',
           justifyContent: 'space-evenly',
-        }}>
+        }}
+        style={{width: '100%'}}
+        showsVerticalScrollIndicator={false}>
         <View
           style={{
             width: '100%',
@@ -156,7 +158,7 @@ export default function Login({navigation}) {
           Copyright© 2021 Atalon Ventures (International) Limited All Rights
           Reserved.
         </Text>
-      </ScrollView>
+      </KeyboardAwareScrollView>
     </ImgBg>
   );
 }
