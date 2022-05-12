@@ -1,11 +1,11 @@
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import React, {useEffect} from 'react';
-import {LogBox} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React, { useEffect } from 'react';
+import { LogBox, StatusBar } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
-import {Provider} from 'react-redux';
-import {Home, PostDetail, Login, SignUp} from '../Screens';
-import {store} from '../Store/store';
+import { Provider } from 'react-redux';
+import { Home, PostDetail, Login, SignUp } from '../Screens';
+import { store } from '../Store/store';
 
 LogBox.ignoreAllLogs(true);
 
@@ -17,9 +17,12 @@ const AppNavigation = () => {
   return (
     <Provider store={store}>
       <NavigationContainer>
+        {/* <StatusBar hidden={true} /> */}
+        <StatusBar translucent backgroundColor="transparent" />
+
         <AppStack.Navigator
           screenOptions={{
-            contentStyle: {backgroundColor: 'transparent'},
+            contentStyle: { backgroundColor: 'transparent' },
             animation: 'simple_push',
             headerShown: false,
             headerTransparent: true,
@@ -34,7 +37,7 @@ const AppNavigation = () => {
           <AppStack.Screen
             name="PostDetail"
             component={PostDetail}
-            options={{headerTitle: 'Post Detail'}}
+            options={{ headerTitle: 'Post Detail' }}
           />
         </AppStack.Navigator>
       </NavigationContainer>

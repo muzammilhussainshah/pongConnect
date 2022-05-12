@@ -1,7 +1,7 @@
 import React from 'react';
-import {Image, TextInput, View} from 'react-native';
-import {Colors} from '../Styles';
-import {scale} from './scaling';
+import { Image, TextInput, View } from 'react-native';
+import { Colors } from '../Styles';
+import { scale } from './scaling';
 
 export default function TextInputCustom(props) {
   const {
@@ -18,6 +18,7 @@ export default function TextInputCustom(props) {
       style={{
         flexDirection: 'row',
         alignItems: 'center',
+        borderRadius: 8,
         backgroundColor: '#0C1D34',
         marginBottom: 14,
         borderWidth: 2,
@@ -27,7 +28,7 @@ export default function TextInputCustom(props) {
         <Image
           source={icon}
           style={[
-            {height: scale(16), width: scale(16), marginLeft: 20},
+            { height: scale(16), width: scale(16), marginLeft: 20 },
             iconStyle,
           ]}
           resizeMode="contain"
@@ -37,10 +38,12 @@ export default function TextInputCustom(props) {
         style={[
           {
             flex: 1,
-            height: scale(40),
+            height: scale(30),
+            padding:0,
             paddingHorizontal: 15,
             color: Colors.White,
-            fontSize: scale(14),
+            fontSize: scale(13),
+
           },
           textInputStyles,
         ]}

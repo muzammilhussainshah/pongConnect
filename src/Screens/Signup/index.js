@@ -1,39 +1,71 @@
-import React, {useState} from 'react';
-import {Image, Text, TouchableOpacity, View, Dimensions} from 'react-native';
-import ActionSheet, {SheetManager} from 'react-native-actions-sheet';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
-import ImageCropPicker from 'react-native-image-crop-picker';
-import Back from '../../Components/Back';
+import React, { useState } from 'react';
+import {
+  Image,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+
+import { launchImageLibrary } from 'react-native-image-picker';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
+import Entypo from 'react-native-vector-icons/Entypo'
+import ActionSheet, {
+  SheetManager
+} from 'react-native-actions-sheet';
+
 import ImgBg from '../../Components/BackgroundImage';
 import HeaderCustom from '../../Components/Header';
-import Logo from '../../Components/Logo';
 import ButtonCustom from '../../Components/ButtonCustom';
 import LoadingButtonCustom from '../../Components/LoadingButtonCustom';
-import {Colors} from '../../Styles';
 import TextInput from '../../Components/TextInput';
-import {scale} from '../../Components/scaling';
+import { Colors } from '../../Styles';
+import { scale } from '../../Components/scaling';
 
-const height = Dimensions.get('window').height * 0.01;
-const width = Dimensions.get('window').width * 0.01;
-const uri = require('../../Assets/staticImage.png');
-
-export default function SignUp({navigation, route}) {
-  const {navigate, goBack} = navigation;
+export default function SignUp({ navigation, route }) {
+  const { navigate, goBack } = navigation;
   const [email, setEmail] = useState('');
   const [fullName, setFullName] = useState('');
   const [gender, setGender] = useState('');
   const [loading, setLoading] = useState(false);
+  const [imageUriLocal, setimageUriLocal] = useState('');
+
+  const getImg = async () => {
+    try {
+      let options = {
+        title: 'Select Image',
+        includeBase64: true,
+        customButtons: [
+          {
+            name: 'customOptionKey',
+            title: 'Choose Photo from Custom Option'
+          },
+        ],
+        storageOptions: {
+          skipBackup: true,
+          path: 'images',
+        },
+      };
+      launchImageLibrary(options, async (res) => { if (res.assets[0].uri) setimageUriLocal(res.assets[0].uri) });
+
+    } catch (err) {
+      if (DocumentPicker.isCancel(err)) {
+      } else {
+        throw err;
+      }
+    }
+  }
+
 
   const imageChange = method => {
-    SheetManager.hide();
     setGender(method);
+    SheetManager.hide('gender');
   };
   return (
     <ImgBg type="success">
       <ActionSheet
         id="gender"
-        containerStyle={{backgroundColor: 'transparent'}}>
-        <View style={{padding: 10}}>
+        containerStyle={{ backgroundColor: 'transparent' }}>
+        <View style={{ padding: 10 }}>
           <View
             style={{
               backgroundColor: 'rgba(241,241,241,0.8)',
@@ -46,13 +78,12 @@ export default function SignUp({navigation, route}) {
                 borderBottomColor: '#ccc',
                 paddingVertical: 10,
               }}>
-              <Text style={{color: 'grey', textAlign: 'center'}}>
+              <Text style={{ color: 'grey', textAlign: 'center' }}>
                 Choose Gender
               </Text>
             </View>
             <TouchableOpacity
               onPress={() => {
-                //actionSheetRef.hide()
                 imageChange('Male');
               }}
               style={{
@@ -61,14 +92,14 @@ export default function SignUp({navigation, route}) {
                 borderBottomWidth: 1.5,
                 borderBottomColor: '#ccc',
               }}>
-              <Text style={{color: 'rgb(0,88,200)', fontSize: 18}}>Male</Text>
+              <Text style={{ color: 'rgb(0,88,200)', fontSize: 18 }}>Male</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
                 imageChange('Female');
               }}
-              style={{paddingVertical: 12, alignItems: 'center'}}>
-              <Text style={{color: 'rgb(0,88,200)', fontSize: 18}}>Female</Text>
+              style={{ paddingVertical: 12, alignItems: 'center' }}>
+              <Text style={{ color: 'rgb(0,88,200)', fontSize: 18 }}>Female</Text>
             </TouchableOpacity>
           </View>
           <TouchableOpacity
@@ -97,23 +128,40 @@ export default function SignUp({navigation, route}) {
           flexGrow: 1,
           padding: 20,
           alignItems: 'center',
-          justifyContent: 'space-evenly',
+          justifyContent: 'space-between'
+
         }}
-        style={{width: '100%'}}
+        style={{ width: '100%' }}
         showsVerticalScrollIndicator={false}>
-        <View style={{width: '100%'}}>
-          <View style={{marginBottom: 20, alignSelf: 'center'}}>
-            <Image
-              source={uri}
+        <View style={{
+          marginTop: "10%",
+          width: '100%',
+        }}>
+          <View style={{ marginBottom: 20, alignSelf: 'center' }}>
+            <TouchableOpacity activeOpacity={0.8}
+              onPress={() => getImg()}
               style={{
-                height: 120,
-                width: 120,
-                borderRadius: 50,
+                height: 160,
+                width: 160,
+                borderRadius: 80,
+                overflow: 'hidden',
                 borderWidth: 2,
-                borderColor: Colors.White,
-                backgroundColor: Colors.Grey,
+                borderColor: Colors.Grey,
+                justifyContent: 'center',
+                alignItems: 'center'
               }}
-            />
+            >
+              <Image source={{ uri: imageUriLocal }} style={{ height: '100%', width: "100%", }}></Image>
+              <View style={{
+                position: "absolute", zIndex: 1, height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center',
+              }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                  <Entypo name={'camera'} size={15} color={Colors.White} />
+                  <Entypo name={'arrow-long-up'} size={15} color={Colors.White} />
+                </View>
+                <Text style={{ color: Colors.White, fontWeight: 'bold', textTransform: 'uppercase', width: '50%', textAlign: 'center', fontSize: 13 }}>UPLOAD IMAGE</Text>
+              </View>
+            </TouchableOpacity>
           </View>
           <Text
             style={{
@@ -121,11 +169,11 @@ export default function SignUp({navigation, route}) {
               fontFamily: '600',
               fontSize: scale(13),
               marginBottom: 10,
+              marginLeft: 10
             }}>
-            USER NAME
+            USER NAME:
           </Text>
           <TextInput
-            // icon={userIcon}
             placeholder="Full Name"
             placeholderTextHolder={Colors.Grey}
             value={fullName}
@@ -137,21 +185,21 @@ export default function SignUp({navigation, route}) {
               fontFamily: '600',
               fontSize: scale(13),
               marginBottom: 10,
+              marginLeft: 10
             }}>
-            EMAIL ADDRESS
+            EMAIL:
           </Text>
           <TextInput
-            // icon={userIcon}
             placeholder="Email Address"
             placeholderTextHolder={Colors.Grey}
             value={email}
             change={setEmail}
           />
           <View
-            style={{width: '100%', flexDirection: 'row', alignItems: 'center'}}>
+            style={{ width: '100%', flexDirection: 'row', alignItems: 'center' }}>
             <TouchableOpacity
               activeOpacity={0.9}
-              style={{flex: 1}}
+              style={{ flex: 1 }}
               onPress={() => {
                 SheetManager.show('gender');
               }}>
@@ -161,8 +209,9 @@ export default function SignUp({navigation, route}) {
                   fontFamily: '600',
                   fontSize: scale(13),
                   marginBottom: 10,
+                  marginLeft: 10
                 }}>
-                PHONE NUMBER
+                GENDER:
               </Text>
               <TextInput
                 placeholder="Gender"
@@ -189,14 +238,17 @@ export default function SignUp({navigation, route}) {
         </View>
         <Text
           style={{
-            fontSize: 11,
-            textDecorationLine: 'underline',
-            color: Colors.White,
-          }}>
+            fontSize: 10,
+            letterSpacing: 1,
+            lineHeight: 15,
+            textTransform: 'uppercase',
+            color: Colors.White, textAlign: 'center'
+          }
+          }>
           Copyright© 2021 Atalon Ventures (International) Limited All Rights
           Reserved.
         </Text>
       </KeyboardAwareScrollView>
-    </ImgBg>
+    </ImgBg >
   );
 }
