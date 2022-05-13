@@ -45,7 +45,13 @@ export default function SignUp({ navigation, route }) {
           path: 'images',
         },
       };
-      launchImageLibrary(options, async (res) => { if (res.assets[0].uri) setimageUriLocal(res.assets[0].uri) });
+      launchImageLibrary(options, async (res) => {
+        if (res.didCancel) { }
+        else if (res.error) { }
+        else {
+          setimageUriLocal(res.assets[0].uri)
+        }
+      });
 
     } catch (err) {
       if (DocumentPicker.isCancel(err)) {
@@ -147,10 +153,12 @@ export default function SignUp({ navigation, route }) {
                 overflow: 'hidden',
                 borderWidth: 2,
                 borderColor: Colors.Grey,
+                // backgroundColor: Colors.darkGrey,
                 justifyContent: 'center',
                 alignItems: 'center'
               }}
             >
+              {console.log(imageUriLocal, 'imageUriLocalimageUriLocalimageUriLocal')}
               <Image source={{ uri: imageUriLocal }} style={{ height: '100%', width: "100%", }}></Image>
               <View style={{
                 position: "absolute", zIndex: 1, height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center',
@@ -174,6 +182,7 @@ export default function SignUp({ navigation, route }) {
             USER NAME:
           </Text>
           <TextInput
+            // icon={userIcon}
             placeholder="Full Name"
             placeholderTextHolder={Colors.Grey}
             value={fullName}
@@ -190,6 +199,7 @@ export default function SignUp({ navigation, route }) {
             EMAIL:
           </Text>
           <TextInput
+            // icon={userIcon}
             placeholder="Email Address"
             placeholderTextHolder={Colors.Grey}
             value={email}
@@ -240,10 +250,16 @@ export default function SignUp({ navigation, route }) {
           style={{
             fontSize: 10,
             letterSpacing: 1,
+            // marginBottom: "2%",
             lineHeight: 15,
             textTransform: 'uppercase',
             color: Colors.White, textAlign: 'center'
           }
+            // style={{
+            //   fontSize: 11,
+            //   textDecorationLine: 'underline',
+            //   color: Colors.White,
+            // }
           }>
           Copyright© 2021 Atalon Ventures (International) Limited All Rights
           Reserved.

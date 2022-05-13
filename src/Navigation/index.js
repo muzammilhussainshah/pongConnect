@@ -1,8 +1,9 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createNativeStackNavigator, } from '@react-navigation/native-stack';
 import React, { useEffect } from 'react';
 import { LogBox, StatusBar } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
+import { CardStyleInterpolators } from '@react-navigation/stack';
 import { Provider } from 'react-redux';
 import { Home, PostDetail, Login, SignUp } from '../Screens';
 import { store } from '../Store/store';
@@ -23,7 +24,7 @@ const AppNavigation = () => {
         <AppStack.Navigator
           screenOptions={{
             contentStyle: { backgroundColor: 'transparent' },
-            animation: 'simple_push',
+            animation: 'fade_from_bottom',
             headerShown: false,
             headerTransparent: true,
             headerBackTitleVisible: false,
@@ -31,13 +32,27 @@ const AppNavigation = () => {
             gestureDirection: 'horizontal',
             gestureEnabled: true,
           }}
+          // screenOptions={{
+          //   headerShown: false,
+          //   headerTransparent: true,
+          //   headerBackTitleVisible: false,
+          //   headerTitleAllowFontScaling: true,
+          //   gestureDirection: 'horizontal',
+          //   gestureEnabled: true,
+          // }}
           initialRouteName={'Login'}>
-          <AppStack.Screen name="Login" component={Login} />
-          <AppStack.Screen name="SignUp" component={SignUp} />
+          <AppStack.Screen
+            // options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, }}
+            name="Login" component={Login} />
+          <AppStack.Screen
+            // options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, }}
+            name="SignUp" component={SignUp} />
           <AppStack.Screen
             name="PostDetail"
             component={PostDetail}
-            options={{ headerTitle: 'Post Detail' }}
+
+            // options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, headerTitle: 'Post Detail' }}
+          options={{ cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid, }}
           />
         </AppStack.Navigator>
       </NavigationContainer>
