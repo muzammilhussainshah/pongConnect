@@ -1,1 +1,2 @@
-export const avatar = `https://www.w3schools.com/howto/img_avatar.png`
+export {WP, HP} from './responsive';
+export {size,family} from './sizes';

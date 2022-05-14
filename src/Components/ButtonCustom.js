@@ -1,15 +1,15 @@
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import {Text, TouchableOpacity} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { Colors } from '../Styles';
-import { scale } from './scaling';
+import {Colors} from '../Styles';
+import {scale} from './scaling';
 
-export default function ButtonCustom({ title, containerStyle, onPress }) {
+export default function ButtonCustom({title, containerStyle, onPress}) {
   return (
     <LinearGradient
       colors={['#FF2C00', Colors.primary]}
-      start={{ x: 0, y: 1 }}
-      end={{ x: 1, y: 1 }}
+      start={{x: 0, y: 1}}
+      end={{x: 1, y: 1}}
       style={{
         width: '50%',
         padding: scale(10),
@@ -33,7 +33,7 @@ export default function ButtonCustom({ title, containerStyle, onPress }) {
         <Text
           style={{
             color: Colors.White,
-            fontFamily: '700',
+            // fontFamily: '700',
             textTransform: 'uppercase',
             fontWeight: 'bold',
             fontSize: scale(13),

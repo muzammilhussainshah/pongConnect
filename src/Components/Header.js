@@ -4,11 +4,16 @@ import {getStatusBarHeight} from 'react-native-status-bar-height';
 import {scale} from '../Components/scaling';
 import {Colors} from '../Styles';
 
-export default function HeaderCustom({back, nav}) {
+export default function HeaderCustom({
+  back = false,
+  goBack,
+  toggleDrawer,
+  scan = false,
+}) {
   return (
     <View
       style={{
-        paddingTop: getStatusBarHeight() ,
+        paddingTop: getStatusBarHeight(),
       }}>
       <View
         style={{
@@ -19,7 +24,8 @@ export default function HeaderCustom({back, nav}) {
         }}>
         <TouchableOpacity
           onPress={() => {
-            if (back) nav();
+            if (back) goBack();
+            else toggleDrawer();
           }}
           activeOpacity={0.8}
           style={{position: 'absolute', left: 20}}>
@@ -30,8 +36,13 @@ export default function HeaderCustom({back, nav}) {
             />
           ) : (
             <Image
-              source={require('../Assets/back.png')}
-              style={{height: 30, width: 30, resizeMode: 'contain'}}
+              source={require('../Assets/menu.png')}
+              style={{
+                height: 30,
+                width: 30,
+                resizeMode: 'contain',
+                tintColor: Colors.White,
+              }}
             />
           )}
         </TouchableOpacity>
@@ -43,6 +54,31 @@ export default function HeaderCustom({back, nav}) {
             resizeMode: 'contain',
           }}
         />
+        {scan && (
+          <TouchableOpacity
+            onPress={() => {
+              // if (back) goBack();
+              // else NavService.toggleDrawer();
+            }}
+            activeOpacity={0.8}
+            style={{
+              position: 'absolute',
+              right: 20,
+              padding: 5,
+              backgroundColor: Colors.primary,
+              borderRadius: 5,
+            }}>
+            <Image
+              source={require('../Assets/qr.png')}
+              style={{
+                height: 30,
+                width: 30,
+                resizeMode: 'contain',
+                tintColor: Colors.White,
+              }}
+            />
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );

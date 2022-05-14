@@ -1,6 +1,7 @@
 import Home from './Home';
-import PostDetail from './PostDetail';
 import Login from './Login';
 import SignUp from './Signup';
+import OtherProfile from './OtherProfile';
+import Profile from './Profile';
 
-export {Login, SignUp, Home, PostDetail};
+export {Login, SignUp, Home, OtherProfile, Profile};
