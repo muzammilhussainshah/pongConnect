@@ -14,12 +14,9 @@ export default function MyDrawer() {
       screenOptions={{
         headerShown: false,
         headerTransparent: false,
+        drawerStyle: {width: '100%'},
       }}
-      drawerStyle={{
-        width: width,
-        borderTopRightRadius: 25,
-        borderBottomRightRadius: 25,
-      }}
+      drawerType={'slide'}
       overlayColor={30}
       sceneContainerStyle={{opacity: 20, shadowOpacity: 70}}
       drawerContent={props => <DrawerContent {...props} />}>

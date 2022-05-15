@@ -16,7 +16,7 @@ export default function Profile({navigation}) {
 
   return (
     <ImgBg>
-      <HeaderCustom back goBack={goBack} />
+      <HeaderCustom back showLogo={true} goBack={goBack} />
 
       <ScrollView
         bounces={false}

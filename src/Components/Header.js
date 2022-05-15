@@ -9,7 +9,10 @@ export default function HeaderCustom({
   back = false,
   goBack,
   toggleDrawer,
+  showLogo,
+  isDrawer,
   scan = false,
+  setting,
 }) {
   return (
     <View
@@ -39,7 +42,11 @@ export default function HeaderCustom({
             />
           ) : (
             <Image
-              source={require('../Assets/menu.png')}
+              source={
+                isDrawer
+                  ? require('../Assets/back.png')
+                  : require('../Assets/menu.png')
+              }
               style={{
                 height: 30,
                 width: 30,
@@ -49,16 +56,18 @@ export default function HeaderCustom({
             />
           )}
         </TouchableOpacity>
-        <Img
-          local={true}
-          style={{
-            height: scale(100, 20),
-            width: scale(180, 80),
-          }}
-          src={require('../Assets/logo.png')}
-          resizeMode={'contain'}
-        />
-        {scan && (
+        {showLogo && (
+          <Img
+            local={true}
+            style={{
+              height: scale(100, 20),
+              width: scale(180, 80),
+            }}
+            src={require('../Assets/logo.png')}
+            resizeMode={'contain'}
+          />
+        )}
+        {scan ? (
           <TouchableOpacity
             onPress={() => {
               // if (back) goBack();
@@ -83,7 +92,31 @@ export default function HeaderCustom({
               resizeMode={'contain'}
             />
           </TouchableOpacity>
-        )}
+        ) : setting ? (
+          <TouchableOpacity
+            onPress={() => {
+              // if (back) goBack();
+              // else NavService.toggleDrawer();
+            }}
+            activeOpacity={0.8}
+            style={{
+              position: 'absolute',
+              right: 20,
+              padding: 5,
+              borderRadius: 5,
+            }}>
+            <Img
+              local={true}
+              style={{
+                height: 30,
+                width: 30,
+                tintColor: Colors.White,
+              }}
+              src={require('../Assets/settings.png')}
+              resizeMode={'contain'}
+            />
+          </TouchableOpacity>
+        ) : null}
       </View>
     </View>
   );

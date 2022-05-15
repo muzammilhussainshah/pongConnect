@@ -24,7 +24,7 @@ export default function Home({navigation}) {
 
   return (
     <ImgBg>
-      <HeaderCustom scan toggleDrawer={toggleDrawer} />
+      <HeaderCustom scan showLogo={true} toggleDrawer={toggleDrawer} />
       <ScrollView
         bounces={false}
         contentContainerStyle={[

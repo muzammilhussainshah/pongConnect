@@ -5,63 +5,127 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
+  Image,
 } from 'react-native';
-// import Img from '../../components/Img';
+import Img from '../../../Components/Img';
+import {scale} from '../../../Components/scaling';
+import HeaderCustom from '../../../Components/Header';
 import {Colors} from '../../../Styles';
 import {WP, HP, size} from '../../../Utils';
-// import {appImages, appIcons} from '../../assets';
 import styles from '../../../Screens/styles';
 
+const user = `https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1985&q=80`;
+
 export default function DrawerContent({navigation}) {
+  const {navigate, goBack, toggleDrawer} = navigation;
   console.log('drawer Navigation');
   const handleNavigate = () => {
     navigation.navigate('Profile');
   };
   return (
     <View style={styles.mainContainer}>
-      <View style={[style.header, styles.justifyCenter, styles.alignCenter]}>
-        <TouchableOpacity
-          activeOpacity={0.9}
-          onPress={handleNavigate}
-          style={[
-            styles.margin1Percent,
-            styles.justifyCenter,
-            styles.alignCenter,
-          ]}>
-          {/* <Img
-            local={true}
-            resizeMode={'cover'}
-            style={style.profileImage}
-            src={
-              user_profile_data?.user_image !== null
-                ? {uri: image_url + user_profile_data?.user_image}
-                : appImages?.profileImageRound
-            }
-          /> */}
-          <Text style={[style.name, styles.margin1Percent]}>HH </Text>
-          <Text style={style.email}>HH </Text>
-        </TouchableOpacity>
+      <View style={[style.header]}>
+        <HeaderCustom
+          toggleDrawer={toggleDrawer}
+          setting={true}
+          isDrawer={true}
+        />
+        <View style={[styles.justifyCenter, styles.alignCenter]}>
+          <TouchableOpacity
+            activeOpacity={0.9}
+            onPress={() => navigate('Profile')}>
+            <Img
+              local={false}
+              style={style.profilePicture}
+              src={user}
+              resizeMode={'contain'}
+            />
+          </TouchableOpacity>
+          <View style={{marginVertical: 25}}>
+            <Text style={style.customText}>UID: 223232</Text>
+            <Text style={[style.customText, {fontSize: 24}]}>DEMO USER</Text>
+          </View>
+          <View style={[styles.directionRow]}>
+            <Img
+              local={true}
+              style={style.icon}
+              src={require('../../../Assets/gem.png')}
+              resizeMode={'contain'}
+            />
+            <Text
+              style={[style.customText, {fontSize: 22, marginHorizontal: 10}]}>
+              1,526
+            </Text>
+            <Img
+              local={true}
+              style={style.icon}
+              src={require('../../../Assets/coin.png')}
+              resizeMode={'contain'}
+            />
+            <Text
+              style={[style.customText, {fontSize: 22, marginHorizontal: 10}]}>
+              65,473
+            </Text>
+          </View>
+        </View>
       </View>
-      <View style={style.container}>
+      <View style={[style.container, styles.justifyCenter, styles.alignCenter]}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <TouchableOpacity
-            style={style.itemContainer}
+            style={[styles.directionRow, styles.marginVerticle3Percent]}
             onPress={() => {
               navigation.navigate('Home');
               navigation.closeDrawer();
             }}>
-            {/* <Img
+            <Img
               local={true}
               resizeMode={'contain'}
-              style={{
-                width: WP('5%'),
-                height: HP('5%'),
-              }}
-              src={appIcons?.home}
-            /> */}
-            <Text style={[style.itemText, styles.margin1Percent]}>
-              {'\b \b \b'}Home
-            </Text>
+              style={style.icon}
+              src={require('../../../Assets/location.png')}
+            />
+            <Text style={[style.itemText]}>{'\b \b \b'}LOCATION</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.directionRow, styles.marginVerticle3Percent]}
+            onPress={() => {
+              navigation.navigate('Home');
+              navigation.closeDrawer();
+            }}>
+            <Img
+              local={true}
+              resizeMode={'contain'}
+              style={style.icon}
+              src={require('../../../Assets/coupon.png')}
+            />
+            <Text style={[style.itemText]}>{'\b \b \b'}COUPON</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.directionRow, styles.marginVerticle3Percent]}
+            onPress={() => {
+              navigation.navigate('Home');
+              navigation.closeDrawer();
+            }}>
+            <Img
+              local={true}
+              resizeMode={'contain'}
+              style={style.icon}
+              src={require('../../../Assets/language.png')}
+            />
+            <Text style={[style.itemText]}>{'\b \b \b'}LANGUAGES</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.directionRow, styles.marginVerticle3Percent]}
+            onPress={() => {
+              navigation.navigate('Home');
+              navigation.closeDrawer();
+            }}>
+            <Img
+              local={true}
+              resizeMode={'contain'}
+              style={style.icon}
+              src={require('../../../Assets/logout.png')}
+            />
+            <Text style={[style.itemText]}>{'\b \b \b'}LOGOUT</Text>
           </TouchableOpacity>
         </ScrollView>
       </View>
@@ -71,41 +135,32 @@ export default function DrawerContent({navigation}) {
 
 const style = StyleSheet.create({
   container: {
-    flex: 6.5,
-    backgroundColor: Colors.primary,
+    flex: 5,
+    backgroundColor: Colors.secondary,
   },
   header: {
-    flex: 3.5,
-    backgroundColor: Colors.White,
+    flex: 5,
+    backgroundColor: Colors.secondary,
   },
-  profileImage: {
-    alignSelf: 'center',
-    height: 170,
-    width: 170,
-    borderRadius: 1000,
-    borderWidth: 5,
-    borderColor: Colors.primary,
-  },
-  name: {
-    fontSize: size.medium,
-    fontWeight: '400',
-  },
-  email: {
-    fontSize: size.tiny,
-  },
-  itemContainer: {
-    flexDirection: 'row',
-    paddingVertical: HP('1.3%'),
-    justifyContent: 'space-between',
-    paddingHorizontal: 15,
-  },
-  itemText: {
-    fontSize: size.medium,
-    color: Colors.White,
-    width: WP('60%'),
+  profilePicture: {
+    width: scale(110),
+    height: scale(110),
+    borderRadius: scale(110) / 2,
+    borderWidth: scale(1),
+    borderColor: Colors.Grey,
   },
   icon: {
-    width: 22,
-    height: 22,
+    width: 30,
+    height: 30,
+  },
+  customText: {
+    color: Colors.White,
+    fontSize: 12,
+    fontWeight: '600',
+  },
+  itemText: {
+    fontSize: scale(20),
+    color: Colors.White,
+    fontWeight: 'bold',
   },
 });

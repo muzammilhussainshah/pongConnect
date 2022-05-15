@@ -120,7 +120,7 @@ export default function SignUp({navigation, route}) {
           </TouchableOpacity>
         </View>
       </ActionSheet>
-      <HeaderCustom back={true} goBack={goBack} />
+      <HeaderCustom back={true} showLogo={true} goBack={goBack} />
       <KeyboardAwareScrollView
         contentContainerStyle={[
           styles.mainContainer,
