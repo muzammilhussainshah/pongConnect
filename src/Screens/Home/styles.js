@@ -94,6 +94,11 @@ const style = StyleSheet.create({
     position: 'absolute',
     bottom: 8,
   },
+  sortUp: {
+    tintColor: 'green',
+    height: 15,
+    width: 15,
+  },
 });
 
 export default style;

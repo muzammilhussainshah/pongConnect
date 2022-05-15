@@ -134,6 +134,11 @@ const style = StyleSheet.create({
     fontSize: 14,
     textAlign: 'center',
   },
+  sortUp: {
+    tintColor: 'green',
+    height: 15,
+    width: 15,
+  },
 });
 
 export default style;

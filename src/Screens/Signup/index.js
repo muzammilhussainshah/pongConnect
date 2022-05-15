@@ -5,7 +5,7 @@ import {launchImageLibrary} from 'react-native-image-picker';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import Entypo from 'react-native-vector-icons/Entypo';
 import ActionSheet, {SheetManager} from 'react-native-actions-sheet';
-
+import Img from '../../Components/Img';
 import ImgBg from '../../Components/BackgroundImage';
 import HeaderCustom from '../../Components/Header';
 import ButtonCustom from '../../Components/ButtonCustom';
@@ -144,9 +144,11 @@ export default function SignUp({navigation, route}) {
                 styles.alignCenter,
                 style.profilePicture,
               ]}>
-              <Image
-                source={{uri: imageUriLocal}}
-                style={[styles.w_100, {height: '100%'}]}></Image>
+              <Img
+                local={false}
+                style={[styles.w_100, {height: '100%'}]}
+                src={imageUriLocal}
+              />
               <View
                 style={[
                   styles.justifyCenter,
@@ -171,17 +173,11 @@ export default function SignUp({navigation, route}) {
                     color={Colors.White}
                   />
                 </View>
-                <Text
-                  style={style.texts}>
-                  UPLOAD IMAGE
-                </Text>
+                <Text style={style.texts}>UPLOAD IMAGE</Text>
               </View>
             </TouchableOpacity>
           </View>
-          <Text
-            style={style.labelText}>
-            USER NAME:
-          </Text>
+          <Text style={style.labelText}>USER NAME:</Text>
           <TextInput
             // icon={userIcon}
             placeholder="Full Name"
@@ -189,10 +185,7 @@ export default function SignUp({navigation, route}) {
             value={fullName}
             change={setFullName}
           />
-          <Text
-            style={style.labelText}>
-            EMAIL:
-          </Text>
+          <Text style={style.labelText}>EMAIL:</Text>
           <TextInput
             // icon={userIcon}
             placeholder="Email Address"
@@ -207,10 +200,7 @@ export default function SignUp({navigation, route}) {
               onPress={() => {
                 SheetManager.show('gender');
               }}>
-              <Text
-                style={style.labelText}>
-                GENDER:
-              </Text>
+              <Text style={style.labelText}>GENDER:</Text>
               <TextInput
                 placeholder="Gender"
                 placeholderTextHolder={Colors.Grey}

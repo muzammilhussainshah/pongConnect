@@ -8,6 +8,7 @@ import {
   ScrollView,
 } from 'react-native';
 import ImgBg from '../../Components/BackgroundImage';
+import Img from '../../Components/Img';
 import {Colors} from '../../Styles';
 import HeaderCustom from '../../Components/Header';
 import styles from '../styles';
@@ -38,8 +39,13 @@ export default function Home({navigation}) {
         <View style={styles.directionRow}>
           <TouchableOpacity
             activeOpacity={0.9}
-            onPress={() => navigate('Profile')}>
-            <Image source={{uri: user}} style={style.profilePicture} />
+            onPress={() => navigate('OtherProfile')}>
+            <Img
+              local={false}
+              style={style.profilePicture}
+              src={user}
+              resizeMode={'contain'}
+            />
           </TouchableOpacity>
           <View style={[styles.mainContainer, {marginLeft: 20}]}>
             <Text style={style.customText}>UID: 223232</Text>
@@ -66,14 +72,9 @@ export default function Home({navigation}) {
                       ]}>
                       20
                     </Text>
-                    <Image
+                      <Image
                       source={require('../../Assets/sortUp.png')}
-                      style={{
-                        tintColor: 'green',
-                        height: 15,
-                        width: 15,
-                        resizeMode: 'contain',
-                      }}
+                      style={style.sortUp}
                     />
                   </View>
                 </View>
@@ -110,12 +111,7 @@ export default function Home({navigation}) {
                     </Text>
                     <Image
                       source={require('../../Assets/sortUp.png')}
-                      style={{
-                        tintColor: 'green',
-                        height: 15,
-                        width: 15,
-                        resizeMode: 'contain',
-                      }}
+                      style={style.sortUp}
                     />
                   </View>
                 </View>
@@ -123,9 +119,11 @@ export default function Home({navigation}) {
             </View>
           </View>
         </View>
-        <Image
-          source={require('../../Assets/ad1.png')}
+        <Img
+          local={true}
           style={style.adsImage}
+          src={require('../../Assets/ad1.png')}
+          resizeMode={'contain'}
         />
         <View style={[styles.mainContainer, styles.w_100]}>
           <View
@@ -167,9 +165,11 @@ export default function Home({navigation}) {
           <MenuData index={index} />
         </View>
       </ScrollView>
-      <Image
-        source={require('../../Assets/ad2.png')}
+      <Img
+        local={true}
         style={style.adsImageSecond}
+        src={require('../../Assets/ad2.png')}
+        resizeMode={'contain'}
       />
     </ImgBg>
   );
@@ -180,7 +180,12 @@ const MenuData = ({index}) => {
     case 1:
       return (
         <View style={style.menuContainer}>
-          <Image source={require('../../Assets/ball.png')} style={style.ball} />
+          <Img
+            local={true}
+            style={style.ball}
+            src={require('../../Assets/ball.png')}
+            resizeMode={'contain'}
+          />
           <View
             style={[
               styles.directionRow,
@@ -491,9 +496,11 @@ const MenuData = ({index}) => {
           <View style={style.secondViewDivision}>
             <Text style={style.subHeading}>WIN RATE</Text>
             <Text style={style.mainHeading}>78%</Text>
-            <Image
-              source={require('../../Assets/ball.png')}
+            <Img
+              local={true}
               style={style.ballSecond}
+              src={require('../../Assets/ball.png')}
+              resizeMode={'contain'}
             />
           </View>
           <View style={[styles.alignCenter, styles.justifyCenter, styles.w_25]}>

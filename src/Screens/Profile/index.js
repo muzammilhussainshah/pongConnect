@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Text, View, Image, ScrollView} from 'react-native';
 import ImgBg from '../../Components/BackgroundImage';
+import Img from '../../Components/Img';
 import {Colors} from '../../Styles';
 import HeaderCustom from '../../Components/Header';
 import {TextInput} from 'react-native-gesture-handler';
@@ -9,7 +10,7 @@ import style from './styles';
 
 const user = `https://images.unsplash.com/photo-1457449940276-e8deed18bfff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80`;
 const dummy1 = `https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1985&q=80`;
-export default function Login({navigation}) {
+export default function Profile({navigation}) {
   const {navigate, goBack} = navigation;
   const [index, setIndex] = useState(1);
 
@@ -29,16 +30,23 @@ export default function Login({navigation}) {
         style={styles.w_100}
         showsVerticalScrollIndicator={false}>
         <View style={styles.directionRow}>
-          <Image source={{uri: user}} style={style.profilePicture} />
+          <Img
+            local={false}
+            style={style.profilePicture}
+            src={user}
+            resizeMode={'contain'}
+          />
           <View style={[styles.mainContainer, {marginLeft: 20}]}>
             <Text style={style.customText}>UID: 223232</Text>
             <View style={[styles.directionRow, styles.alignCenter]}>
               <Text style={[style.customText, {fontSize: 24}]}>KANNA.Y</Text>
-              <Image
-                source={{
-                  uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Flag_of_Japan.svg/800px-Flag_of_Japan.svg.png',
-                }}
+              <Img
+                local={false}
                 style={style.flagImage}
+                src={
+                  'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Flag_of_Japan.svg/800px-Flag_of_Japan.svg.png'
+                }
+                resizeMode={'contain'}
               />
             </View>
             <View style={[styles.directionRow, {marginTop: 10}]}>
@@ -145,14 +153,15 @@ const GameStatus = ({status}) => {
             borderRadius: 5,
           },
         ]}>
-        <Image
-          source={{uri: dummy1}}
+        <Img
+          local={false}
           style={{
             width: 35,
             height: 35,
-            resizeMode: 'cover',
             borderRadius: 35 / 2,
           }}
+          src={dummy1}
+          resizeMode={'cover'}
         />
         <Text style={style.playerName}>KANNA.Y</Text>
       </View>

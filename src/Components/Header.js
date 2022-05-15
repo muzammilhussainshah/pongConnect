@@ -1,7 +1,8 @@
 import React from 'react';
-import {TouchableOpacity, View, Image, Text} from 'react-native';
+import {TouchableOpacity, View, Image} from 'react-native';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import {scale} from '../Components/scaling';
+import Img from './Img';
 import {Colors} from '../Styles';
 
 export default function HeaderCustom({
@@ -30,9 +31,11 @@ export default function HeaderCustom({
           activeOpacity={0.8}
           style={{position: 'absolute', left: 20}}>
           {back ? (
-            <Image
-              source={require('../Assets/back.png')}
-              style={{height: 30, width: 30, resizeMode: 'contain'}}
+            <Img
+              local={true}
+              style={{height: 30, width: 30}}
+              src={require('../Assets/back.png')}
+              resizeMode={'contain'}
             />
           ) : (
             <Image
@@ -46,13 +49,14 @@ export default function HeaderCustom({
             />
           )}
         </TouchableOpacity>
-        <Image
-          source={require('../Assets/logo.png')}
+        <Img
+          local={true}
           style={{
             height: scale(100, 20),
             width: scale(180, 80),
-            resizeMode: 'contain',
           }}
+          src={require('../Assets/logo.png')}
+          resizeMode={'contain'}
         />
         {scan && (
           <TouchableOpacity
@@ -68,14 +72,15 @@ export default function HeaderCustom({
               backgroundColor: Colors.primary,
               borderRadius: 5,
             }}>
-            <Image
-              source={require('../Assets/qr.png')}
+            <Img
+              local={true}
               style={{
                 height: 30,
                 width: 30,
-                resizeMode: 'contain',
                 tintColor: Colors.White,
               }}
+              src={require('../Assets/qr.png')}
+              resizeMode={'contain'}
             />
           </TouchableOpacity>
         )}

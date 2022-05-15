@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Text, View, Image} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import ImgBg from '../../Components/BackgroundImage';
+import Img from '../../Components/Img';
 import Logo from '../../Components/Logo';
 import ButtonCustom from '../../Components/ButtonCustom';
 import LoadingButtonCustom from '../../Components/LoadingButtonCustom';
@@ -77,25 +78,29 @@ export default function Login({navigation}) {
                 styles.justifyCenter,
                 styles.directionRow,
               ]}>
-              <Image
-                style={[styles.customImages, {marginHorizontal: 10}]}
+              <Img
+                local={true}
+                style={[style.customImages, {marginHorizontal: 10}]}
                 resizeMode="contain"
-                source={people}
+                src={people}
               />
-              <Image
-                style={[styles.customImages, {marginHorizontal: 10}]}
+              <Img
+                local={true}
+                style={[style.customImages, {marginHorizontal: 10}]}
                 resizeMode="contain"
-                source={facebook}
+                src={facebook}
               />
-              <Image
-                style={[styles.customImages, {marginHorizontal: 10}]}
+              <Img
+                local={true}
+                style={[style.customImages, {marginHorizontal: 10}]}
                 resizeMode="contain"
-                source={emailIcon}
+                src={emailIcon}
               />
-              <Image
-                style={[styles.customImages, {marginHorizontal: 10}]}
+              <Img
+                local={true}
+                style={[style.customImages, {marginHorizontal: 10}]}
                 resizeMode="contain"
-                source={user}
+                src={user}
               />
             </View>
           </View>
