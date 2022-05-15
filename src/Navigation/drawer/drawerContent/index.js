@@ -5,13 +5,12 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
-  Image,
 } from 'react-native';
 import Img from '../../../Components/Img';
 import {scale} from '../../../Components/scaling';
 import HeaderCustom from '../../../Components/Header';
 import {Colors} from '../../../Styles';
-import {WP, HP, size} from '../../../Utils';
+import {family} from '../../../Utils';
 import styles from '../../../Screens/styles';
 
 const user = `https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1985&q=80`;
@@ -83,7 +82,7 @@ export default function DrawerContent({navigation}) {
               style={style.icon}
               src={require('../../../Assets/location.png')}
             />
-            <Text style={[style.itemText]}>{'\b \b \b'}LOCATION</Text>
+            <Text style={[style.itemText]}>{'      '}LOCATION</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.directionRow, styles.marginVerticle3Percent]}
@@ -97,7 +96,7 @@ export default function DrawerContent({navigation}) {
               style={style.icon}
               src={require('../../../Assets/coupon.png')}
             />
-            <Text style={[style.itemText]}>{'\b \b \b'}COUPON</Text>
+            <Text style={[style.itemText]}>{'      '}COUPON</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.directionRow, styles.marginVerticle3Percent]}
@@ -111,7 +110,7 @@ export default function DrawerContent({navigation}) {
               style={style.icon}
               src={require('../../../Assets/language.png')}
             />
-            <Text style={[style.itemText]}>{'\b \b \b'}LANGUAGES</Text>
+            <Text style={[style.itemText]}>{'      '}LANGUAGES</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.directionRow, styles.marginVerticle3Percent]}
@@ -125,7 +124,7 @@ export default function DrawerContent({navigation}) {
               style={style.icon}
               src={require('../../../Assets/logout.png')}
             />
-            <Text style={[style.itemText]}>{'\b \b \b'}LOGOUT</Text>
+            <Text style={[style.itemText]}>{'      '}LOGOUT</Text>
           </TouchableOpacity>
         </ScrollView>
       </View>
@@ -154,13 +153,13 @@ const style = StyleSheet.create({
     height: 30,
   },
   customText: {
+    fontFamily: family.Agency_Bold,
     color: Colors.White,
     fontSize: 12,
-    fontWeight: '600',
   },
   itemText: {
+    fontFamily: family.Agency_Bold,
     fontSize: scale(20),
     color: Colors.White,
-    fontWeight: 'bold',
   },
 });

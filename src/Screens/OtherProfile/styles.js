@@ -1,6 +1,7 @@
 import {Dimensions, StyleSheet, Platform} from 'react-native';
 import {scale} from '../../Components/scaling';
-import {Colors} from '../../Styles/index';
+import {Colors} from '../../Styles';
+import {family} from '../../Utils';
 
 const {width} = Dimensions.get('window');
 
@@ -32,19 +33,19 @@ const style = StyleSheet.create({
     marginBottom: 20,
   },
   customText: {
+    fontFamily: family.Agency_Bold,
     color: Colors.White,
     fontSize: 12,
-    fontWeight: '600',
   },
   customTextBold: {
+    fontFamily: family.Agency_Bold,
     color: Colors.White,
     fontSize: 12,
-    fontWeight: '700',
   },
   customTextIncreaseBold: {
+    fontFamily: family.Agency_Bold,
     color: Colors.White,
     fontSize: 20,
-    fontWeight: '700',
   },
   menuContainer: {
     height: '100%',
@@ -76,15 +77,15 @@ const style = StyleSheet.create({
     marginTop: 20,
   },
   mainHeading: {
+    fontFamily: family.Agency_Bold,
     color: Colors.White,
     fontSize: 48,
-    fontWeight: '700',
     textAlign: 'center',
   },
   subHeading: {
+    fontFamily: family.Agency_Bold,
     color: Colors.White,
     fontSize: 10,
-    fontWeight: '700',
     textAlign: 'center',
   },
   secondViewDivision: {
@@ -100,6 +101,7 @@ const style = StyleSheet.create({
     bottom: 8,
   },
   newSubHeading: {
+    fontFamily: family.Agency_Bold,
     color: Colors.White,
     textAlign: 'right',
     width: '100%',
@@ -114,22 +116,26 @@ const style = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 10,
   },
-  playerName: {color: Colors.White, fontWeight: '700', marginLeft: 10},
+  playerName: {
+    color: Colors.White,
+    fontFamily: family.Agency_Bold,
+    marginLeft: 10,
+  },
   playerRating: {
     color: Colors.White,
-    fontWeight: '700',
+    fontFamily: family.Agency_Bold,
     marginLeft: 10,
     fontSize: 22,
   },
   challengeHeading: {
     color: Colors.White,
-    fontWeight: '700',
+    fontFamily: family.Agency_Bold,
     marginLeft: 10,
     fontSize: 14,
   },
   challengeDate: {
     color: Colors.White,
-    fontWeight: '700',
+    fontFamily: family.Agency_Bold,
     marginLeft: 10,
     fontSize: 14,
     textAlign: 'center',

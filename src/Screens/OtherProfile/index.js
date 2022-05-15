@@ -133,14 +133,7 @@ export default function Login({navigation}) {
         ]}>
         <View style={[styles.w_25, styles.alignCenter, styles.justifyCenter]}>
           <Text
-            style={[
-              styles.colorWhite,
-              styles.textCenter,
-              {
-                fontSize: 10,
-                fontWeight: '700',
-              },
-            ]}>
+            style={[styles.colorWhite, styles.textCenter, style.customText]}>
             {`GAME\nPLAYED`}
           </Text>
           <Text style={style.mainHeading}>693</Text>

@@ -1,6 +1,7 @@
-import {Dimensions, StyleSheet, Platform} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {scale} from '../../Components/scaling';
-import {Colors} from '../../Styles/index';
+import {Colors} from '../../Styles';
+import {family} from '../../Utils';
 
 const style = StyleSheet.create({
   profilePicture: {
@@ -12,6 +13,7 @@ const style = StyleSheet.create({
     borderColor: Colors.Grey,
   },
   labelText: {
+    fontFamily: family.Agency_Bold,
     color: Colors.White,
     fontWeight: 'bold',
     fontSize: scale(13),
@@ -19,6 +21,7 @@ const style = StyleSheet.create({
     marginHorizontal: 15,
   },
   footerText: {
+    fontFamily: family.Agency_Bold,
     fontSize: 10,
     letterSpacing: 1,
     marginBottom: '5%',
@@ -28,6 +31,7 @@ const style = StyleSheet.create({
     textAlign: 'center',
   },
   texts: {
+    fontFamily: family.Agency_Bold,
     color: Colors.White,
     fontWeight: 'bold',
     textTransform: 'uppercase',

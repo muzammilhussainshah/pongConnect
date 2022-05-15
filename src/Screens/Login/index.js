@@ -129,7 +129,7 @@ export default function Login({navigation}) {
               styles.w_80,
               style.texts1,
             ]}>
-            {'Not a PONGConnect member yet? '}
+            {'Not a PONGConnect member yet ? '}
             <Text
               style={[style.texts1, styles.colorPrimary]}
               onPress={() => {
@@ -137,7 +137,7 @@ export default function Login({navigation}) {
               }}>
               Register now
             </Text>
-            {`!`}
+            {` !`}
           </Text>
         </View>
         <Text style={style.footerText}>

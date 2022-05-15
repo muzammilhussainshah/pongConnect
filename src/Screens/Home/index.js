@@ -72,7 +72,7 @@ export default function Home({navigation}) {
                       ]}>
                       20
                     </Text>
-                      <Image
+                    <Image
                       source={require('../../Assets/sortUp.png')}
                       style={style.sortUp}
                     />
@@ -199,7 +199,7 @@ const MenuData = ({index}) => {
                 styles.alignCenter,
                 styles.justifyCenter,
                 {
-                  width: '40%',
+                  width: '35%',
                   height: '100%',
                 },
               ]}>
@@ -210,7 +210,7 @@ const MenuData = ({index}) => {
                 styles.alignCenter,
                 styles.justifyCenter,
                 {
-                  width: '20%',
+                  width: '25%',
                   height: '100%',
                 },
               ]}>
@@ -220,7 +220,7 @@ const MenuData = ({index}) => {
               style={[
                 styles.justifyCenter,
                 {
-                  width: '40%',
+                  width: '20%',
                   height: '100%',
                 },
               ]}>
@@ -247,17 +247,14 @@ const MenuData = ({index}) => {
                   paddingLeft: 20,
                 },
               ]}>
-              <Text
-                style={{color: Colors.White, fontSize: 18, fontWeight: '700'}}>
-                COMBO OUT
-              </Text>
+              <Text style={style.flightText}>COMBO OUT</Text>
             </View>
             <View
               style={[
                 styles.justifyCenter,
                 styles.alignCenter,
                 {
-                  width: '20%',
+                  width: '25%',
                   height: '100%',
                 },
               ]}>
@@ -272,28 +269,19 @@ const MenuData = ({index}) => {
                     borderRadius: 5,
                   },
                 ]}>
-                <Text
-                  style={{
-                    color: Colors.White,
-                    fontSize: 20,
-                    fontWeight: '700',
-                  }}>
-                  U
-                </Text>
+                <Text style={style.flightText}>U</Text>
               </View>
             </View>
             <View
               style={[
                 styles.justifyCenter,
+                styles.alignCenter,
                 {
-                  width: '40%',
+                  width: '10%',
                   height: '100%',
                 },
               ]}>
-              <Text
-                style={{color: Colors.White, fontSize: 20, fontWeight: '700'}}>
-                2
-              </Text>
+              <Text style={style.flightText}>2</Text>
             </View>
           </View>
           <View
@@ -324,7 +312,7 @@ const MenuData = ({index}) => {
                 styles.justifyCenter,
                 styles.alignCenter,
                 {
-                  width: '20%',
+                  width: '25%',
                   height: '100%',
                 },
               ]}>
@@ -345,8 +333,9 @@ const MenuData = ({index}) => {
             <View
               style={[
                 styles.justifyCenter,
+                styles.alignCenter,
                 {
-                  width: '40%',
+                  width: '10%',
                   height: '100%',
                 },
               ]}>
@@ -381,7 +370,7 @@ const MenuData = ({index}) => {
                 styles.justifyCenter,
                 styles.alignCenter,
                 {
-                  width: '20%',
+                  width: '25%',
                   height: '100%',
                 },
               ]}>
@@ -402,8 +391,9 @@ const MenuData = ({index}) => {
             <View
               style={[
                 styles.justifyCenter,
+                styles.alignCenter,
                 {
-                  width: '40%',
+                  width: '10%',
                   height: '100%',
                 },
               ]}>
@@ -438,7 +428,7 @@ const MenuData = ({index}) => {
                 styles.justifyCenter,
                 styles.alignCenter,
                 {
-                  width: '20%',
+                  width: '25%',
                   height: '100%',
                 },
               ]}>
@@ -459,8 +449,9 @@ const MenuData = ({index}) => {
             <View
               style={[
                 styles.justifyCenter,
+                styles.alignCenter,
                 {
-                  width: '40%',
+                  width: '10%',
                   height: '100%',
                 },
               ]}>
@@ -481,14 +472,7 @@ const MenuData = ({index}) => {
           ]}>
           <View style={[styles.w_25, styles.alignCenter, styles.justifyCenter]}>
             <Text
-              style={[
-                styles.colorWhite,
-                styles.textCenter,
-                {
-                  fontSize: 10,
-                  fontWeight: '700',
-                },
-              ]}>
+              style={[styles.colorWhite, styles.textCenter, style.customText]}>
               {`GAME\nPLAYED`}
             </Text>
             <Text style={style.mainHeading}>173</Text>

@@ -1,9 +1,11 @@
-import {Dimensions, StyleSheet, Platform} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {scale} from '../../Components/scaling';
-import {Colors} from '../../Styles/index';
+import {Colors} from '../../Styles';
+import {family} from '../../Utils';
 
 const style = StyleSheet.create({
   labelText: {
+    fontFamily: family.Agency_Bold,
     color: Colors.White,
     fontWeight: 'bold',
     fontSize: scale(13),
@@ -15,6 +17,7 @@ const style = StyleSheet.create({
     width: 40,
   },
   footerText: {
+    fontFamily: family.Agency_Bold,
     fontSize: 10,
     letterSpacing: 1,
     marginBottom: '5%',
@@ -24,6 +27,7 @@ const style = StyleSheet.create({
     textAlign: 'center',
   },
   texts: {
+    fontFamily: family.Agency_Bold,
     fontWeight: 'bold',
     fontSize: scale(14),
     paddingHorizontal: 10,
@@ -31,6 +35,7 @@ const style = StyleSheet.create({
     marginBottom: 15,
   },
   texts1: {
+    fontFamily: family.Agency_Bold,
     fontSize: 14,
     marginTop: 40,
     fontWeight: '700',

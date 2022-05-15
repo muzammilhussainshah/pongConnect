@@ -1,6 +1,7 @@
-import {Dimensions, StyleSheet, Platform} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 import {scale} from '../../Components/scaling';
-import {Colors} from '../../Styles/index';
+import {Colors} from '../../Styles';
+import {family} from '../../Utils';
 
 const {width} = Dimensions.get('window');
 
@@ -26,19 +27,19 @@ const style = StyleSheet.create({
     marginBottom: 20,
   },
   customText: {
+    fontFamily: family.Agency_Bold,
     color: Colors.White,
     fontSize: 12,
-    fontWeight: '600',
   },
   customTextBold: {
+    fontFamily: family.Agency_Bold,
     color: Colors.White,
     fontSize: 12,
-    fontWeight: '700',
   },
   customTextIncreaseBold: {
+    fontFamily: family.Agency_Bold,
     color: Colors.White,
     fontSize: 20,
-    fontWeight: '700',
   },
   menuContainer: {
     height: '100%',
@@ -67,19 +68,18 @@ const style = StyleSheet.create({
     borderTopRightRadius: 10,
     height: 200,
     width: width,
-    marginLeft: -20,
     marginTop: 20,
   },
   mainHeading: {
+    fontFamily: family.Agency_Bold,
     color: Colors.White,
     fontSize: 48,
-    fontWeight: '700',
     textAlign: 'center',
   },
   subHeading: {
+    fontFamily: family.Agency_Bold,
     color: Colors.White,
     fontSize: 10,
-    fontWeight: '700',
     textAlign: 'center',
   },
   secondViewDivision: {
@@ -98,6 +98,11 @@ const style = StyleSheet.create({
     tintColor: 'green',
     height: 15,
     width: 15,
+  },
+  flightText: {
+    fontFamily: family.Agency_Bold,
+    color: Colors.White,
+    fontSize: 20,
   },
 });
 
