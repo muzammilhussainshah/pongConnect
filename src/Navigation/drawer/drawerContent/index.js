@@ -7,16 +7,16 @@ import {
   ScrollView,
 } from 'react-native';
 import Img from '../../../Components/Img';
-import {scale} from '../../../Components/scaling';
+import { scale } from '../../../Components/scaling';
 import HeaderCustom from '../../../Components/Header';
-import {Colors} from '../../../Styles';
-import {family} from '../../../Utils';
+import { Colors } from '../../../Styles';
+import { family } from '../../../Utils';
 import styles from '../../../Screens/styles';
 
 const user = `https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1985&q=80`;
 
-export default function DrawerContent({navigation}) {
-  const {navigatex, goBack, toggleDrawer} = navigation;
+export default function DrawerContent({ navigation }) {
+  const { navigatex, goBack, toggleDrawer } = navigation;
   console.log('drawer Navigation');
   const handleNavigate = () => {
     navigation.navigate('Profile');
@@ -40,9 +40,9 @@ export default function DrawerContent({navigation}) {
               resizeMode={'contain'}
             />
           </TouchableOpacity>
-          <View style={{marginVertical: 25}}>
+          <View style={{ marginVertical: 25 }}>
             <Text style={style.customText}>UID: 223232</Text>
-            <Text style={[style.customText, {fontSize: 24}]}>DEMO USER</Text>
+            <Text style={[style.customText, { fontSize: 24 }]}>DEMO USER</Text>
           </View>
           <View style={[styles.directionRow]}>
             <Img
@@ -52,7 +52,7 @@ export default function DrawerContent({navigation}) {
               resizeMode={'contain'}
             />
             <Text
-              style={[style.customText, {fontSize: 22, marginHorizontal: 10}]}>
+              style={[style.customText, { fontSize: 22, marginHorizontal: 10 }]}>
               1,526
             </Text>
             <Img
@@ -62,7 +62,7 @@ export default function DrawerContent({navigation}) {
               resizeMode={'contain'}
             />
             <Text
-              style={[style.customText, {fontSize: 22, marginHorizontal: 10}]}>
+              style={[style.customText, { fontSize: 22, marginHorizontal: 10 }]}>
               65,473
             </Text>
           </View>
@@ -115,7 +115,7 @@ export default function DrawerContent({navigation}) {
           <TouchableOpacity
             style={[styles.directionRow, styles.marginVerticle3Percent]}
             onPress={() => {
-              navigation.navigate('Home');
+              navigation.navigate('Login');
               navigation.closeDrawer();
             }}>
             <Img

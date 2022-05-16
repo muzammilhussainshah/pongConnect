@@ -13,7 +13,7 @@ import style from './styles';
 
 const facebook = require('../../Assets/facebook.png');
 const emailIcon = require('../../Assets/email.png');
-const people = require('../../Assets/people.png');
+const people = require('../../Assets/people2.png');
 const user = require('../../Assets/user.png');
 
 export default function Login({navigation}) {

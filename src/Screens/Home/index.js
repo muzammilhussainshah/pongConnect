@@ -239,7 +239,8 @@ export default function Home({ navigation }) {
         local={true}
         style={style.adsImageSecond}
         src={require('../../Assets/ad2.png')}
-        resizeMode={'contain'}
+        // resizeMode={''}
+        // resizeMode={'stretch'}
       />
     </ImgBg>
   );

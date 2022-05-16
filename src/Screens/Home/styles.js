@@ -1,9 +1,9 @@
-import {Dimensions, StyleSheet} from 'react-native';
-import {scale} from '../../Components/scaling';
-import {Colors} from '../../Styles';
-import {family} from '../../Utils';
+import { Dimensions, StyleSheet } from 'react-native';
+import { scale } from '../../Components/scaling';
+import { Colors } from '../../Styles';
+import { family } from '../../Utils';
 
-const {width} = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 const style = StyleSheet.create({
   profilePicture: {
@@ -21,10 +21,11 @@ const style = StyleSheet.create({
     marginTop: 20,
   },
   adsImageSecond: {
-    width: width,
-    resizeMode: 'contain',
-    height: width / 4.444,
-    marginBottom: 20,
+    width: '100%',
+    backgroundColor: 'red',
+    // resizeMode: 'cover',
+    height: 130,
+    marginBottom: -40,
   },
   customText: {
     fontFamily: family.Agency_Bold,
@@ -60,7 +61,7 @@ const style = StyleSheet.create({
     position: 'absolute',
     bottom: 22,
     right: -32,
-    transform: [{rotate: '-90deg'}, {scaleX: -1}],
+    transform: [{ rotate: '-90deg' }, { scaleX: -1 }],
     zIndex: 99,
   },
   defaultMainView: {
