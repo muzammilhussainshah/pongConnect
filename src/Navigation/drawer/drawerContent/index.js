@@ -16,7 +16,7 @@ import styles from '../../../Screens/styles';
 const user = `https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1985&q=80`;
 
 export default function DrawerContent({navigation}) {
-  const {navigate, goBack, toggleDrawer} = navigation;
+  const {navigatex, goBack, toggleDrawer} = navigation;
   console.log('drawer Navigation');
   const handleNavigate = () => {
     navigation.navigate('Profile');

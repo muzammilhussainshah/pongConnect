@@ -1,6 +1,6 @@
-import {StyleSheet} from 'react-native';
-import {Colors} from '../Styles/index';
-import {WP, HP, size} from '../Utils';
+import { StyleSheet } from 'react-native';
+import { Colors } from '../Styles/index';
+import { WP, HP, size, family } from '../Utils';
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
   positionAbsolute: {
     position: 'absolute',
   },
-  tabBarHeader: {height: 50},
+  tabBarHeader: { height: 50 },
   indicatorStyle: {
     backgroundColor: Colors.primary,
     height: 2,
@@ -281,7 +281,7 @@ const styles = StyleSheet.create({
   contentcontainerStyle: {
     height: 30,
   },
-  indicatorContainerStyle: {marginBottom: 2},
+  indicatorContainerStyle: { marginBottom: 2 },
   tabStyles: {
     height: 30,
     justifyContent: 'center',
@@ -289,6 +289,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Colors.Grey,
   },
+  comboOutMainContainer: { position: 'absolute', height: '100%', width: '100%', zIndex: 2, },
+  comboOutDetailCOntainer: { position: 'absolute', height: 227, width: 265, bottom: 15, left: 10, backgroundColor: 'rgba(0,0,0,0.9)' },
+  comboOutListCOntainer: { flex: 1, height: 21, marginVertical: 0.8, flexDirection: 'row' },
+  comboOutNameContainer: { flex: 8, justifyContent: 'center' },
+  comboOutRateContainer: { flex: 2, justifyContent: 'center', alignItems: 'center' },
+  comboOutName: { color: Colors.White, fontFamily: family.Agency_Bold, textTransform: 'uppercase', marginLeft: 10 }
 });
 
 export default styles;

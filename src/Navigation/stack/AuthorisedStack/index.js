@@ -3,7 +3,7 @@ import {
   createStackNavigator,
   CardStyleInterpolators,
 } from '@react-navigation/stack';
-import {Home, OtherProfile, Profile} from '../../../Screens';
+import { Home, OtherProfile, Profile } from '../../../Screens';
 
 const Stack = createStackNavigator();
 
@@ -11,7 +11,7 @@ const AuthorisedStack = () => {
   return (
     <Stack.Navigator
       initialRouteName="Home"
-      screenOptions={{headerShown: false}}>
+      screenOptions={{ headerShown: false }}>
       <Stack.Screen
         name="Home"
         component={Home}

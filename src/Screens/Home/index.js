@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   View,
@@ -9,18 +9,35 @@ import {
 } from 'react-native';
 import ImgBg from '../../Components/BackgroundImage';
 import Img from '../../Components/Img';
-import {Colors} from '../../Styles';
+import { Colors } from '../../Styles';
 import HeaderCustom from '../../Components/Header';
 import styles from '../styles';
 import style from './styles';
+import { FlatList } from 'react-native-gesture-handler';
 
-const {width} = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 const user = `https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1985&q=80`;
 
-export default function Home({navigation}) {
-  const {navigate, toggleDrawer} = navigation;
+export default function Home({ navigation }) {
+  const { navigate, toggleDrawer } = navigation;
   const [index, setIndex] = useState(1);
+  const [comboOutDetailEnabled, setComboOutDetailEnabled] = useState(false);
+
+  const COMBOOUTDATA = [
+    { name: 'game', flight: '', rate: 560 },
+    { name: 'BALL IN', flight: '', rate: 342 },
+    { name: 'CUP SUNK', flight: '', rate: 128 },
+    { name: 'AVG CUP SUNK', flight: '', rate: 0.28 },
+    { name: 'FIRST BLOOD', flight: '', rate: 52 },
+    { name: 'FIRST BLOOD COMBO', flight: '', rate: 23 },
+    { name: 'FIRST BLOOD RATE', flight: '', rate: 12 },
+    { name: 'BALL IN COMBO', flight: '', rate: 27 },
+    { name: 'CHERRY', flight: '', rate: 78 },
+    { name: 'DOUBLE CHERRY', flight: '', rate: 22 },
+  ]
+
+  const comboOutDetailToggle = (status) => setComboOutDetailEnabled(status)
 
   return (
     <ImgBg>
@@ -47,14 +64,14 @@ export default function Home({navigation}) {
               resizeMode={'contain'}
             />
           </TouchableOpacity>
-          <View style={[styles.mainContainer, {marginLeft: 20}]}>
+          <View style={[styles.mainContainer, { marginLeft: 20 }]}>
             <Text style={style.customText}>UID: 223232</Text>
-            <Text style={[style.customText, {fontSize: 24}]}>DEMO USER</Text>
-            <View style={[styles.directionRow, {marginTop: 10}]}>
+            <Text style={[style.customText, { fontSize: 24 }]}>DEMO USER</Text>
+            <View style={[styles.directionRow, { marginTop: 10 }]}>
               <View>
                 <Text style={style.customText}>Rank</Text>
                 <View style={styles.directionRow}>
-                  <Text style={[style.customText, {fontSize: 24}]}>23</Text>
+                  <Text style={[style.customText, { fontSize: 24 }]}>23</Text>
                   <View
                     style={[
                       styles.alignCenter,
@@ -79,9 +96,9 @@ export default function Home({navigation}) {
                   </View>
                 </View>
               </View>
-              <View style={{marginLeft: 30}}>
+              <View style={{ marginLeft: 30 }}>
                 <Text style={[style.customText]}>VP</Text>
-                <View style={{flexDirection: 'row'}}>
+                <View style={{ flexDirection: 'row' }}>
                   <Text
                     style={[
                       style.customText,
@@ -162,9 +179,39 @@ export default function Home({navigation}) {
               onPress={() => setIndex(4)}
             />
           </View>
-          <MenuData index={index} />
+          <MenuData index={index} callBack={() => comboOutDetailToggle(true)} />
         </View>
       </ScrollView>
+      {comboOutDetailEnabled &&
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={() => comboOutDetailToggle(false)}
+          style={styles.comboOutMainContainer}>
+          <TouchableOpacity
+            activeOpacity={1}
+            style={styles.comboOutDetailCOntainer}>
+
+            <FlatList
+              data={COMBOOUTDATA}
+              renderItem={({ item }) => {
+                return (
+                  <TouchableOpacity
+                    onPress={() => comboOutDetailToggle(false)}
+                    activeOpacity={0.8} style={styles.comboOutListCOntainer}>
+                    <View style={styles.comboOutNameContainer}>
+                      <Text style={styles.comboOutName}>{item.name}</Text>
+                    </View>
+                    <View style={styles.comboOutRateContainer}>
+                      <Text style={styles.comboOutName}>{item.rate}</Text>
+                    </View>
+                  </TouchableOpacity>
+                )
+              }}
+              keyExtractor={item => item.id}
+            />
+          </TouchableOpacity>
+        </TouchableOpacity>
+      }
       <Img
         local={true}
         style={style.adsImageSecond}
@@ -175,7 +222,7 @@ export default function Home({navigation}) {
   );
 }
 
-const MenuData = ({index}) => {
+const MenuData = ({ index, callBack }) => {
   switch (index) {
     case 1:
       return (
@@ -227,7 +274,10 @@ const MenuData = ({index}) => {
               <Text style={style.customTextBold}>RATE</Text>
             </View>
           </View>
-          <View
+          <TouchableOpacity
+            onPress={callBack}
+
+            activeOpacity={0.8}
             style={[
               styles.directionRow,
               styles.bgPrimary,
@@ -238,6 +288,7 @@ const MenuData = ({index}) => {
                 borderRadius: 5,
               },
             ]}>
+
             <View
               style={[
                 styles.justifyCenter,
@@ -283,7 +334,7 @@ const MenuData = ({index}) => {
               ]}>
               <Text style={style.flightText}>2</Text>
             </View>
-          </View>
+          </TouchableOpacity>
           <View
             style={[
               styles.directionRow,
@@ -303,7 +354,7 @@ const MenuData = ({index}) => {
                   paddingLeft: 20,
                 },
               ]}>
-              <Text style={[style.customTextIncreaseBold, {fontSize: 18}]}>
+              <Text style={[style.customTextIncreaseBold, { fontSize: 18 }]}>
                 COUNT UP
               </Text>
             </View>
@@ -361,7 +412,7 @@ const MenuData = ({index}) => {
                   paddingLeft: 20,
                 },
               ]}>
-              <Text style={[style.customTextIncreaseBold, {fontSize: 18}]}>
+              <Text style={[style.customTextIncreaseBold, { fontSize: 18 }]}>
                 TIME ATTACK
               </Text>
             </View>
@@ -419,7 +470,7 @@ const MenuData = ({index}) => {
                   paddingLeft: 20,
                 },
               ]}>
-              <Text style={[style.customTextIncreaseBold, {fontSize: 18}]}>
+              <Text style={[style.customTextIncreaseBold, { fontSize: 18 }]}>
                 CHALLENGE
               </Text>
             </View>
@@ -496,7 +547,7 @@ const MenuData = ({index}) => {
   }
 };
 
-const MenuItem = ({title, icon, onPress = () => {}}) => {
+const MenuItem = ({ title, icon, onPress = () => { } }) => {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
@@ -509,7 +560,7 @@ const MenuItem = ({title, icon, onPress = () => {}}) => {
       ]}>
       <Image
         source={icon}
-        style={{width: 25, height: 25, tintColor: Colors.White}}
+        style={{ width: 25, height: 25, tintColor: Colors.White }}
       />
       <Text style={[style.customText, styles.textCenter]}>{title}</Text>
     </TouchableOpacity>
