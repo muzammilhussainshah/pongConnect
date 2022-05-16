@@ -14,6 +14,7 @@ import HeaderCustom from '../../Components/Header';
 import styles from '../styles';
 import style from './styles';
 import { FlatList } from 'react-native-gesture-handler';
+import * as Animatable from 'react-native-animatable';
 
 const { width } = Dimensions.get('window');
 
@@ -23,6 +24,7 @@ export default function Home({ navigation }) {
   const { navigate, toggleDrawer } = navigation;
   const [index, setIndex] = useState(1);
   const [comboOutDetailEnabled, setComboOutDetailEnabled] = useState(false);
+  const [anim, setanim] = useState('fadeIn')
 
   const COMBOOUTDATA = [
     { name: 'game', flight: '', rate: 560 },
@@ -37,7 +39,47 @@ export default function Home({ navigation }) {
     { name: 'DOUBLE CHERRY', flight: '', rate: 22 },
   ]
 
-  const comboOutDetailToggle = (status) => setComboOutDetailEnabled(status)
+  const comboOutDetailToggle = (status, animName) => {
+    setanim(animName)
+    if (animName == 'fadeOut') setTimeout(() => { setComboOutDetailEnabled(status) }, 1000)
+    else setComboOutDetailEnabled(status)
+  }
+
+  // when click on combo out
+  const ComboOutRender = () => {
+    return (
+      <TouchableOpacity
+        activeOpacity={1}
+        onPress={() => comboOutDetailToggle(false, 'fadeOut')}
+        style={[styles.comboOutMainContainer,]}
+      >
+        <TouchableOpacity
+          activeOpacity={1}
+          style={styles.comboOutDetailCOntainer}>
+
+          <FlatList
+            data={COMBOOUTDATA}
+            renderItem={({ item }) => {
+              return (
+                <TouchableOpacity
+                  onPress={() => comboOutDetailToggle(false, 'fadeOut')}
+                  activeOpacity={0.8} style={styles.comboOutListCOntainer}>
+                  <View style={styles.comboOutNameContainer}>
+                    <Text style={styles.comboOutName}>{item.name}</Text>
+                  </View>
+                  <View style={styles.comboOutRateContainer}>
+                    <Text style={styles.comboOutName}>{item.rate}</Text>
+                  </View>
+                </TouchableOpacity>
+              )
+            }}
+          />
+        </TouchableOpacity>
+      </TouchableOpacity>
+    )
+  }
+  // when click on combo out
+
 
   return (
     <ImgBg>
@@ -179,38 +221,19 @@ export default function Home({ navigation }) {
               onPress={() => setIndex(4)}
             />
           </View>
-          <MenuData index={index} callBack={() => comboOutDetailToggle(true)} />
+          <MenuData index={index} callBack={() => comboOutDetailToggle(true, 'fadeIn')} />
         </View>
       </ScrollView>
       {comboOutDetailEnabled &&
-        <TouchableOpacity
-          activeOpacity={0.8}
-          onPress={() => comboOutDetailToggle(false)}
-          style={styles.comboOutMainContainer}>
-          <TouchableOpacity
-            activeOpacity={1}
-            style={styles.comboOutDetailCOntainer}>
-
-            <FlatList
-              data={COMBOOUTDATA}
-              renderItem={({ item }) => {
-                return (
-                  <TouchableOpacity
-                    onPress={() => comboOutDetailToggle(false)}
-                    activeOpacity={0.8} style={styles.comboOutListCOntainer}>
-                    <View style={styles.comboOutNameContainer}>
-                      <Text style={styles.comboOutName}>{item.name}</Text>
-                    </View>
-                    <View style={styles.comboOutRateContainer}>
-                      <Text style={styles.comboOutName}>{item.rate}</Text>
-                    </View>
-                  </TouchableOpacity>
-                )
-              }}
-              keyExtractor={item => item.id}
-            />
-          </TouchableOpacity>
-        </TouchableOpacity>
+        <Animatable.View
+          duration={400}
+          animation={anim}
+          useNativeDriver={true}
+          iterationCount={1}
+          style={[styles.comboOutMainContainer,]}
+        >
+          <ComboOutRender />
+        </Animatable.View>
       }
       <Img
         local={true}
@@ -282,8 +305,9 @@ const MenuData = ({ index, callBack }) => {
               styles.directionRow,
               styles.bgPrimary,
               {
-                width: '100%',
+                width: '95%',
                 marginTop: 5,
+                marginHorizontal: 10,
                 height: 35,
                 borderRadius: 5,
               },
@@ -341,7 +365,9 @@ const MenuData = ({ index, callBack }) => {
               {
                 marginTop: 5,
                 height: 35,
-                width: '100%',
+                width: '95%',
+                backgroundColor: Colors.darkBlue,
+                marginHorizontal: 10,
                 borderRadius: 5,
               },
             ]}>
@@ -399,7 +425,9 @@ const MenuData = ({ index, callBack }) => {
               {
                 marginTop: 5,
                 height: 35,
-                width: '100%',
+                backgroundColor: Colors.darkBlue,
+                marginHorizontal: 10,
+                width: '95%',
                 borderRadius: 5,
               },
             ]}>
@@ -457,7 +485,9 @@ const MenuData = ({ index, callBack }) => {
               {
                 marginTop: 5,
                 height: 35,
-                width: '100%',
+                backgroundColor: Colors.darkBlue,
+                marginHorizontal: 10,
+                width: '95%',
                 borderRadius: 5,
               },
             ]}>
