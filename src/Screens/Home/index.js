@@ -11,6 +11,7 @@ import ImgBg from '../../Components/BackgroundImage';
 import Img from '../../Components/Img';
 import { Colors } from '../../Styles';
 import HeaderCustom from '../../Components/Header';
+import GameData from '../../Components/gameData';
 import styles from '../styles';
 import style from './styles';
 import { FlatList } from 'react-native-gesture-handler';
@@ -22,7 +23,7 @@ const user = `https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib
 
 export default function Home({ navigation }) {
   const { navigate, toggleDrawer } = navigation;
-  const [index, setIndex] = useState(1);
+  const [index, setIndex] = useState(0);
   const [comboOutDetailEnabled, setComboOutDetailEnabled] = useState(false);
   const [anim, setanim] = useState('fadeIn')
 
@@ -224,7 +225,9 @@ export default function Home({ navigation }) {
           <MenuData index={index} callBack={() => comboOutDetailToggle(true, 'fadeIn')} />
         </View>
       </ScrollView>
-      {comboOutDetailEnabled &&
+
+      {
+        comboOutDetailEnabled &&
         <Animatable.View
           duration={400}
           animation={anim}
@@ -235,13 +238,15 @@ export default function Home({ navigation }) {
           <ComboOutRender />
         </Animatable.View>
       }
+
       <Img
         local={true}
         style={style.adsImageSecond}
         src={require('../../Assets/ad2.png')}
-        // resizeMode={''}
-        // resizeMode={'stretch'}
+      // resizeMode={''}
+      // resizeMode={'stretch'}
       />
+
     </ImgBg>
   );
 }
@@ -249,6 +254,10 @@ export default function Home({ navigation }) {
 const MenuData = ({ index, callBack }) => {
   switch (index) {
     case 1:
+      return (
+        <GameData />
+      )
+    case 2:
       return (
         <View style={style.menuContainer}>
           <Img
