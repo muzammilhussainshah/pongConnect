@@ -1,9 +1,9 @@
 import React from 'react';
-import {TouchableOpacity, View, Image} from 'react-native';
-import {getStatusBarHeight} from 'react-native-status-bar-height';
-import {scale} from '../Components/scaling';
+import { TouchableOpacity, View, Image, Text } from 'react-native';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
+import { scale } from '../Components/scaling';
 import Img from './Img';
-import {Colors} from '../Styles';
+import { Colors } from '../Styles';
 
 export default function HeaderCustom({
   back = false,
@@ -12,6 +12,7 @@ export default function HeaderCustom({
   showLogo,
   isDrawer,
   scan = false,
+  scanPrivate = false,
   setting,
 }) {
   return (
@@ -32,11 +33,11 @@ export default function HeaderCustom({
             else toggleDrawer();
           }}
           activeOpacity={0.8}
-          style={{position: 'absolute', left: 20}}>
+          style={{ position: 'absolute', left: 20 }}>
           {back ? (
             <Img
               local={true}
-              style={{height: 30, width: 30}}
+              style={{ height: 30, width: 30 }}
               src={require('../Assets/back.png')}
               resizeMode={'contain'}
             />
@@ -117,6 +118,36 @@ export default function HeaderCustom({
             />
           </TouchableOpacity>
         ) : null}
+
+        {
+          scanPrivate &&
+          <TouchableOpacity
+            onPress={() => {
+              // if (back) goBack();
+              // else NavService.toggleDrawer();
+            }}
+            activeOpacity={0.8}
+            style={{
+              position: 'absolute',
+              justifyContent: 'center',
+              alignItems: 'center',
+              right: 20,
+              borderRadius: 5,
+              top: 10
+            }}>
+            <Img
+              local={true}
+              style={{
+                height: 30,
+                width: 30,
+                tintColor: Colors.White,
+              }}
+              src={require('../Assets/pvScan.png')}
+              resizeMode={'contain'}
+            />
+            <Text numberOfLines={2} style={{ color: 'white', textAlign: 'center' }}>Private{'\n'} Scan</Text>
+          </TouchableOpacity>
+        }
       </View>
     </View>
   );

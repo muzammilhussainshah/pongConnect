@@ -199,7 +199,7 @@ export default function Home({ navigation }) {
             <MenuItem
               title="Upcoming Events"
               icon={require('../../Assets/calendar.png')}
-              onPress={() => setIndex(0)}
+              onPress={() => { setIndex(0), navigate('EventDetails') }}
             />
             <MenuItem
               title={`Game\nData`}
@@ -209,20 +209,20 @@ export default function Home({ navigation }) {
             <MenuItem
               title="Award Movie"
               icon={require('../../Assets/movie.png')}
-              onPress={() => setIndex(2)}
+            // onPress={() => setIndex(2)}
             />
             <MenuItem
               title="World Ranking"
               icon={require('../../Assets/ranks.png')}
-              onPress={() => setIndex(3)}
+            // onPress={() => setIndex(3)}
             />
             <MenuItem
               title="Daily Mission"
               icon={require('../../Assets/mission.png')}
-              onPress={() => setIndex(4)}
+            // onPress={() => setIndex(4)}
             />
           </View>
-          <MenuData index={index} callBack={() => comboOutDetailToggle(true, 'fadeIn')} />
+          <MenuData index={index} setIndex={setIndex} callBack={() => comboOutDetailToggle(true, 'fadeIn')} />
         </View>
       </ScrollView>
 
@@ -251,7 +251,7 @@ export default function Home({ navigation }) {
   );
 }
 
-const MenuData = ({ index, callBack }) => {
+const MenuData = ({ index, setIndex, callBack }) => {
   switch (index) {
     case 2:
       return (
@@ -567,12 +567,26 @@ const MenuData = ({ index, callBack }) => {
           <View style={style.secondViewDivision}>
             <Text style={style.subHeading}>WIN RATE</Text>
             <Text style={style.mainHeading}>78%</Text>
-            <Img
+
+            {/* <Img
               local={true}
               style={style.ballSecond}
               src={require('../../Assets/ball.png')}
               resizeMode={'contain'}
-            />
+            /> */}
+
+            <TouchableOpacity
+              style={[style.ballSecond, { bottom: 0 }]}
+              activeOpacity={0.8}
+              onPress={() => setIndex(2)}
+            >
+              <Img
+                local={true}
+                style={style.ballSecond}
+                src={require('../../Assets/ball.png')}
+                resizeMode={'contain'}
+              />
+            </TouchableOpacity>
           </View>
           <View style={[styles.alignCenter, styles.justifyCenter, styles.w_25]}>
             <Text style={style.subHeading}>{`GENERAL\nRANK`}</Text>
