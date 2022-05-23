@@ -199,7 +199,7 @@ export default function Home({ navigation }) {
             <MenuItem
               title="Upcoming Events"
               icon={require('../../Assets/calendar.png')}
-              onPress={() => { setIndex(0), navigate('EventDetails') }}
+              onPress={() => { setIndex(0), navigate('Event') }}
             />
             <MenuItem
               title={`Game\nData`}
@@ -209,7 +209,7 @@ export default function Home({ navigation }) {
             <MenuItem
               title="Award Movie"
               icon={require('../../Assets/movie.png')}
-            // onPress={() => setIndex(2)}
+              onPress={() => { setIndex(2), navigate('AwardMovie') }}
             />
             <MenuItem
               title="World Ranking"

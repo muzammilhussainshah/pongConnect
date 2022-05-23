@@ -8,5 +8,6 @@ import GameData from './GameDate';
 import Event from './Events';
 import EventDetails from './EventsDetails';
 import ShowTaxi from './ShowTaxi';
+import AwardMovie from './AwardMovie';
 
-export { Login, SignUp, RegionAndPassword, Home, OtherProfile, Profile, GameData, Event, EventDetails, ShowTaxi };
+export { Login, SignUp, RegionAndPassword, Home, OtherProfile, Profile, GameData, Event, EventDetails, ShowTaxi, AwardMovie };

@@ -161,7 +161,7 @@ export default function Event({ navigation }) {
                     renderItem={({ item }) => {
                         return (
                             <TouchableOpacity style={[style.listingContainer, { backgroundColor: item.backgroundColorOrange ? '#EC6707' : '#303E50', padding: 10 }]}
-                            // onPress={() => navigate('OtherProfile')}
+                                onPress={() => navigate('EventDetails')}
                             >
                                 <View style={{ flex: 1.5, paddingRight: 5 }}>
                                     <Img
