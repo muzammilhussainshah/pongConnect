@@ -214,12 +214,12 @@ export default function Home({ navigation }) {
             <MenuItem
               title="World Ranking"
               icon={require('../../Assets/ranks.png')}
-            // onPress={() => setIndex(3)}
+            // onPress={() => { setIndex(3), navigate('DailyMission') }}
             />
             <MenuItem
               title="Daily Mission"
               icon={require('../../Assets/mission.png')}
-            // onPress={() => setIndex(4)}
+              onPress={() => { setIndex(4), navigate('DailyMission') }}
             />
           </View>
           <MenuData index={index} setIndex={setIndex} callBack={() => comboOutDetailToggle(true, 'fadeIn')} />
