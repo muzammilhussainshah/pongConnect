@@ -3,7 +3,7 @@ import {
   createStackNavigator,
   CardStyleInterpolators,
 } from '@react-navigation/stack';
-import { Home, OtherProfile, Profile } from '../../../Screens';
+import { Home, OtherProfile, Profile, GameData } from '../../../Screens';
 
 const Stack = createStackNavigator();
 
@@ -29,6 +29,13 @@ const AuthorisedStack = () => {
       <Stack.Screen
         name="OtherProfile"
         component={OtherProfile}
+        options={{
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        }}
+      />
+      <Stack.Screen
+        name="GameData"
+        component={GameData}
         options={{
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}

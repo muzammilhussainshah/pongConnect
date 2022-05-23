@@ -204,7 +204,7 @@ export default function Home({ navigation }) {
             <MenuItem
               title={`Game\nData`}
               icon={require('../../Assets/data.png')}
-              onPress={() => setIndex(1)}
+              onPress={() => { setIndex(1), navigate('GameData') }}
             />
             <MenuItem
               title="Award Movie"
@@ -253,10 +253,6 @@ export default function Home({ navigation }) {
 
 const MenuData = ({ index, callBack }) => {
   switch (index) {
-    case 1:
-      return (
-        <GameData />
-      )
     case 2:
       return (
         <View style={style.menuContainer}>
