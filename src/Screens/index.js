@@ -5,5 +5,6 @@ import RegionAndPassword from './Signup/regionAndPassword';
 import OtherProfile from './OtherProfile';
 import Profile from './Profile';
 import GameData from './GameDate';
+import Event from './Events';
 
-export { Login, SignUp, RegionAndPassword, Home, OtherProfile, Profile, GameData };
+export { Login, SignUp, RegionAndPassword, Home, OtherProfile, Profile, GameData, Event };

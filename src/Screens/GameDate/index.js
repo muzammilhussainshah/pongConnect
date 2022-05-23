@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, ImageBackground, Image, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
+import { Text, View, ImageBackground, TouchableOpacity } from 'react-native';
 import HeaderCustom from '../../Components/Header';
 import ImgBg from '../../Components/BackgroundImage';
 import Img from '../../Components/Img';
@@ -11,6 +11,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview'
 const frame = require('../../Assets/photoFrame.png');
 const userDummy = require('../../Assets/userDummy.png');
 const KOREASOUTHFlag = require('../../Assets/KOREASOUTH.png');
+const searchIcon = require('../../Assets/search.png');
 const logoGame = require('../../Assets/logoGame.png');
 const taj = require('../../Assets/taj.png');
 const l = require('../../Assets/l.png');
@@ -99,7 +100,7 @@ export default function GameData({ navigation }) {
                         <View style={{ flex: 1, flexDirection: 'row', }}>
                             <View style={{ flex: 1 }}>
                                 <TextInput
-                                    iconRight={logoGame}
+                                    iconRight={searchIcon}
                                     placeholder="SEARCH PLAYER"
                                     placeholderTextHolder={Colors.Grey}
                                     value={search}
@@ -133,7 +134,9 @@ export default function GameData({ navigation }) {
                     data={data}
                     renderItem={({ item }) => {
                         return (
-                            <View style={style.listingContainer}>
+                            <TouchableOpacity style={style.listingContainer}
+                                onPress={() => navigate('OtherProfile')}
+                            >
                                 <View style={style.listingContainerC1}>
                                     <Img
                                         local={true}
@@ -158,7 +161,7 @@ export default function GameData({ navigation }) {
                                         src={item.icon}
                                     />
                                 </View>
-                            </View>
+                            </TouchableOpacity>
                         )
                     }}
                 />
