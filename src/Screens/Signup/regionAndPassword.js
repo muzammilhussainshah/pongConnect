@@ -46,7 +46,7 @@ export default function RegionAndPassword({ navigation, route }) {
         <ImgBg type="success">
             {
 
-                (countryListsShow) ? (<CountryLists selectRegion={selectRegion} />) :
+                (countryListsShow) ? (<CountryLists goBack={goBack} selectRegion={selectRegion} />) :
                     <>
 
                         <HeaderCustom back={true} showLogo={true} goBack={goBack} />

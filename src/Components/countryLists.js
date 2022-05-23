@@ -5,6 +5,10 @@ import Entypo from 'react-native-vector-icons/Entypo';
 //flags and country list import
 import flags from '../services/resources/flags/index'
 let countrysList = require('../services/resources/countries.json');
+import Img from '../Components/Img';
+import HeaderCustom from '../Components/Header';
+
+const aeroBack = require('../Assets/arrow-back.png');
 
 class CountryLists extends Component {
     constructor(props) {
@@ -18,6 +22,7 @@ class CountryLists extends Component {
         // this.props.navigation.navigate("PhoneVerification", { item: item, imgPath: path })
         this.props.selectRegion(item, path)
     }
+
 
     render() {
         let { search, } = this.state
@@ -34,8 +39,10 @@ class CountryLists extends Component {
         }
         return (
             <View style={styles.container}>
+                <HeaderCustom back={true} showLogo={true} goBack={this.props.goBack} />
+
                 <View style={styles.header}>
-                    <Text style={{ fontSize: 25, fontWeight: "bold", marginTop: 10 }}>Region</Text>
+                    {/* <Text style={{ fontSize: 25, fontWeight: "bold", marginTop: 10 }}>Region</Text> */}
                     <View style={styles.inputSearchBar}>
                         <View style={styles.inputSearchBarChild}>
                             <Feather name="search" style={styles.iconSearch} />
@@ -80,9 +87,16 @@ class CountryLists extends Component {
                                     <View style={styles.countryName}>
                                         <Text style={{ marginLeft: 15, color: 'white' }}>{item.name}</Text>
                                     </View>
-                                    {/* <View style={styles.countryCode}>
-                                        <Text style={{ marginRight: 10, color: "#4267B2", fontWeight: "bold" }}>+{item.dialCode}</Text>
-                                    </View> */}
+                                    <View style={styles.countryCode}>
+                                        {/* <Text style={{ marginRight: 10, color: "#4267B2", fontWeight: "bold" }}>+{item.dialCode}</Text> */}
+
+                                        <Img
+                                            local={true}
+                                            style={[{ marginHorizontal: 10, height: 15, width: 15, }]}
+                                            resizeMode="contain"
+                                            src={aeroBack}
+                                        />
+                                    </View>
                                 </TouchableOpacity>
                             )
                         }
@@ -102,7 +116,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#050D18"
     },
     header: {
-        height: 100,
+        height: 60,
         width: "100%",
         justifyContent: "center",
         alignItems: "center",
@@ -117,7 +131,9 @@ const styles = StyleSheet.create({
         marginTop: 10,
         flexDirection: "row",
         width: "90%",
-        borderColor: 'gray',
+        borderColor: '#EC6707',
+        borderWidth: 3,
+        borderRadius: 7,
         backgroundColor: "#F5F7FB",
         justifyContent: "center",
         alignItems: "center"
@@ -140,7 +156,7 @@ const styles = StyleSheet.create({
     },
     iconSearch: {
         fontSize: 25,
-        color: "#4267B2",
+        color: "#EC6707",
     },
     iconClear: {
         fontSize: 22,
