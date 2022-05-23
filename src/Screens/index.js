@@ -7,5 +7,6 @@ import Profile from './Profile';
 import GameData from './GameDate';
 import Event from './Events';
 import EventDetails from './EventsDetails';
+import ShowTaxi from './ShowTaxi';
 
-export { Login, SignUp, RegionAndPassword, Home, OtherProfile, Profile, GameData, Event, EventDetails };
+export { Login, SignUp, RegionAndPassword, Home, OtherProfile, Profile, GameData, Event, EventDetails, ShowTaxi };

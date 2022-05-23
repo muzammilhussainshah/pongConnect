@@ -3,7 +3,7 @@ import {
   createStackNavigator,
   CardStyleInterpolators,
 } from '@react-navigation/stack';
-import { Home, OtherProfile, Profile, GameData, Event, EventDetails } from '../../../Screens';
+import { Home, OtherProfile, Profile, GameData, Event, EventDetails, ShowTaxi } from '../../../Screens';
 
 const Stack = createStackNavigator();
 
@@ -11,7 +11,7 @@ const AuthorisedStack = () => {
   return (
     <Stack.Navigator
       initialRouteName="Home"
-      // initialRouteName="EventDetails"
+      // initialRouteName="ShowTaxi"
       screenOptions={{ headerShown: false }}>
       <Stack.Screen
         name="Home"
@@ -51,6 +51,13 @@ const AuthorisedStack = () => {
       <Stack.Screen
         name="EventDetails"
         component={EventDetails}
+        options={{
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        }}
+      />
+      <Stack.Screen
+        name="ShowTaxi"
+        component={ShowTaxi}
         options={{
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}

@@ -75,7 +75,7 @@ export default function EventDetails({ navigation }) {
                         <ButtonCustom
                             title="SHOW TAXI"
                             onPress={() => {
-                                navigate('Home');
+                                navigate('ShowTaxi');
                             }}
                         />
                     </View>
