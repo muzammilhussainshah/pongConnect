@@ -10,5 +10,6 @@ import EventDetails from './EventsDetails';
 import ShowTaxi from './ShowTaxi';
 import AwardMovie from './AwardMovie';
 import DailyMission from './DailyMission';
+import DailyMissionDetails from './DailyMissionDetails';
 
-export { Login, SignUp, RegionAndPassword, Home, OtherProfile, Profile, GameData, Event, EventDetails, ShowTaxi, AwardMovie, DailyMission };
+export { Login, SignUp, RegionAndPassword, Home, OtherProfile, Profile, GameData, Event, EventDetails, ShowTaxi, AwardMovie, DailyMission, DailyMissionDetails };

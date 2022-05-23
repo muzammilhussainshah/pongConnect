@@ -153,13 +153,13 @@ export default function DailyMission({ navigation }) {
                     </View>
                 </View>
 
-
-
                 <FlatList
                     data={data}
                     renderItem={({ item }) => {
                         return (
-                            <TouchableOpacity style={{ justifyContent: 'space-between', width: '90%', marginTop: 10, marginHorizontal: '5%' }}>
+                            <TouchableOpacity style={{ justifyContent: 'space-between', width: '90%', marginTop: 10, marginHorizontal: '5%' }}
+                                onPress={() => { navigate('DailyMissionDetails') }}
+                            >
                                 <View>
                                     <Text style={[style.gameDataText, { textDecorationLine: 'underline' }]}>{item.date}</Text>
                                 </View>
