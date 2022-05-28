@@ -22,7 +22,7 @@ export default function EventDetails({ navigation }) {
 
     return (
         <ImgBg>
-            <HeaderCustom showLogo={true} back={true} goBack={goBack} scanPrivate />
+            <HeaderCustom showLogo={true} back={true} goBack={goBack} scanPrivate navigate={navigate} />
 
             <KeyboardAwareScrollView
                 contentContainerStyle={[
