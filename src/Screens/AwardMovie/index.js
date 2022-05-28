@@ -149,7 +149,7 @@ export default function AwardMovie({ navigation }) {
                             ]}>
                             <ButtonCustom
                                 title="USED"
-                            // onPress={() => { navigate('Home') }}
+                                onPress={() => { navigate('AwardMovieDetails') }}
                             />
                         </View>
                     </View>
@@ -174,7 +174,9 @@ export default function AwardMovie({ navigation }) {
                                 styles.w_50,
                             ]}>
 
-                            <TouchableOpacity style={{ backgroundColor: '#4A4A4A', width: "50%", height: 40, borderRadius: 7, justifyContent: 'center', alignItems: 'center' }}>
+                            <TouchableOpacity
+                                onPress={() => { navigate('AwardMovieDetails') }}
+                                style={{ backgroundColor: '#4A4A4A', width: "50%", height: 40, borderRadius: 7, justifyContent: 'center', alignItems: 'center' }}>
                                 <Text style={[style.textLower, { fontSize: 12 }]}>USE THIS THEME</Text>
                             </TouchableOpacity>
 
@@ -201,7 +203,9 @@ export default function AwardMovie({ navigation }) {
                                 styles.w_50,
                             ]}>
 
-                            <TouchableOpacity style={{ backgroundColor: '#4A4A4A', width: "50%", height: 40, borderRadius: 7, justifyContent: 'center', alignItems: 'center' }}>
+                            <TouchableOpacity
+                                onPress={() => { navigate('AwardMovieDetails') }}
+                                style={{ backgroundColor: '#4A4A4A', width: "50%", height: 40, borderRadius: 7, justifyContent: 'center', alignItems: 'center' }}>
                                 <Text style={[style.textLower, { fontSize: 12 }]}>USE THIS THEME</Text>
                             </TouchableOpacity>
 

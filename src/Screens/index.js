@@ -13,5 +13,12 @@ import DailyMission from './DailyMission';
 import DailyMissionDetails from './DailyMissionDetails';
 import WorldRanking from './WorldRanking';
 import AwardMovieDetails from './AwardMovieDetails';
+import HowToPlay from './HowToPlay';
 
-export { Login, SignUp, RegionAndPassword, Home, OtherProfile, Profile, GameData, Event, EventDetails, ShowTaxi, AwardMovie, DailyMission, DailyMissionDetails, WorldRanking, AwardMovieDetails };
+export {
+    Login, SignUp, RegionAndPassword, Home,
+    OtherProfile, Profile, GameData, Event,
+    EventDetails, ShowTaxi, AwardMovie,
+    DailyMission, DailyMissionDetails, WorldRanking,
+    AwardMovieDetails, HowToPlay
+};
