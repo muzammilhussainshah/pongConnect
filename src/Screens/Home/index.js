@@ -214,7 +214,7 @@ export default function Home({ navigation }) {
             <MenuItem
               title="World Ranking"
               icon={require('../../Assets/ranks.png')}
-            // onPress={() => { setIndex(3), navigate('DailyMission') }}
+            onPress={() => { setIndex(3), navigate('WorldRanking') }}
             />
             <MenuItem
               title="Daily Mission"
