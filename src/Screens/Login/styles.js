@@ -13,8 +13,8 @@ const style = StyleSheet.create({
     marginHorizontal: 15,
   },
   customImages: {
-    height: 40,
-    width: 40,
+    height: 50,
+    width: 50,
   },
   footerText: {
     fontFamily: family.Agency_Bold,

@@ -1,13 +1,13 @@
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import React, {useEffect} from 'react';
-import {LogBox, StatusBar} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React, { useEffect } from 'react';
+import { LogBox, StatusBar } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
-import {CardStyleInterpolators} from '@react-navigation/stack';
-import {Provider} from 'react-redux';
+import { CardStyleInterpolators } from '@react-navigation/stack';
+import { Provider } from 'react-redux';
 import MyDrawer from '../Navigation/drawer';
-import {Login, SignUp} from '../Screens';
-import {store} from '../Store/store';
+import { Login, SignUp, RegionAndPassword } from '../Screens';
+import { store } from '../Store/store';
 
 LogBox.ignoreAllLogs(true);
 
@@ -23,7 +23,7 @@ const AppNavigation = () => {
 
         <AppStack.Navigator
           screenOptions={{
-            contentStyle: {backgroundColor: 'transparent'},
+            contentStyle: { backgroundColor: 'transparent' },
             animation: 'fade_from_bottom',
             headerShown: false,
             headerTransparent: true,
@@ -46,6 +46,13 @@ const AppNavigation = () => {
             }}
             name="SignUp"
             component={SignUp}
+          />
+          <AppStack.Screen
+            options={{
+              cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+            }}
+            name="RegionAndPassword"
+            component={RegionAndPassword}
           />
           <AppStack.Screen
             options={{

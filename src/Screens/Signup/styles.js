@@ -35,8 +35,8 @@ const style = StyleSheet.create({
     color: Colors.White,
     fontWeight: 'bold',
     textTransform: 'uppercase',
-    width: '50%',
-    textAlign: 'center',
+    width: '20%',
+     textAlign: 'center',
     fontSize: 13,
   },
 });

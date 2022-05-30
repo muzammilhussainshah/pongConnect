@@ -1,17 +1,448 @@
-import React, {useState} from 'react';
-import {Text, View, Image, ScrollView} from 'react-native';
+import React, {
+  useState,
+  useReducer,
+  useEffect
+} from 'react';
+import {
+  Text,
+  View,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+  FlatList
+} from 'react-native';
+
+import * as Animatable from 'react-native-animatable';
+
 import ImgBg from '../../Components/BackgroundImage';
 import Img from '../../Components/Img';
-import {Colors} from '../../Styles';
+import { Colors } from '../../Styles';
 import HeaderCustom from '../../Components/Header';
 import styles from '../styles';
 import style from './styles';
 
 const user = `https://images.unsplash.com/photo-1457449940276-e8deed18bfff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80`;
 const dummy1 = `https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1985&q=80`;
-export default function Login({navigation}) {
-  const {navigate, goBack} = navigation;
-  const [index, setIndex] = useState(1);
+
+const initialState = { name: 0 };
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'gameStatus':
+      return { name: 'gameStatus' };
+    case 'gameMode':
+      return { name: 'gameMode' };
+    default:
+      throw new Error();
+  }
+}
+
+const COMBOOUTDATA = [
+  { name: 'game', flight: '', rate: 560 },
+  { name: 'BALL IN', flight: '', rate: 342 },
+  { name: 'CUP SUNK', flight: '', rate: 128 },
+  { name: 'AVG CUP SUNK', flight: '', rate: 0.28 },
+  { name: 'FIRST BLOOD', flight: '', rate: 52 },
+  { name: 'FIRST BLOOD COMBO', flight: '', rate: 23 },
+  { name: 'FIRST BLOOD RATE', flight: '', rate: 12 },
+  { name: 'BALL IN COMBO', flight: '', rate: 27 },
+  { name: 'CHERRY', flight: '', rate: 78 },
+  { name: 'DOUBLE CHERRY', flight: '', rate: 22 },
+]
+
+const GameStats = ({ callBack }) => {
+  return (
+    <View
+      style={[
+        styles.directionRow,
+        styles.alignCenter,
+        styles.justifySpaceBetween,
+        style.defaultMainView,
+      ]}>
+      <View style={[styles.w_25, styles.alignCenter, styles.justifyCenter]}>
+        <Text
+          style={[styles.colorWhite, styles.textCenter, style.customText]}>
+          {`GAME\nPLAYED`}
+        </Text>
+        <Text style={style.mainHeading}>693</Text>
+      </View>
+      <View style={style.secondViewDivision}>
+        <Text style={style.subHeading}>WIN RATE</Text>
+        <Text style={style.mainHeading}>94%</Text>
+        <TouchableOpacity
+          style={[style.ballSecond, { bottom: 0 }]}
+          activeOpacity={0.8}
+          onPress={callBack}>
+          <Img
+            local={true}
+            style={style.ballSecond}
+            src={require('../../Assets/ball.png')}
+            resizeMode={'contain'}
+          />
+        </TouchableOpacity>
+
+      </View>
+      <View style={[styles.alignCenter, styles.justifyCenter, styles.w_25]}>
+        <Text style={style.subHeading}>{`GENERAL\nRANK`}</Text>
+        <Text style={style.mainHeading}>S</Text>
+      </View>
+    </View>
+  )
+}
+const GameModeDetail = ({ callBack, comboOutDetailDistable }) => {
+  return (
+    <TouchableOpacity
+      activeOpacity={1}
+      onPress={comboOutDetailDistable}
+      style={[styles.comboOutMainContainer,]}
+    >
+      <TouchableOpacity
+        activeOpacity={1}
+        style={styles.comboOutDetailCOntainer}>
+
+        <FlatList
+          data={COMBOOUTDATA}
+          renderItem={({ item }) => {
+            return (
+              <TouchableOpacity
+                onPress={callBack}
+                activeOpacity={0.8} style={styles.comboOutListCOntainer}>
+                <View style={styles.comboOutNameContainer}>
+                  <Text style={styles.comboOutName}>{item.name}</Text>
+                </View>
+                <View style={styles.comboOutRateContainer}>
+                  <Text style={styles.comboOutName}>{item.rate}</Text>
+                </View>
+              </TouchableOpacity>
+            )
+          }}
+        />
+      </TouchableOpacity>
+    </TouchableOpacity>
+  )
+}
+const GameMode = ({ callBack, gameModeDisable }) => {
+  return (
+    <View style={style.menuContainer}>
+      <TouchableOpacity
+        activeOpacity={0.9}
+        style={{
+
+          width: 200 / 1.2,
+          height: 130,
+          position: 'absolute',
+          bottom: 0,
+          right: -15,
+          zIndex: 99,
+        }}
+        onPress={gameModeDisable}>
+        <Img
+          local={true}
+          style={style.ball}
+          src={require('../../Assets/ball.png')}
+          resizeMode={'contain'}
+        />
+      </TouchableOpacity>
+      <View
+        style={[
+          styles.directionRow,
+          styles.w_100,
+          {
+            height: 20,
+          },
+        ]}>
+        <View
+          style={[
+            styles.alignCenter,
+            styles.justifyCenter,
+            {
+              width: '35%',
+              height: '100%',
+            },
+          ]}>
+          <Text style={style.customTextBold}>GAME MODE</Text>
+        </View>
+        <View
+          style={[
+            styles.alignCenter,
+            styles.justifyCenter,
+            {
+              width: '25%',
+              height: '100%',
+            },
+          ]}>
+          <Text style={style.customTextBold}>FLIGHT</Text>
+        </View>
+        <View
+          style={[
+            styles.justifyCenter,
+            {
+              width: '20%',
+              height: '100%',
+            },
+          ]}>
+          <Text style={style.customTextBold}>RATE</Text>
+        </View>
+      </View>
+      <TouchableOpacity
+        onPress={callBack}
+
+        activeOpacity={0.8}
+        style={[
+          styles.directionRow,
+          styles.bgPrimary,
+          {
+            width: '95%',
+            marginTop: 5,
+            marginHorizontal: 10,
+            height: 35,
+            borderRadius: 5,
+          },
+        ]}>
+
+        <View
+          style={[
+            styles.justifyCenter,
+            {
+              width: '40%',
+              height: '100%',
+              paddingLeft: 20,
+            },
+          ]}>
+          <Text style={style.flightText}>COMBO OUT</Text>
+        </View>
+        <View
+          style={[
+            styles.justifyCenter,
+            styles.alignCenter,
+            {
+              width: '25%',
+              height: '100%',
+            },
+          ]}>
+          <View
+            style={[
+              styles.justifyCenter,
+              styles.alignCenter,
+              {
+                width: 30,
+                height: 30,
+                backgroundColor: Colors.red,
+                borderRadius: 5,
+              },
+            ]}>
+            <Text style={style.flightText}>S</Text>
+          </View>
+        </View>
+        <View
+          style={[
+            styles.justifyCenter,
+            styles.alignCenter,
+            {
+              width: '10%',
+              height: '100%',
+            },
+          ]}>
+          <Text style={style.flightText}>2</Text>
+        </View>
+      </TouchableOpacity>
+      <View
+        style={[
+          styles.directionRow,
+          {
+            marginTop: 5,
+            height: 35,
+            width: '95%',
+            backgroundColor: Colors.darkBlue,
+            marginHorizontal: 10,
+            borderRadius: 5,
+          },
+        ]}>
+        <View
+          style={[
+            styles.justifyCenter,
+            {
+              width: '40%',
+              height: '100%',
+              paddingLeft: 20,
+            },
+          ]}>
+          <Text style={[style.customTextIncreaseBold, { fontSize: 18 }]}>
+            COUNT UP
+          </Text>
+        </View>
+        <View
+          style={[
+            styles.justifyCenter,
+            styles.alignCenter,
+            {
+              width: '25%',
+              height: '100%',
+            },
+          ]}>
+          <View
+            style={[
+              styles.justifyCenter,
+              styles.alignCenter,
+              {
+                width: 30,
+                height: 30,
+                backgroundColor: Colors.red,
+                borderRadius: 5,
+              },
+            ]}>
+            <Text style={style.customTextIncreaseBold}>S</Text>
+          </View>
+        </View>
+        <View
+          style={[
+            styles.justifyCenter,
+            styles.alignCenter,
+            {
+              width: '10%',
+              height: '100%',
+            },
+          ]}>
+          <Text style={style.customTextIncreaseBold}>5</Text>
+        </View>
+      </View>
+      <View
+        style={[
+          styles.directionRow,
+          {
+            marginTop: 5,
+            height: 35,
+            backgroundColor: Colors.darkBlue,
+            marginHorizontal: 10,
+            width: '95%',
+            borderRadius: 5,
+          },
+        ]}>
+        <View
+          style={[
+            styles.justifyCenter,
+            {
+              width: '40%',
+              height: '100%',
+              paddingLeft: 20,
+            },
+          ]}>
+          <Text style={[style.customTextIncreaseBold, { fontSize: 18 }]}>
+            TIME ATTACK
+          </Text>
+        </View>
+        <View
+          style={[
+            styles.justifyCenter,
+            styles.alignCenter,
+            {
+              width: '25%',
+              height: '100%',
+            },
+          ]}>
+          <View
+            style={[
+              styles.justifyCenter,
+              styles.alignCenter,
+              styles.bgPrimary,
+              {
+                width: 30,
+                height: 30,
+                borderRadius: 5,
+              },
+            ]}>
+            <Text style={style.customTextIncreaseBold}>L</Text>
+          </View>
+        </View>
+        <View
+          style={[
+            styles.justifyCenter,
+            styles.alignCenter,
+            {
+              width: '10%',
+              height: '100%',
+            },
+          ]}>
+          <Text style={style.customTextIncreaseBold}>45</Text>
+        </View>
+      </View>
+      <View
+        style={[
+          styles.directionRow,
+          {
+            marginTop: 5,
+            height: 35,
+            backgroundColor: Colors.darkBlue,
+            marginHorizontal: 10,
+            width: '95%',
+            borderRadius: 5,
+          },
+        ]}>
+        <View
+          style={[
+            styles.justifyCenter,
+            {
+              width: '40%',
+              height: '100%',
+              paddingLeft: 20,
+            },
+          ]}>
+          <Text style={[style.customTextIncreaseBold, { fontSize: 18 }]}>
+            CHALLENGE
+          </Text>
+        </View>
+        <View
+          style={[
+            styles.justifyCenter,
+            styles.alignCenter,
+            {
+              width: '25%',
+              height: '100%',
+            },
+          ]}>
+          <View
+            style={[
+              styles.justifyCenter,
+              styles.alignCenter,
+              styles.bgPrimary,
+              {
+                width: 30,
+                height: 30,
+                borderRadius: 5,
+              },
+            ]}>
+            <Text style={style.customTextIncreaseBold}>L</Text>
+          </View>
+        </View>
+        <View
+          style={[
+            styles.justifyCenter,
+            styles.alignCenter,
+            {
+              width: '10%',
+              height: '100%',
+            },
+          ]}>
+          <Text style={style.customTextIncreaseBold}>55</Text>
+        </View>
+      </View>
+    </View>
+  )
+}
+export default function Login({ navigation }) {
+  const { navigate, goBack } = navigation;
+
+  const [comboOutDetailEnabled, setComboOutDetailEnabled] = useState(false);
+  const [anim, setanim] = useState('fadeIn')
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const comboOutDetailToggle = (status, animName) => {
+    setanim(animName)
+    if (animName == 'fadeOut') setTimeout(() => { setComboOutDetailEnabled(status) }, 1000)
+    else setComboOutDetailEnabled(status)
+  }
+  useEffect(() => { dispatch({ type: 'gameStatus' }) }, [])
 
   return (
     <ImgBg>
@@ -28,16 +459,19 @@ export default function Login({navigation}) {
         style={styles.w_100}
         showsVerticalScrollIndicator={false}>
         <View style={styles.directionRow}>
-          <Img
-            local={false}
-            style={style.profilePicture}
-            src={user}
-            resizeMode={'contain'}
-          />
-          <View style={[styles.mainContainer, {marginLeft: 20}]}>
+          <TouchableOpacity
+            activeOpacity={0.8}>
+            <Img
+              local={false}
+              style={style.profilePicture}
+              src={user}
+              resizeMode={'cover'}
+            />
+          </TouchableOpacity>
+          <View style={[styles.mainContainer, { marginLeft: 20 }]}>
             <Text style={style.customText}>UID: 223232</Text>
             <View style={[styles.directionRow, styles.alignCenter]}>
-              <Text style={[style.customText, {fontSize: 24}]}>KANNA.Y</Text>
+              <Text style={[style.customText, { fontSize: 24 }]}>KANNA.Y</Text>
               <Img
                 local={false}
                 style={style.flagImage}
@@ -47,11 +481,11 @@ export default function Login({navigation}) {
                 resizeMode={'contain'}
               />
             </View>
-            <View style={[styles.directionRow, {marginTop: 10}]}>
+            <View style={[styles.directionRow, { marginTop: 10 }]}>
               <View>
                 <Text style={style.customText}>Rank</Text>
                 <View style={styles.directionRow}>
-                  <Text style={[style.customText, {fontSize: 24}]}>1</Text>
+                  <Text style={[style.customText, { fontSize: 24 }]}>1</Text>
                   <View
                     style={{
                       alignItems: 'center',
@@ -74,9 +508,9 @@ export default function Login({navigation}) {
                   </View>
                 </View>
               </View>
-              <View style={{marginLeft: 30}}>
+              <View style={{ marginLeft: 30 }}>
                 <Text style={style.customText}>VP</Text>
-                <View style={{flexDirection: 'row'}}>
+                <View style={{ flexDirection: 'row' }}>
                   <Text
                     style={[
                       style.customText,
@@ -124,35 +558,32 @@ export default function Login({navigation}) {
         <GameStatus status={'loss'} />
       </ScrollView>
 
-      <View
-        style={[
-          styles.directionRow,
-          styles.alignCenter,
-          styles.justifySpaceBetween,
-          style.defaultMainView,
-        ]}>
-        <View style={[styles.w_25, styles.alignCenter, styles.justifyCenter]}>
-          <Text
-            style={[styles.colorWhite, styles.textCenter, style.customText]}>
-            {`GAME\nPLAYED`}
-          </Text>
-          <Text style={style.mainHeading}>693</Text>
-        </View>
-        <View style={style.secondViewDivision}>
-          <Text style={style.subHeading}>WIN RATE</Text>
-          <Text style={style.mainHeading}>94%</Text>
-          <Img
-            local={true}
-            style={style.ballSecond}
-            src={require('../../Assets/ball.png')}
-            resizeMode={'contain'}
+      {state.name == 'gameStatus' && <GameStats callBack={() => dispatch({ type: 'gameMode' })} />}
+      {state.name == ('gameMode') && <GameMode
+        callBack={() => { comboOutDetailToggle(true, 'fadeIn') }}
+        gameModeDisable={() => {
+          comboOutDetailToggle(false, 'fadeOut')
+          dispatch({ type: 'gameStatus' })
+        }}
+      />
+      }
+      {comboOutDetailEnabled &&
+        <Animatable.View
+          duration={400}
+          animation={anim}
+          useNativeDriver={true}
+          iterationCount={1}
+          style={[styles.comboOutMainContainer,]}
+        >
+          <GameModeDetail
+            comboOutDetailDistable={() => comboOutDetailToggle(false, 'fadeOut')}
+            callBack={() => {
+              comboOutDetailToggle(false, 'fadeOut')
+              dispatch({ type: 'gameStatus' })
+            }}
           />
-        </View>
-        <View style={[styles.alignCenter, styles.justifyCenter, styles.w_25]}>
-          <Text style={style.subHeading}>{`GENERAL\nRANK`}</Text>
-          <Text style={style.mainHeading}>S</Text>
-        </View>
-      </View>
+        </Animatable.View>
+      }
       <Img
         local={true}
         style={style.adsImageSecond}
@@ -163,7 +594,7 @@ export default function Login({navigation}) {
   );
 }
 
-const GameStatus = ({status}) => {
+const GameStatus = ({ status }) => {
   const win = status === 'win';
   return (
     <View
@@ -181,7 +612,7 @@ const GameStatus = ({status}) => {
           },
         ]}>
         <Image
-          source={{uri: dummy1}}
+          source={{ uri: dummy1 }}
           style={{
             width: 35,
             height: 35,

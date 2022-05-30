@@ -1,23 +1,23 @@
-import React, {useState} from 'react';
-import {Text, View, Image} from 'react-native';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
+import React, { useState } from 'react';
+import { Text, View, Image } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
 import ImgBg from '../../Components/BackgroundImage';
 import Img from '../../Components/Img';
 import Logo from '../../Components/Logo';
 import ButtonCustom from '../../Components/ButtonCustom';
 import LoadingButtonCustom from '../../Components/LoadingButtonCustom';
-import {Colors} from '../../Styles';
+import { Colors } from '../../Styles';
 import TextInput from '../../Components/TextInput';
 import styles from '../styles';
 import style from './styles';
 
 const facebook = require('../../Assets/facebook.png');
 const emailIcon = require('../../Assets/email.png');
-const people = require('../../Assets/people.png');
+const people = require('../../Assets/people2.png');
 const user = require('../../Assets/user.png');
 
-export default function Login({navigation}) {
-  const {navigate} = navigation;
+export default function Login({ navigation }) {
+  const { navigate } = navigation;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loader, setLoader] = useState(false);
@@ -35,13 +35,13 @@ export default function Login({navigation}) {
         ]}
         style={styles.w_100}
         showsVerticalScrollIndicator={false}>
-        <View style={[styles.w_100, {marginTop: '20%'}]}>
+        <View style={[styles.w_90, { marginTop: '20%' }]}>
           <View
             style={[
               styles.directionRow,
               styles.justifyCenter,
               styles.alignCenter,
-              {marginBottom: 15},
+              { marginBottom: 15 },
             ]}>
             <Logo />
           </View>
@@ -65,12 +65,11 @@ export default function Login({navigation}) {
               styles.alignSelfCenter,
               styles.textCenter,
               styles.colorPrimary,
-              styles.w_30,
-              style.texts,
+              style.texts, { color: 'white' }
             ]}>
             {'Forgot Password'}
           </Text>
-          <View style={[styles.directionRow, {marginBottom: 25}]}>
+          <View style={[styles.directionRow, { marginBottom: 25 }]}>
             <View
               style={[
                 styles.mainContainer,
@@ -80,25 +79,25 @@ export default function Login({navigation}) {
               ]}>
               <Img
                 local={true}
-                style={[style.customImages, {marginHorizontal: 10}]}
+                style={[style.customImages, { marginHorizontal: 10 }]}
                 resizeMode="contain"
                 src={people}
               />
               <Img
                 local={true}
-                style={[style.customImages, {marginHorizontal: 10}]}
+                style={[style.customImages, { marginHorizontal: 10 }]}
                 resizeMode="contain"
                 src={facebook}
               />
               <Img
                 local={true}
-                style={[style.customImages, {marginHorizontal: 10}]}
+                style={[style.customImages, { marginHorizontal: 10 }]}
                 resizeMode="contain"
                 src={emailIcon}
               />
               <Img
                 local={true}
-                style={[style.customImages, {marginHorizontal: 10}]}
+                style={[style.customImages, { marginHorizontal: 10 }]}
                 resizeMode="contain"
                 src={user}
               />

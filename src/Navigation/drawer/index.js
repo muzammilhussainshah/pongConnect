@@ -1,10 +1,10 @@
 import * as React from 'react';
-import {Dimensions} from 'react-native';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import { Dimensions } from 'react-native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import DrawerContent from './drawerContent';
 import AuthorisedStack from '../stack/AuthorisedStack';
 
-const {width} = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 const Drawer = createDrawerNavigator();
 
 export default function MyDrawer() {
@@ -14,11 +14,11 @@ export default function MyDrawer() {
       screenOptions={{
         headerShown: false,
         headerTransparent: false,
-        drawerStyle: {width: '100%'},
+        drawerStyle: { width: '100%' },
       }}
       drawerType={'slide'}
       overlayColor={30}
-      sceneContainerStyle={{opacity: 20, shadowOpacity: 70}}
+      sceneContainerStyle={{ opacity: 20, shadowOpacity: 70 }}
       drawerContent={props => <DrawerContent {...props} />}>
       <Drawer.Screen name="AuthorisedStack" component={AuthorisedStack} />
     </Drawer.Navigator>

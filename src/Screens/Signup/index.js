@@ -1,23 +1,23 @@
-import React, {useState} from 'react';
-import {Image, Text, TouchableOpacity, View} from 'react-native';
+import React, { useState } from 'react';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 
-import {launchImageLibrary} from 'react-native-image-picker';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
+import { launchImageLibrary } from 'react-native-image-picker';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
 import Entypo from 'react-native-vector-icons/Entypo';
-import ActionSheet, {SheetManager} from 'react-native-actions-sheet';
+import ActionSheet, { SheetManager } from 'react-native-actions-sheet';
 import Img from '../../Components/Img';
 import ImgBg from '../../Components/BackgroundImage';
 import HeaderCustom from '../../Components/Header';
 import ButtonCustom from '../../Components/ButtonCustom';
 import LoadingButtonCustom from '../../Components/LoadingButtonCustom';
 import TextInput from '../../Components/TextInput';
-import {Colors} from '../../Styles';
-import {scale} from '../../Components/scaling';
+import { Colors } from '../../Styles';
+import { scale } from '../../Components/scaling';
 import styles from '../styles';
 import style from './styles';
 
-export default function SignUp({navigation, route}) {
-  const {navigate, goBack} = navigation;
+export default function SignUp({ navigation, route }) {
+  const { navigate, goBack } = navigation;
   const [email, setEmail] = useState('');
   const [fullName, setFullName] = useState('');
   const [gender, setGender] = useState('');
@@ -63,8 +63,8 @@ export default function SignUp({navigation, route}) {
     <ImgBg type="success">
       <ActionSheet
         id="gender"
-        containerStyle={{backgroundColor: 'transparent'}}>
-        <View style={{padding: 10}}>
+        containerStyle={{ backgroundColor: 'transparent' }}>
+        <View style={{ padding: 10 }}>
           <View
             style={{
               backgroundColor: 'rgba(241,241,241,0.8)',
@@ -77,7 +77,7 @@ export default function SignUp({navigation, route}) {
                 borderBottomColor: '#ccc',
                 paddingVertical: 10,
               }}>
-              <Text style={{color: 'grey', textAlign: 'center'}}>
+              <Text style={{ color: 'grey', textAlign: 'center' }}>
                 Choose Gender
               </Text>
             </View>
@@ -91,14 +91,14 @@ export default function SignUp({navigation, route}) {
                 borderBottomWidth: 1.5,
                 borderBottomColor: '#ccc',
               }}>
-              <Text style={{color: 'rgb(0,88,200)', fontSize: 18}}>Male</Text>
+              <Text style={{ color: 'rgb(0,88,200)', fontSize: 18 }}>Male</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
                 imageChange('Female');
               }}
-              style={{paddingVertical: 12, alignItems: 'center'}}>
-              <Text style={{color: 'rgb(0,88,200)', fontSize: 18}}>Female</Text>
+              style={{ paddingVertical: 12, alignItems: 'center' }}>
+              <Text style={{ color: 'rgb(0,88,200)', fontSize: 18 }}>Female</Text>
             </TouchableOpacity>
           </View>
           <TouchableOpacity
@@ -134,8 +134,8 @@ export default function SignUp({navigation, route}) {
         ]}
         style={styles.w_100}
         showsVerticalScrollIndicator={false}>
-        <View style={[styles.w_100, styles.margin4Percent]}>
-          <View style={[styles.alignSelfCenter, {marginBottom: 20}]}>
+        <View style={[styles.w_90, styles.margin4Percent]}>
+          <View style={[styles.alignSelfCenter, { marginBottom: 20 }]}>
             <TouchableOpacity
               activeOpacity={0.8}
               onPress={() => getImg()}
@@ -146,7 +146,7 @@ export default function SignUp({navigation, route}) {
               ]}>
               <Img
                 local={false}
-                style={[styles.w_100, {height: '100%'}]}
+                style={[styles.w_100, { height: '100%' }]}
                 src={imageUriLocal}
               />
               <View
@@ -193,10 +193,10 @@ export default function SignUp({navigation, route}) {
             value={email}
             change={setEmail}
           />
-          <View style={[styles.w_100, styles.alignCenter, styles.directionRow]}>
+          <View style={[styles.w_90, styles.alignCenter, styles.directionRow]}>
             <TouchableOpacity
               activeOpacity={0.9}
-              style={{flex: 1}}
+              style={{ flex: 1 }}
               onPress={() => {
                 SheetManager.show('gender');
               }}>
@@ -222,7 +222,11 @@ export default function SignUp({navigation, route}) {
             {loading ? (
               <LoadingButtonCustom />
             ) : (
-              <ButtonCustom title="NEXT >" />
+              <ButtonCustom title="NEXT >"
+                onPress={() => {
+                  navigate('RegionAndPassword');
+                }}
+              />
             )}
           </View>
         </View>

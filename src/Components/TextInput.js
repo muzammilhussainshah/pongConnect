@@ -6,6 +6,7 @@ import { scale } from './scaling';
 export default function TextInputCustom(props) {
   const {
     icon = null,
+    iconRight = null,
     textInputStyles = {},
     iconStyle = {},
     value,
@@ -39,7 +40,7 @@ export default function TextInputCustom(props) {
           {
             flex: 1,
             height: scale(30),
-            padding:0,
+            padding: 0,
             paddingHorizontal: 15,
             color: Colors.White,
             fontSize: scale(13),
@@ -56,6 +57,16 @@ export default function TextInputCustom(props) {
         keyboardType={keyboardType}
         {...props}
       />
+      {iconRight ? (
+        <Image
+          source={iconRight}
+          style={[
+            { height: scale(16), width: scale(16), marginRight: 10 },
+            iconStyle,
+          ]}
+          resizeMode="contain"
+        />
+      ) : null}
     </View>
   );
 }
