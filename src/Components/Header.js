@@ -14,6 +14,7 @@ export default function HeaderCustom({
   scan = false,
   scanPrivate = false,
   setting,
+  navigate
 }) {
   return (
     <View
@@ -71,6 +72,7 @@ export default function HeaderCustom({
         {scan ? (
           <TouchableOpacity
             onPress={() => {
+              navigate('QRScanner');
               // if (back) goBack();
               // else NavService.toggleDrawer();
             }}
@@ -123,6 +125,7 @@ export default function HeaderCustom({
           scanPrivate &&
           <TouchableOpacity
             onPress={() => {
+              navigate('QRScanner');
               // if (back) goBack();
               // else NavService.toggleDrawer();
             }}

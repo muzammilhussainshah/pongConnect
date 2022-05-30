@@ -3,7 +3,9 @@ import {
   createStackNavigator,
   CardStyleInterpolators,
 } from '@react-navigation/stack';
-import { Home, OtherProfile, Profile, GameData, Event, EventDetails, ShowTaxi, AwardMovie, DailyMission, DailyMissionDetails } from '../../../Screens';
+import { Home, OtherProfile, Profile, GameData, Event, EventDetails, ShowTaxi, AwardMovie, DailyMission, DailyMissionDetails, WorldRanking, AwardMovieDetails, HowToPlay } from '../../../Screens';
+import QRScanner from '../../../Components/QrCodeScanner';
+import QrSuccess from '../../../Components/QrSuccess';
 
 const Stack = createStackNavigator();
 
@@ -11,7 +13,7 @@ const AuthorisedStack = () => {
   return (
     <Stack.Navigator
       initialRouteName="Home"
-      // initialRouteName="ShowTaxi"
+      // initialRouteName="QrSuccess"
       screenOptions={{ headerShown: false }}>
       <Stack.Screen
         name="Home"
@@ -70,6 +72,13 @@ const AuthorisedStack = () => {
         }}
       />
       <Stack.Screen
+        name="AwardMovieDetails"
+        component={AwardMovieDetails}
+        options={{
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        }}
+      />
+      <Stack.Screen
         name="DailyMission"
         component={DailyMission}
         options={{
@@ -79,6 +88,34 @@ const AuthorisedStack = () => {
       <Stack.Screen
         name="DailyMissionDetails"
         component={DailyMissionDetails}
+        options={{
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        }}
+      />
+      <Stack.Screen
+        name="WorldRanking"
+        component={WorldRanking}
+        options={{
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        }}
+      />
+      <Stack.Screen
+        name="HowToPlay"
+        component={HowToPlay}
+        options={{
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        }}
+      />
+      <Stack.Screen
+        name="QRScanner"
+        component={QRScanner}
+        options={{
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        }}
+      />
+      <Stack.Screen
+        name="QrSuccess"
+        component={QrSuccess}
         options={{
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}

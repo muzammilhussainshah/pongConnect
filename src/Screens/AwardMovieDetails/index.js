@@ -16,17 +16,33 @@ const movieIcon = require('../../Assets/movieIcon.png');
 const plusBox = require('../../Assets/plusBox.png');
 const goldCoin = require('../../Assets/goldCoin.png');
 const roundDimond = require('../../Assets/roundDimond.png');
-const m1 = require('../../Assets/m1.png');
-const m2 = require('../../Assets/m2.png');
-const m3 = require('../../Assets/m3.png');
+const moviePlay = require('../../Assets/moviePlay.png');
+
+const gem = require('../../Assets/gem.png');
+
+const aw1 = require('../../Assets/aw/aw1.png');
+const aw2 = require('../../Assets/aw/aw2.png');
+const aw3 = require('../../Assets/aw/aw3.png');
+const aw4 = require('../../Assets/aw/aw4.png');
+const aw5 = require('../../Assets/aw/aw5.png');
+const aw6 = require('../../Assets/aw/aw6.png');
 
 import styles from '../styles';
+
 import style from './styles';
 
-export default function AwardMovie({ navigation }) {
+export default function AwardMovieDetails({ navigation }) {
     const { navigate, goBack } = navigation;
     const [search, setsearch] = useState('');
 
+    let data = [
+        { title: 'x20', img: aw1, icon: gem },
+        { title: 'x30', img: aw2, icon: gem },
+        { title: 'OUT OF STOCK', img: aw3, icon: gem },
+        { title: 'OUT OF STOCK', img: aw4, icon: gem },
+        { title: 'x250', img: aw5, icon: gem },
+        { title: 'x600', img: aw6, icon: gem },
+    ]
 
     return (
         <ImgBg>
@@ -124,95 +140,54 @@ export default function AwardMovie({ navigation }) {
                     </View>
                 </View>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '90%', marginHorizontal: '5%' }}>
-                    <Text style={style.textLower}>YOUR ITEM LIST</Text>
-                    <Text style={style.textLower}>TOTAL: 6</Text>
+                <Img
+                    local={true}
+                    style={{ height: 180, width: "100%", }}
+                    resizeMode="contain"
+                    src={moviePlay}
+                />
+
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%', }}>
+                    <Text style={[style.gameDataText, { fontSize: 14 }]}>YOU USING ONE PIECE luffy #02 - MOVIE FRAME</Text>
+                    <Text style={[style.gameDataText, { fontSize: 14, marginRight: 10 }]}>EDIT</Text>
                 </View>
 
-                <View style={{ flexDirection: 'row', height: 180, width: '90%', marginHorizontal: '5%', marginTop: 10, }} >
-                    <View style={{ flex: 7, alignItems: 'center', }}>
-                        <Img
-                            local={true}
-                            style={{ height: 150, width: '100%', }}
-                            resizeMode="cover"
-                            src={m1}
-                        />
-                        <Text style={[style.textLower, styles.margin1Percent]}>ONE PIECE luffy #02</Text>
-                    </View>
-                    <View style={{ flex: 4, alignItems: 'center', }}>
-                        <View
-                            style={[
-                                styles.alignCenter,
-                                styles.justifyCenter,
-                                styles.directionRow,
-                                styles.w_50,
-                            ]}>
-                            <ButtonCustom
-                                title="USED"
-                                onPress={() => { navigate('AwardMovieDetails') }}
-                            />
-                        </View>
-                    </View>
+                <View style={{ marginTop: 10, flexDirection: 'row', justifyContent: 'space-between', width: '95%', marginHorizontal: '2.5%' }}>
+                    <FlatList
+                        numColumns={3}
+                        data={data}
+                        renderItem={({ item }) => {
+                            return (
+                                <TouchableOpacity style={{ width: '33.3%', marginTop: 10, marginBottom: 10, justifyContent: 'center', alignItems: 'center' }}>
+                                    <Img
+                                        local={true}
+                                        style={{ height: 90, width: 90, }}
+                                        resizeMode="contain"
+                                        src={item.img}
+                                    />
+                                    <View style={{ width: "75%", flexDirection: 'row', height: 30, marginTop: 10, borderRadius: 10, justifyContent: 'center', alignItems: 'center', backgroundColor: '#FF4E00' }}>
+                                        {
+                                            item.title != 'OUT OF STOCK' &&
+                                            <>
+                                                <Img
+                                                    local={true}
+                                                    style={{ height: 15, width: 15, }}
+                                                    resizeMode="contain"
+                                                    src={item.icon}
+                                                />
+                                                <Text style={{ fontSize: 20, color: 'white', fontFamily: 'AgencyFB-Bold', letterSpacing: 1, fontSize: 14, marginLeft: 10 }}>{item.title}</Text>
+                                            </>
+                                        }
+                                        {
+                                            item.title == 'OUT OF STOCK' &&
+                                            <Text style={{ fontSize: 20, color: 'white', fontFamily: 'AgencyFB-Bold', letterSpacing: 1, fontSize: 14, }}>{item.title}</Text>
+                                        }
+                                    </View>
+                                </TouchableOpacity>
+                            )
+                        }}
+                    />
                 </View>
-
-                <View style={{ flexDirection: 'row', height: 180, width: '90%', marginHorizontal: '5%', marginTop: 10, }} >
-                    <View style={{ flex: 7, alignItems: 'center', }}>
-                        <Img
-                            local={true}
-                            style={{ height: 150, width: '100%', }}
-                            resizeMode="cover"
-                            src={m2}
-                        />
-                        <Text style={[style.textLower, styles.margin1Percent]}>Kimet­su #06</Text>
-                    </View>
-                    <View style={{ flex: 4, alignItems: 'center', }}>
-                        <View
-                            style={[
-                                styles.alignCenter,
-                                styles.justifyCenter,
-                                styles.directionRow,
-                                styles.w_50,
-                            ]}>
-
-                            <TouchableOpacity
-                                onPress={() => { navigate('AwardMovieDetails') }}
-                                style={{ backgroundColor: '#4A4A4A', width: "50%", height: 40, borderRadius: 7, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={[style.textLower, { fontSize: 12 }]}>USE THIS THEME</Text>
-                            </TouchableOpacity>
-
-                        </View>
-                    </View>
-                </View>
-
-                <View style={{ flexDirection: 'row', height: 180, width: '90%', marginHorizontal: '5%', marginTop: 10, }} >
-                    <View style={{ flex: 7, alignItems: 'center', }}>
-                        <Img
-                            local={true}
-                            style={{ height: 150, width: '100%', }}
-                            resizeMode="cover"
-                            src={m3}
-                        />
-                        <Text style={[style.textLower, styles.margin1Percent]}>HXH #23</Text>
-                    </View>
-                    <View style={{ flex: 4, alignItems: 'center', }}>
-                        <View
-                            style={[
-                                styles.alignCenter,
-                                styles.justifyCenter,
-                                styles.directionRow,
-                                styles.w_50,
-                            ]}>
-
-                            <TouchableOpacity
-                                onPress={() => { navigate('AwardMovieDetails') }}
-                                style={{ backgroundColor: '#4A4A4A', width: "50%", height: 40, borderRadius: 7, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={[style.textLower, { fontSize: 12 }]}>USE THIS THEME</Text>
-                            </TouchableOpacity>
-
-                        </View>
-                    </View>
-                </View>
-
             </KeyboardAwareScrollView>
 
         </ImgBg >
