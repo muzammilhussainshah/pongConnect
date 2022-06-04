@@ -209,7 +209,7 @@ export default function Home({ navigation }) {
             <MenuItem
               title="Award Movie"
               icon={require('../../Assets/movie.png')}
-              onPress={() => { setIndex(2), navigate('AwardMovie') }}
+              onPress={() => { setIndex(2), navigate('AwardMovieDetails') }}
             />
             <MenuItem
               title="World Ranking"

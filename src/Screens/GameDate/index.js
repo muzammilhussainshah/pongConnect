@@ -24,6 +24,7 @@ import style from './styles';
 export default function GameData({ navigation }) {
     const { navigate, goBack } = navigation;
     const [search, setsearch] = useState('');
+    const [selectedGame, setselectedGame] = useState('');
     let data = [
         { name: 'KANNA.Y', point: '1:0', type: 'CHALLANGE', date: '02/11/2021', img: d1, icon: taj },
         { name: 'SIMSON.L', point: '2:1', type: 'TIME ATTACK', date: '31/10/2021', img: d2, icon: l },
@@ -110,22 +111,30 @@ export default function GameData({ navigation }) {
                         </View>
                     </View>
                     <View style={style.boxesContainer}>
-                        <View style={style.boxesContainerC1}>
+                        <TouchableOpacity style={style.boxesContainerC1}
+                            onPress={() => { setselectedGame('CHALLANGE') }}
+                        >
                             <Text style={style.boxesContainerC1Text}>CHALLANGE</Text>
                             <Text style={style.boxesContainerC2Text}>22</Text>
-                        </View>
-                        <View style={style.boxesContainerC1}>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={style.boxesContainerC1}
+                            onPress={() => { setselectedGame('COUNT UP') }}
+                        >
                             <Text style={style.boxesContainerC1Text}>COUNT UP</Text>
                             <Text style={style.boxesContainerC2Text}>60</Text>
-                        </View>
-                        <View style={style.boxesContainerC1}>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={style.boxesContainerC1}
+                            onPress={() => { setselectedGame('') }}
+                        >
                             <Text style={style.boxesContainerC1Text}>COMBO OUT</Text>
                             <Text style={style.boxesContainerC2Text}>2</Text>
-                        </View>
-                        <View style={style.boxesContainerC1}>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={style.boxesContainerC1}
+                            onPress={() => { setselectedGame('TIME ATTACK') }}
+                        >
                             <Text style={style.boxesContainerC1Text}>TIME ATTACK</Text>
                             <Text style={style.boxesContainerC2Text}>45</Text>
-                        </View>
+                        </TouchableOpacity>
                     </View>
 
                 </View>
@@ -134,40 +143,76 @@ export default function GameData({ navigation }) {
                     data={data}
                     renderItem={({ item }) => {
                         return (
-                            <TouchableOpacity style={style.listingContainer}
-                                onPress={() => navigate('OtherProfile')}
-                            >
-                                <View style={style.listingContainerC1}>
-                                    <Img
-                                        local={true}
-                                        style={{ height: 40, width: 40, }}
-                                        resizeMode="contain"
-                                        src={item.img}
-                                    />
-                                    <Text style={style.itemNameText}>{item.name}</Text>
-                                </View>
-                                <View style={style.listingContainerC2}>
-                                    <Text style={style.itemPointText}>{item.point}</Text>
-                                </View>
-                                <View style={style.listingContainerC2}>
-                                    <Text style={style.itemTypeText}>{item.type}</Text>
-                                    <Text style={style.itemTypeText}>{item.date}</Text>
-                                </View>
-                                <View style={style.listingContainerC2}>
-                                    <Img
-                                        local={true}
-                                        style={{ height: 30, width: 30, }}
-                                        resizeMode="contain"
-                                        src={item.icon}
-                                    />
-                                </View>
-                            </TouchableOpacity>
+                            <>
+                                {
+                                    selectedGame === item.type &&
+                                    <View style={style.listingContainer}>
+                                        <TouchableOpacity
+                                            style={style.listingContainerC1}
+                                            onPress={() => navigate('OtherProfile')}
+                                        >
+                                            <Img
+                                                local={true}
+                                                style={{ height: 40, width: 40, }}
+                                                resizeMode="contain"
+                                                src={item.img}
+                                            />
+                                            <Text style={style.itemNameText}>{item.name}</Text>
+                                        </TouchableOpacity>
+                                        <View style={style.listingContainerC2}>
+                                            <Text style={style.itemPointText}>{item.point}</Text>
+                                        </View>
+                                        <View style={style.listingContainerC2}>
+                                            <Text style={style.itemTypeText}>{item.type}</Text>
+                                            <Text style={style.itemTypeText}>{item.date}</Text>
+                                        </View>
+                                        <View style={style.listingContainerC2}>
+                                            <Img
+                                                local={true}
+                                                style={{ height: 30, width: 30, }}
+                                                resizeMode="contain"
+                                                src={item.icon}
+                                            />
+                                        </View>
+                                    </View>
+                                }
+                                {
+                                    selectedGame === '' &&
+                                    <View style={style.listingContainer}>
+                                        <TouchableOpacity
+                                            style={style.listingContainerC1}
+                                            onPress={() => navigate('OtherProfile')}
+                                        >
+                                            <Img
+                                                local={true}
+                                                style={{ height: 40, width: 40, }}
+                                                resizeMode="contain"
+                                                src={item.img}
+                                            />
+                                            <Text style={style.itemNameText}>{item.name}</Text>
+                                        </TouchableOpacity>
+                                        <View style={style.listingContainerC2}>
+                                            <Text style={style.itemPointText}>{item.point}</Text>
+                                        </View>
+                                        <View style={style.listingContainerC2}>
+                                            <Text style={style.itemTypeText}>{item.type}</Text>
+                                            <Text style={style.itemTypeText}>{item.date}</Text>
+                                        </View>
+                                        <View style={style.listingContainerC2}>
+                                            <Img
+                                                local={true}
+                                                style={{ height: 30, width: 30, }}
+                                                resizeMode="contain"
+                                                src={item.icon}
+                                            />
+                                        </View>
+                                    </View>
+                                }
+                            </>
                         )
                     }}
                 />
-
             </KeyboardAwareScrollView>
-
         </ImgBg>
     );
 }

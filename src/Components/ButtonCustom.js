@@ -34,6 +34,7 @@ export default function ButtonCustom({ title, containerStyle, customWidth, onPre
           style={{
             color: Colors.White,
             // fontFamily: '700',
+            textAlign: 'center',
             textTransform: 'uppercase',
             fontWeight: 'bold',
             fontSize: scale(13),
