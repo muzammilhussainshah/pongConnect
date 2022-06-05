@@ -10,7 +10,7 @@ import Img from '../../../Components/Img';
 import { scale } from '../../../Components/scaling';
 import HeaderCustom from '../../../Components/Header';
 import { Colors } from '../../../Styles';
-import { family } from '../../../Utils';
+import { family,HP } from '../../../Utils';
 import styles from '../../../Screens/styles';
 
 const user = `https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1985&q=80`;
@@ -32,7 +32,7 @@ export default function DrawerContent({ navigation }) {
         <View style={[styles.justifyCenter, styles.alignCenter]}>
           <TouchableOpacity
             activeOpacity={0.9}
-            onPress={() => navigate('Profile')}>
+            onPress={() => navigation.navigate('Profile')}>
             <Img
               local={false}
               style={style.profilePicture}
@@ -71,7 +71,9 @@ export default function DrawerContent({ navigation }) {
       <View style={[style.container, styles.justifyCenter, styles.alignCenter]}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <TouchableOpacity
-            style={[styles.directionRow, styles.marginVerticle3Percent]}
+            style={[styles.directionRow, {
+              marginVertical: HP('1.5%'),
+            }]}
             onPress={() => {
               navigation.navigate('LocationDetails');
               navigation.closeDrawer();
@@ -85,7 +87,9 @@ export default function DrawerContent({ navigation }) {
             <Text style={[style.itemText]}>{'      '}LOCATION</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[styles.directionRow, styles.marginVerticle3Percent]}
+             style={[styles.directionRow, {
+              marginVertical: HP('1.5%'),
+            }]}
             onPress={() => {
               navigation.navigate('Coupon');
               navigation.closeDrawer();
@@ -99,7 +103,9 @@ export default function DrawerContent({ navigation }) {
             <Text style={[style.itemText]}>{'      '}COUPON</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[styles.directionRow, styles.marginVerticle3Percent]}
+             style={[styles.directionRow, {
+              marginVertical: HP('1.5%'),
+            }]}
             onPress={() => {
               navigation.navigate('Languages');
               navigation.closeDrawer();
@@ -113,7 +119,9 @@ export default function DrawerContent({ navigation }) {
             <Text style={[style.itemText]}>{'      '}LANGUAGES</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[styles.directionRow, styles.marginVerticle3Percent]}
+           style={[styles.directionRow, {
+            marginVertical: HP('1.5%'),
+          }]}
             onPress={() => {
               navigation.navigate('Login');
               navigation.closeDrawer();
@@ -134,7 +142,7 @@ export default function DrawerContent({ navigation }) {
 
 const style = StyleSheet.create({
   container: {
-    flex: 5,
+    flex: 5.5,
     backgroundColor: Colors.secondary,
   },
   header: {
