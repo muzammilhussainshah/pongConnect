@@ -16,7 +16,7 @@ const style = StyleSheet.create({
   adsImage: {
     width: width,
     resizeMode: 'contain',
-    backgroundColor: 'red',
+    // backgroundColor: 'red',
     height: width / 2.083,
     marginTop: 20,
   },

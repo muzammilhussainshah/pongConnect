@@ -16,6 +16,7 @@ import styles from '../styles';
 import style from './styles';
 import { FlatList } from 'react-native-gesture-handler';
 import * as Animatable from 'react-native-animatable';
+import { SliderBox } from "react-native-image-slider-box";
 
 const { width } = Dimensions.get('window');
 
@@ -39,6 +40,14 @@ export default function Home({ navigation }) {
     { name: 'CHERRY', flight: '', rate: 78 },
     { name: 'DOUBLE CHERRY', flight: '', rate: 22 },
   ]
+  
+  const images= [
+    require('../../Assets/ad1.png'),          // Local image
+    "https://source.unsplash.com/1024x768/?nature",
+      "https://source.unsplash.com/1024x768/?water",
+     
+    ]
+
 
   const comboOutDetailToggle = (status, animName) => {
     setanim(animName)
@@ -179,12 +188,31 @@ export default function Home({ navigation }) {
             </View>
           </View>
         </View>
-        <Img
+        {/* <Img
           local={true}
           style={style.adsImage}
           src={require('../../Assets/ad1.png')}
           resizeMode={'contain'}
-        />
+        /> */}
+<View 
+          style={style.adsImage}
+          >
+            <SliderBox
+    autoplay
+    circleLoop
+    
+    style={style.adsImage}
+              images={images}
+              sliderBoxHeight={1}
+              onCurrentImagePressed={index => console.warn(`image ${index} pressed`)}
+              dotColor="#ffff"
+              inactiveDotColor="#90A4AE"
+            />
+
+</View>
+
+
+
         <View style={[styles.mainContainer, styles.w_100]}>
           <View
             style={[
