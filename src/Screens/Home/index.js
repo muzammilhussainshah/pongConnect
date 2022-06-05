@@ -240,6 +240,11 @@ export default function Home({ navigation }) {
               onPress={() => { setIndex(2), navigate('AwardMovieDetails') }}
             />
             <MenuItem
+              title="Award Movie"
+              icon={require('../../Assets/movie.png')}
+              onPress={() => { setIndex(2), navigate('AwardMovieDetails') }}
+            />
+            <MenuItem
               title="World Ranking"
               icon={require('../../Assets/ranks.png')}
               onPress={() => { setIndex(3), navigate('WorldRanking') }}
@@ -633,7 +638,7 @@ const MenuItem = ({ title, icon, onPress = () => { } }) => {
       style={[
         styles.alignCenter,
         {
-          width: '18%',
+          // width: '18%',
         },
       ]}>
       <Image
