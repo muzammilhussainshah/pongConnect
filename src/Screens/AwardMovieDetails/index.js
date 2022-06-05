@@ -158,7 +158,9 @@ export default function AwardMovieDetails({ navigation }) {
                         data={data}
                         renderItem={({ item }) => {
                             return (
-                                <TouchableOpacity style={{ width: '33.3%', marginTop: 10, marginBottom: 10, justifyContent: 'center', alignItems: 'center' }}>
+                                <TouchableOpacity style={{ width: '33.3%', marginTop: 10, marginBottom: 10, justifyContent: 'center', alignItems: 'center' }}
+                                    onPress={() => { navigate('AwardMovie') }}
+                                >
                                     <Img
                                         local={true}
                                         style={{ height: 90, width: 90, }}

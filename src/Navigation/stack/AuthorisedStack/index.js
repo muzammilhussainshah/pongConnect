@@ -3,7 +3,10 @@ import {
   createStackNavigator,
   CardStyleInterpolators,
 } from '@react-navigation/stack';
-import { Home, OtherProfile, Profile, GameData, Event, EventDetails, ShowTaxi, AwardMovie, DailyMission, DailyMissionDetails, WorldRanking, AwardMovieDetails, HowToPlay } from '../../../Screens';
+import {
+  Home, OtherProfile, Profile, GameData, Event, EventDetails, ShowTaxi, AwardMovie, DailyMission,
+  DailyMissionDetails, WorldRanking, AwardMovieDetails, HowToPlay, Languages, Coupon, LocationDetails
+} from '../../../Screens';
 import QRScanner from '../../../Components/QrCodeScanner';
 import QrSuccess from '../../../Components/QrSuccess';
 
@@ -13,7 +16,7 @@ const AuthorisedStack = () => {
   return (
     <Stack.Navigator
       initialRouteName="Home"
-      // initialRouteName="QrSuccess"
+      // initialRouteName="GameData"
       screenOptions={{ headerShown: false }}>
       <Stack.Screen
         name="Home"
@@ -116,6 +119,27 @@ const AuthorisedStack = () => {
       <Stack.Screen
         name="QrSuccess"
         component={QrSuccess}
+        options={{
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        }}
+      />
+      <Stack.Screen
+        name="Languages"
+        component={Languages}
+        options={{
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        }}
+      />
+      <Stack.Screen
+        name="Coupon"
+        component={Coupon}
+        options={{
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        }}
+      />
+      <Stack.Screen
+        name="LocationDetails"
+        component={LocationDetails}
         options={{
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}

@@ -8,6 +8,8 @@ import { FlatList } from 'react-native-gesture-handler';
 import * as Animatable from 'react-native-animatable';
 import TextInput from '../../Components/TextInput';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
+import { launchImageLibrary } from 'react-native-image-picker';
+import Entypo from 'react-native-vector-icons/Entypo';
 const userDummy = require('../../Assets/userDummy.png');
 const upaerrow = require('../../Assets/upaerrow.png');
 const eventCalender = require('../../Assets/material-event.png');
@@ -26,6 +28,8 @@ import style from './styles';
 export default function Event({ navigation }) {
     const { navigate, goBack } = navigation;
     const [search, setsearch] = useState('');
+    const [imageUriLocal, setimageUriLocal] = useState('');
+
     let data = [
         {
             title: 'SILICON JELLY',
@@ -66,6 +70,40 @@ export default function Event({ navigation }) {
         },
     ]
 
+
+    const getImg = async () => {
+        try {
+            let options = {
+                title: 'Select Image',
+                includeBase64: true,
+                customButtons: [
+                    {
+                        name: 'customOptionKey',
+                        title: 'Choose Photo from Custom Option',
+                    },
+                ],
+                storageOptions: {
+                    skipBackup: true,
+                    path: 'images',
+                },
+            };
+            launchImageLibrary(options, async res => {
+                if (res.didCancel) {
+                } else if (res.error) {
+                } else {
+                    setimageUriLocal(res.assets[0].uri);
+                }
+            });
+        } catch (err) {
+            if (DocumentPicker.isCancel(err)) {
+            } else {
+                throw err;
+            }
+        }
+    };
+
+
+
     return (
         <ImgBg>
 
@@ -74,16 +112,75 @@ export default function Event({ navigation }) {
                 showsVerticalScrollIndicator={false}
             >
                 <HeaderCustom showLogo={true} back={true} goBack={goBack} />
-
                 <View style={style.container}>
                     <View style={style.userProfile}>
 
-                        <Img
-                            local={true}
-                            style={{ height: 108, width: 108, bottom: 7 }}
-                            resizeMode="contain"
-                            src={userDummy}
-                        />
+                        <TouchableOpacity onPress={() => getImg()}>
+                            {
+                                imageUriLocal == '' &&
+                                <Img
+                                    local={true}
+                                    style={{ height: 108, width: 108, bottom: 7 }}
+                                    resizeMode="contain"
+                                    src={userDummy}
+                                />
+                            }
+                            {
+                                imageUriLocal != '' &&
+                                <Img
+                                    local={false}
+                                    style={{ height: 108, width: 108, bottom: 7 }}
+                                    resizeMode="contain"
+                                    src={imageUriLocal}
+                                />
+                            }
+                        </TouchableOpacity>
+
+                        {/* <View style={[styles.alignSelfCenter, { marginBottom: 20, backgroundColor: 'red' }]}>
+                            <TouchableOpacity
+                                activeOpacity={0.8}
+                                onPress={() => getImg()}
+                                style={[
+                                    styles.justifyCenter,
+                                    styles.alignCenter,
+                                    style.profilePicture,
+                                    {
+                                        backgroundColor: 'green'
+                                    }
+                                ]}>
+                                <Img
+                                    local={false}
+                                    style={[styles.w_100, { height: '100%' }]}
+                                    src={imageUriLocal}
+                                />
+                                <View
+                                    style={[
+                                        styles.justifyCenter,
+                                        styles.alignCenter,
+                                        styles.w_100,
+                                        {
+                                            position: 'absolute',
+                                            zIndex: 1,
+                                            height: '100%',
+                                        },
+                                    ]}>
+                                    <View
+                                        style={[
+                                            styles.justifyCenter,
+                                            styles.alignCenter,
+                                            styles.directionRow,
+                                        ]}>
+                                        <Entypo name={'camera'} size={15} color={Colors.White} />
+                                        <Entypo
+                                            name={'arrow-long-up'}
+                                            size={15}
+                                            color={Colors.White}
+                                        />
+                                    </View>
+                                    <Text style={style.texts}>UPLOAD IMAGE</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View> */}
 
                     </View>
                     <View style={{ flex: 2, marginVertical: 10, }}>
@@ -163,7 +260,7 @@ export default function Event({ navigation }) {
                             <TouchableOpacity style={[style.listingContainer, { backgroundColor: item.backgroundColorOrange ? '#EC6707' : '#303E50', padding: 10 }]}
                                 onPress={() => navigate('EventDetails')}
                             >
-                                <View style={{ flex: 1.5, paddingRight: 5 }}>
+                                <View style={{ flex: 2, paddingRight: 5, }}>
                                     <Img
                                         local={true}
                                         style={{ height: "100%", width: '100%', }}
@@ -176,7 +273,7 @@ export default function Event({ navigation }) {
                                     <Text style={[style.uidText, { fontSize: 12 }]}>{item.desc}</Text>
 
                                 </View>
-                                <View style={{ flex: 0.8, alignItems: 'flex-end', }}>
+                                <View style={{ flex: 0.9, alignItems: 'flex-end', }}>
                                     <Text style={style.uidText}>{item.date}</Text>
                                     <Img
                                         local={true}

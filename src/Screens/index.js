@@ -14,11 +14,14 @@ import DailyMissionDetails from './DailyMissionDetails';
 import WorldRanking from './WorldRanking';
 import AwardMovieDetails from './AwardMovieDetails';
 import HowToPlay from './HowToPlay';
+import Languages from './Languages';
+import Coupon from './Coupon';
+import LocationDetails from './LocationDetails';
 
 export {
     Login, SignUp, RegionAndPassword, Home,
     OtherProfile, Profile, GameData, Event,
     EventDetails, ShowTaxi, AwardMovie,
     DailyMission, DailyMissionDetails, WorldRanking,
-    AwardMovieDetails, HowToPlay
+    AwardMovieDetails, HowToPlay, Languages, Coupon, LocationDetails
 };

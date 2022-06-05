@@ -73,7 +73,7 @@ export default function DrawerContent({ navigation }) {
           <TouchableOpacity
             style={[styles.directionRow, styles.marginVerticle3Percent]}
             onPress={() => {
-              navigation.navigate('Home');
+              navigation.navigate('LocationDetails');
               navigation.closeDrawer();
             }}>
             <Img
@@ -87,7 +87,7 @@ export default function DrawerContent({ navigation }) {
           <TouchableOpacity
             style={[styles.directionRow, styles.marginVerticle3Percent]}
             onPress={() => {
-              navigation.navigate('Home');
+              navigation.navigate('Coupon');
               navigation.closeDrawer();
             }}>
             <Img
@@ -101,7 +101,7 @@ export default function DrawerContent({ navigation }) {
           <TouchableOpacity
             style={[styles.directionRow, styles.marginVerticle3Percent]}
             onPress={() => {
-              navigation.navigate('Home');
+              navigation.navigate('Languages');
               navigation.closeDrawer();
             }}>
             <Img
