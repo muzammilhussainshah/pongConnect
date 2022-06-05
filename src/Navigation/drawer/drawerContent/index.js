@@ -99,7 +99,7 @@ export default function DrawerContent({ navigation }) {
             <Text style={[style.itemText]}>{'      '}LOCATION</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[styles.directionRow, {
+            style={[styles.directionRow, {opacity:0.1,
               marginVertical: HP('1.5%'),
             }]}
             onPress={() => {
