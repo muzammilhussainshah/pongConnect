@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 
 import { launchImageLibrary } from 'react-native-image-picker';
+import ImagePicker from 'react-native-image-crop-picker';
+
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
 import Entypo from 'react-native-vector-icons/Entypo';
 import ActionSheet, { SheetManager } from 'react-native-actions-sheet';
@@ -25,34 +27,47 @@ export default function SignUp({ navigation, route }) {
   const [imageUriLocal, setimageUriLocal] = useState('');
 
   const getImg = async () => {
-    try {
-      let options = {
-        title: 'Select Image',
-        includeBase64: true,
-        customButtons: [
-          {
-            name: 'customOptionKey',
-            title: 'Choose Photo from Custom Option',
-          },
-        ],
-        storageOptions: {
-          skipBackup: true,
-          path: 'images',
-        },
-      };
-      launchImageLibrary(options, async res => {
-        if (res.didCancel) {
-        } else if (res.error) {
-        } else {
-          setimageUriLocal(res.assets[0].uri);
-        }
-      });
-    } catch (err) {
-      if (DocumentPicker.isCancel(err)) {
-      } else {
-        throw err;
-      }
-    }
+    // try {
+    //   let options = {
+    //     title: 'Select Image',
+    //     includeBase64: true,
+    //     customButtons: [
+    //       {
+    //         name: 'customOptionKey',
+    //         title: 'Choose Photo from Custom Option',
+    //       },
+    //     ],
+    //     storageOptions: {
+    //       skipBackup: true,
+    //       path: 'images',
+    //     },
+    //   };
+    //   launchImageLibrary(options, async res => {
+    //     if (res.didCancel) {
+    //     } else if (res.error) {
+    //     } else {
+    //       setimageUriLocal(res.assets[0].uri);
+    //     }
+    //   });
+    // } catch (err) {
+    //   if (DocumentPicker.isCancel(err)) {
+    //   } else {
+    //     throw err;
+    //   }
+    // }
+
+    ImagePicker.openPicker({
+      // width: 300,
+      // height: 300,
+      cropping: true
+    }).then(image => {
+      console.log(image.sourceURL);
+          setimageUriLocal(image.sourceURL);
+
+    });
+
+
+
   };
 
   const imageChange = method => {
@@ -188,7 +203,7 @@ export default function SignUp({ navigation, route }) {
           <Text style={style.labelText}>EMAIL:</Text>
           <TextInput
             // icon={userIcon}
-            placeholder="Email Address"
+            placeholder="@Email.com"
             placeholderTextHolder={Colors.Grey}
             value={email}
             change={setEmail}

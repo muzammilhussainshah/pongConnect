@@ -59,7 +59,8 @@ const style = StyleSheet.create({
     height: 130,
     resizeMode: 'contain',
     position: 'absolute',
-    bottom: 22,
+    top: 45,
+
     right: -32,
     transform: [{ rotate: '-90deg' }, { scaleX: -1 }],
     zIndex: 99,
