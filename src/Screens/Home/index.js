@@ -240,8 +240,8 @@ export default function Home({ navigation }) {
               onPress={() => { setIndex(2), navigate('AwardMovieDetails') }}
             />
             <MenuItem
-              title="Award Movie"
-              icon={require('../../Assets/movie.png')}
+              title="Thunder Ball NFT"
+              icon={require('../../Assets/nft.png')}
               onPress={() => { setIndex(2), navigate('AwardMovieDetails') }}
             />
             <MenuItem
@@ -645,7 +645,7 @@ const MenuItem = ({ title, icon, onPress = () => { } }) => {
         source={icon}
         style={{ width: 25, height: 25, tintColor: Colors.White }}
       />
-      <Text style={[style.customText, styles.textCenter]}>{title}</Text>
+      <Text style={[style.customText, styles.textCenter,{width:50}]}>{title}</Text>
     </TouchableOpacity>
   );
 };
