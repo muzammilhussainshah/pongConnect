@@ -597,20 +597,15 @@ export default function Login({ navigation }) {
 const GameStatus = ({ status }) => {
   const win = status === 'win';
   return (
-    <View
-      style={[styles.alignCenter, styles.directionRow, style.mainViewGameData]}>
-      <View
-        style={[
-          styles.alignCenter,
-          styles.justifyCenter,
-          styles.directionRow,
-          styles.w_40,
-          {
-            height: '100%',
-            backgroundColor: win ? Colors.primary : Colors.Blue,
-            borderRadius: 5,
-          },
-        ]}>
+    <View style={{
+      backgroundColor: '#303E50', marginTop: 15, width: '90%', flexDirection: 'row', marginHorizontal: '5%', borderRadius: 7, height: 45, fontFamily: 'AgencyFB-Bold',
+    }}>
+      <TouchableOpacity
+        style={{
+          flex: 2, justifyContent: 'center', alignItems: 'center', flexDirection: 'row', borderRadius: 7,    backgroundColor: win ? Colors.primary : Colors.Blue, fontFamily: 'AgencyFB-Bold',
+        }}
+        // onPress={() => navigate('OtherProfile')}
+      >
         <Image
           source={{ uri: dummy1 }}
           style={{
@@ -620,20 +615,38 @@ const GameStatus = ({ status }) => {
             borderRadius: 35 / 2,
           }}
         />
-        <Text style={style.playerName}>KANNA.Y</Text>
+        <Text style={{
+    fontSize: 20, marginLeft: 5, color: 'white', fontFamily: 'AgencyFB-Bold', letterSpacing: 1,
+
+        }}>KANNA.Y</Text>
+      </TouchableOpacity>
+      <View style={{
+    flex: 1, justifyContent: 'center', alignItems: 'center', fontFamily: 'AgencyFB-Bold',
+
+      }}>
+        <Text style={{
+    fontSize: 26, color: 'white', fontFamily: 'AgencyFB-Bold', letterSpacing: 1,
+
+        }}>1:0</Text>
       </View>
-      <Text style={style.playerRating}>1:0</Text>
-      <View>
-        <Text style={style.challengeHeading}>CHALLENGE</Text>
-        <Text style={style.challengeDate}>22/11/2022</Text>
+      <View style={{
+    flex: 1, justifyContent: 'center', alignItems: 'center', fontFamily: 'AgencyFB-Bold',
+
+      }}>
+        <Text style={{
+    fontSize: 14, color: 'white', fontFamily: 'AgencyFB-Bold', letterSpacing: 1,
+
+        }}>CHALLENGE</Text>
+        <Text style={{
+    fontSize: 14, color: 'white', fontFamily: 'AgencyFB-Bold', letterSpacing: 1,
+
+        }}>2/11/2022</Text>
       </View>
-      <View
-        style={[
-          styles.mainContainer,
-          styles.justifyCenter,
-          styles.alignCenter,
-        ]}>
-        <Image
+      <View style={{
+    flex: 1, justifyContent: 'center', alignItems: 'center', fontFamily: 'AgencyFB-Bold',
+
+      }}>
+         <Image
           source={
             win
               ? require('../../Assets/crown.png')

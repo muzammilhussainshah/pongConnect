@@ -129,8 +129,8 @@ export default function Event({ navigation }) {
                                 imageUriLocal != '' &&
                                 <Img
                                     local={false}
-                                    style={{ height: 108, width: 108, bottom: 7 }}
-                                    resizeMode="contain"
+                                    style={{ height: 108, width: 108,borderRadius:54, bottom: 7 }}
+                                    resizeMode="cover"
                                     src={imageUriLocal}
                                 />
                             }
