@@ -27,6 +27,7 @@ export default function Home({ navigation }) {
   const [index, setIndex] = useState(0);
   const [comboOutDetailEnabled, setComboOutDetailEnabled] = useState(false);
   const [anim, setanim] = useState('fadeIn')
+  const [fadeOut, setfadeOut] = useState(true)
 
   const COMBOOUTDATA = [
     { name: 'game', flight: '', rate: 560 },
@@ -40,13 +41,13 @@ export default function Home({ navigation }) {
     { name: 'CHERRY', flight: '', rate: 78 },
     { name: 'DOUBLE CHERRY', flight: '', rate: 22 },
   ]
-  
-  const images= [
+
+  const images = [
     require('../../Assets/ad1.png'),          // Local image
     "https://source.unsplash.com/1024x768/?nature",
-      "https://source.unsplash.com/1024x768/?water",
-     
-    ]
+    "https://source.unsplash.com/1024x768/?water",
+
+  ]
 
 
   const comboOutDetailToggle = (status, animName) => {
@@ -194,22 +195,22 @@ export default function Home({ navigation }) {
           src={require('../../Assets/ad1.png')}
           resizeMode={'contain'}
         /> */}
-<View 
+        <View
           style={style.adsImage}
-          >
-            <SliderBox
-    autoplay
-    circleLoop
-    
-    style={style.adsImage}
-              images={images}
-              sliderBoxHeight={1}
-              onCurrentImagePressed={index => console.warn(`image ${index} pressed`)}
-              dotColor="#ffff"
-              inactiveDotColor="#90A4AE"
-            />
+        >
+          <SliderBox
+            autoplay
+            circleLoop
 
-</View>
+            style={style.adsImage}
+            images={images}
+            sliderBoxHeight={1}
+            onCurrentImagePressed={index => console.warn(`image ${index} pressed`)}
+            dotColor="#ffff"
+            inactiveDotColor="#90A4AE"
+          />
+
+        </View>
 
 
 
@@ -255,7 +256,13 @@ export default function Home({ navigation }) {
               onPress={() => { setIndex(4), navigate('DailyMission') }}
             />
           </View>
-          <MenuData index={index} setIndex={setIndex} callBack={() => comboOutDetailToggle(true, 'fadeIn')} />
+
+          {
+            index===0 ?
+              <MenuData1 index={index} setIndex={setIndex} callBack={() => comboOutDetailToggle(true, 'fadeIn')} />
+              :
+              <MenuData2 index={index} setIndex={setIndex} callBack={() => comboOutDetailToggle(true, 'fadeIn')} />
+          }
         </View>
       </ScrollView>
 
@@ -284,351 +291,382 @@ export default function Home({ navigation }) {
   );
 }
 
-const MenuData = ({ index, setIndex, callBack }) => {
-  switch (index) {
-    case 2:
-      return (
-        <View style={style.menuContainer}>
-          <Img
-            local={true}
-            style={style.ball}
-            src={require('../../Assets/ball.png')}
-            resizeMode={'contain'}
-          />
-          <View
-            style={[
-              styles.directionRow,
-              styles.w_100,
-              {
-                height: 20,
-              },
-            ]}>
-            <View
-              style={[
-                styles.alignCenter,
-                styles.justifyCenter,
-                {
-                  width: '35%',
-                  height: '100%',
-                },
-              ]}>
-              <Text style={style.customTextBold}>GAME MODE</Text>
-            </View>
-            <View
-              style={[
-                styles.alignCenter,
-                styles.justifyCenter,
-                {
-                  width: '25%',
-                  height: '100%',
-                },
-              ]}>
-              <Text style={style.customTextBold}>FLIGHT</Text>
-            </View>
-            <View
-              style={[
-                styles.justifyCenter,
-                {
-                  width: '20%',
-                  height: '100%',
-                },
-              ]}>
-              <Text style={style.customTextBold}>RATE</Text>
-            </View>
-          </View>
-          <TouchableOpacity
-            onPress={callBack}
+const MenuData2 = ({ index, setIndex, callBack }) => {
+  return (
+    <Animatable.View
+      animation="fadeIn" duration={3500} style={{marginTop:'5%'}}
+    >
+      <TouchableOpacity
+        activeOpacity={0.9}
+        onPress={() => setIndex(0)}
 
-            activeOpacity={0.8}
-            style={[
-              styles.directionRow,
-              styles.bgPrimary,
-              {
-                width: '95%',
-                marginTop: 5,
-                marginHorizontal: 10,
-                height: 35,
-                borderRadius: 5,
-              },
-            ]}>
+        style={[{backgroundColor:'red',zIndex:1}]}>
 
-            <View
-              style={[
-                styles.justifyCenter,
-                {
-                  width: '40%',
-                  height: '100%',
-                  paddingLeft: 20,
-                },
-              ]}>
-              <Text style={style.flightText}>COMBO OUT</Text>
-            </View>
-            <View
-              style={[
-                styles.justifyCenter,
-                styles.alignCenter,
-                {
-                  width: '25%',
-                  height: '100%',
-                },
-              ]}>
-              <View
-                style={[
-                  styles.justifyCenter,
-                  styles.alignCenter,
-                  {
-                    width: 30,
-                    height: 30,
-                    backgroundColor: Colors.Grey,
-                    borderRadius: 5,
-                  },
-                ]}>
-                <Text style={style.flightText}>U</Text>
-              </View>
-            </View>
-            <View
-              style={[
-                styles.justifyCenter,
-                styles.alignCenter,
-                {
-                  width: '10%',
-                  height: '100%',
-                },
-              ]}>
-              <Text style={style.flightText}>2</Text>
-            </View>
-          </TouchableOpacity>
-          <View
-            style={[
-              styles.directionRow,
-              {
-                marginTop: 5,
-                height: 35,
-                width: '95%',
-                backgroundColor: Colors.darkBlue,
-                marginHorizontal: 10,
-                borderRadius: 5,
-              },
-            ]}>
-            <View
-              style={[
-                styles.justifyCenter,
-                {
-                  width: '40%',
-                  height: '100%',
-                  paddingLeft: 20,
-                },
-              ]}>
-              <Text style={[style.customTextIncreaseBold, { fontSize: 18 }]}>
-                COUNT UP
-              </Text>
-            </View>
-            <View
-              style={[
-                styles.justifyCenter,
-                styles.alignCenter,
-                {
-                  width: '25%',
-                  height: '100%',
-                },
-              ]}>
-              <View
-                style={[
-                  styles.justifyCenter,
-                  styles.alignCenter,
-                  styles.bgPrimary,
-                  {
-                    width: 30,
-                    height: 30,
-                    borderRadius: 5,
-                  },
-                ]}>
-                <Text style={style.customTextIncreaseBold}>D2</Text>
-              </View>
-            </View>
-            <View
-              style={[
-                styles.justifyCenter,
-                styles.alignCenter,
-                {
-                  width: '10%',
-                  height: '100%',
-                },
-              ]}>
-              <Text style={style.customTextIncreaseBold}>5</Text>
-            </View>
-          </View>
-          <View
-            style={[
-              styles.directionRow,
-              {
-                marginTop: 5,
-                height: 35,
-                backgroundColor: Colors.darkBlue,
-                marginHorizontal: 10,
-                width: '95%',
-                borderRadius: 5,
-              },
-            ]}>
-            <View
-              style={[
-                styles.justifyCenter,
-                {
-                  width: '40%',
-                  height: '100%',
-                  paddingLeft: 20,
-                },
-              ]}>
-              <Text style={[style.customTextIncreaseBold, { fontSize: 18 }]}>
-                TIME ATTACK
-              </Text>
-            </View>
-            <View
-              style={[
-                styles.justifyCenter,
-                styles.alignCenter,
-                {
-                  width: '25%',
-                  height: '100%',
-                },
-              ]}>
-              <View
-                style={[
-                  styles.justifyCenter,
-                  styles.alignCenter,
-                  styles.bgPrimary,
-                  {
-                    width: 30,
-                    height: 30,
-                    borderRadius: 5,
-                  },
-                ]}>
-                <Text style={style.customTextIncreaseBold}>A</Text>
-              </View>
-            </View>
-            <View
-              style={[
-                styles.justifyCenter,
-                styles.alignCenter,
-                {
-                  width: '10%',
-                  height: '100%',
-                },
-              ]}>
-              <Text style={style.customTextIncreaseBold}>45</Text>
-            </View>
-          </View>
-          <View
-            style={[
-              styles.directionRow,
-              {
-                marginTop: 5,
-                height: 35,
-                backgroundColor: Colors.darkBlue,
-                marginHorizontal: 10,
-                width: '95%',
-                borderRadius: 5,
-              },
-            ]}>
-            <View
-              style={[
-                styles.justifyCenter,
-                {
-                  width: '40%',
-                  height: '100%',
-                  paddingLeft: 20,
-                },
-              ]}>
-              <Text style={[style.customTextIncreaseBold, { fontSize: 18 }]}>
-                CHALLENGE
-              </Text>
-            </View>
-            <View
-              style={[
-                styles.justifyCenter,
-                styles.alignCenter,
-                {
-                  width: '25%',
-                  height: '100%',
-                },
-              ]}>
-              <View
-                style={[
-                  styles.justifyCenter,
-                  styles.alignCenter,
-                  styles.bgPrimary,
-                  {
-                    width: 30,
-                    height: 30,
-                    borderRadius: 5,
-                  },
-                ]}>
-                <Text style={style.customTextIncreaseBold}>B1</Text>
-              </View>
-            </View>
-            <View
-              style={[
-                styles.justifyCenter,
-                styles.alignCenter,
-                {
-                  width: '10%',
-                  height: '100%',
-                },
-              ]}>
-              <Text style={style.customTextIncreaseBold}>55</Text>
-            </View>
-          </View>
-        </View>
-      );
+        <Img
+          local={true}
+          style={style.ball}
+          src={require('../../Assets/ball.png')}
+          resizeMode={'contain'}
+        />
+        <Img
+          local={true}
+          style={[style.ball,{opacity:0.4,width:'60%',height:200,top:-30,
+    transform: [{ rotate: '70deg' }, { scaleX: -1 }],
 
-    default:
-      return (
+          }]}
+          src={require('../../Assets/lightEffect.png')}
+          resizeMode={'contain'}
+        />
+      </TouchableOpacity>
+
         <View
           style={[
             styles.directionRow,
-            styles.alignCenter,
-            styles.justifySpaceBetween,
-            style.defaultMainView,
+            styles.w_100,
+            {
+              height: 20,
+            },
           ]}>
-          <View style={[styles.w_25, styles.alignCenter, styles.justifyCenter]}>
-            <Text
-              style={[styles.colorWhite, styles.textCenter, style.customText]}>
-              {`GAME\nPLAYED`}
-            </Text>
-            <Text style={style.mainHeading}>173</Text>
+          <View
+            style={[
+              styles.alignCenter,
+              styles.justifyCenter,
+              {
+                width: '35%',
+                height: '100%',
+              },
+            ]}>
+            <Text style={style.customTextBold}>GAME MODE</Text>
           </View>
-          <View style={style.secondViewDivision}>
-            <Text style={style.subHeading}>WIN RATE</Text>
-            <Text style={style.mainHeading}>78%</Text>
+          <View
+            style={[
+              styles.alignCenter,
+              styles.justifyCenter,
+              {
+                width: '25%',
+                height: '100%',
+              },
+            ]}>
+            <Text style={style.customTextBold}>FLIGHT</Text>
+          </View>
+          <View
+            style={[
+              styles.justifyCenter,
+              {
+                width: '20%',
+                height: '100%',
+              },
+            ]}>
+            <Text style={style.customTextBold}>RATE</Text>
+          </View>
+        </View>
+        <TouchableOpacity
+          onPress={callBack}
 
-            {/* <Img
+          activeOpacity={0.8}
+          style={[
+            styles.directionRow,
+            styles.bgPrimary,
+            {
+              width: '95%',
+              marginTop: 5,
+              marginHorizontal: 10,
+              height: 35,
+              borderRadius: 5,
+            },
+          ]}>
+
+          <View
+            style={[
+              styles.justifyCenter,
+              {
+                width: '40%',
+                height: '100%',
+                paddingLeft: 20,
+              },
+            ]}>
+            <Text style={style.flightText}>COMBO OUT</Text>
+          </View>
+          <View
+            style={[
+              styles.justifyCenter,
+              styles.alignCenter,
+              {
+                width: '25%',
+                height: '100%',
+              },
+            ]}>
+            <View
+              style={[
+                styles.justifyCenter,
+                styles.alignCenter,
+                {
+                  width: 30,
+                  height: 30,
+                  backgroundColor: Colors.Grey,
+                  borderRadius: 5,
+                },
+              ]}>
+              <Text style={style.flightText}>U</Text>
+            </View>
+          </View>
+          <View
+            style={[
+              styles.justifyCenter,
+              styles.alignCenter,
+              {
+                width: '10%',
+                height: '100%',
+              },
+            ]}>
+            <Text style={style.flightText}>2</Text>
+          </View>
+        </TouchableOpacity>
+        <View
+          style={[
+            styles.directionRow,
+            {
+              marginTop: 5,
+              height: 35,
+              width: '95%',
+              backgroundColor: Colors.darkBlue,
+              marginHorizontal: 10,
+              borderRadius: 5,
+            },
+          ]}>
+          <View
+            style={[
+              styles.justifyCenter,
+              {
+                width: '40%',
+                height: '100%',
+                paddingLeft: 20,
+              },
+            ]}>
+            <Text style={[style.customTextIncreaseBold, { fontSize: 18 }]}>
+              COUNT UP
+            </Text>
+          </View>
+          <View
+            style={[
+              styles.justifyCenter,
+              styles.alignCenter,
+              {
+                width: '25%',
+                height: '100%',
+              },
+            ]}>
+            <View
+              style={[
+                styles.justifyCenter,
+                styles.alignCenter,
+                styles.bgPrimary,
+                {
+                  width: 30,
+                  height: 30,
+                  borderRadius: 5,
+                },
+              ]}>
+              <Text style={style.customTextIncreaseBold}>D2</Text>
+            </View>
+          </View>
+          <View
+            style={[
+              styles.justifyCenter,
+              styles.alignCenter,
+              {
+                width: '10%',
+                height: '100%',
+              },
+            ]}>
+            <Text style={style.customTextIncreaseBold}>5</Text>
+          </View>
+        </View>
+        <View
+          style={[
+            styles.directionRow,
+            {
+              marginTop: 5,
+              height: 35,
+              backgroundColor: Colors.darkBlue,
+              marginHorizontal: 10,
+              width: '95%',
+              borderRadius: 5,
+            },
+          ]}>
+          <View
+            style={[
+              styles.justifyCenter,
+              {
+                width: '40%',
+                height: '100%',
+                paddingLeft: 20,
+              },
+            ]}>
+            <Text style={[style.customTextIncreaseBold, { fontSize: 18 }]}>
+              TIME ATTACK
+            </Text>
+          </View>
+          <View
+            style={[
+              styles.justifyCenter,
+              styles.alignCenter,
+              {
+                width: '25%',
+                height: '100%',
+              },
+            ]}>
+            <View
+              style={[
+                styles.justifyCenter,
+                styles.alignCenter,
+                styles.bgPrimary,
+                {
+                  width: 30,
+                  height: 30,
+                  borderRadius: 5,
+                },
+              ]}>
+              <Text style={style.customTextIncreaseBold}>A</Text>
+            </View>
+          </View>
+          <View
+            style={[
+              styles.justifyCenter,
+              styles.alignCenter,
+              {
+                width: '10%',
+                height: '100%',
+              },
+            ]}>
+            <Text style={style.customTextIncreaseBold}>45</Text>
+          </View>
+        </View>
+        <View
+          style={[
+            styles.directionRow,
+            {
+              marginTop: 5,
+              height: 35,
+              backgroundColor: Colors.darkBlue,
+              marginHorizontal: 10,
+              width: '95%',
+              borderRadius: 5,
+            },
+          ]}>
+          <View
+            style={[
+              styles.justifyCenter,
+              {
+                width: '40%',
+                height: '100%',
+                paddingLeft: 20,
+              },
+            ]}>
+            <Text style={[style.customTextIncreaseBold, { fontSize: 18 }]}>
+              CHALLENGE
+            </Text>
+          </View>
+          <View
+            style={[
+              styles.justifyCenter,
+              styles.alignCenter,
+              {
+                width: '25%',
+                height: '100%',
+              },
+            ]}>
+            <View
+              style={[
+                styles.justifyCenter,
+                styles.alignCenter,
+                styles.bgPrimary,
+                {
+                  width: 30,
+                  height: 30,
+                  borderRadius: 5,
+                },
+              ]}>
+              <Text style={style.customTextIncreaseBold}>B1</Text>
+            </View>
+          </View>
+          <View
+            style={[
+              styles.justifyCenter,
+              styles.alignCenter,
+              {
+                width: '10%',
+                height: '100%',
+              },
+            ]}>
+            <Text style={style.customTextIncreaseBold}>55</Text>
+          </View>
+        </View>
+    </Animatable.View>
+  )
+}
+
+
+const MenuData1 = ({ index, setIndex, callBack }) => {
+  return (
+    <Animatable.View
+    animation="fadeIn" duration={3500}
+      
+    style={[
+        styles.directionRow,
+        styles.alignCenter,
+        styles.justifySpaceBetween,
+        style.defaultMainView,
+      ]}>
+      <View style={{ position: 'absolute', zIndex: 0, width: '100%', height: '100%', opacity: 0.8 }}>
+
+        <Img
+          local={true}
+          style={{ width: '100%', height: '100%', }}
+          src={require('../../Assets/12.png')}
+          resizeMode={'cover'}
+        />
+      </View>
+      <View style={[styles.w_25, styles.alignCenter, styles.justifyCenter]}>
+        <Text
+          style={[styles.colorWhite, styles.textCenter, style.customText]}>
+          {`GAME\nPLAYED`}
+        </Text>
+        <Text style={style.mainHeading}>173</Text>
+      </View>
+      <View style={style.secondViewDivision}>
+
+        <Text style={style.subHeading}>WIN RATE</Text>
+        <Text style={style.mainHeading}>78%</Text>
+
+        {/* <Img
               local={true}
               style={style.ballSecond}
               src={require('../../Assets/ball.png')}
               resizeMode={'contain'}
             /> */}
 
-            <TouchableOpacity
-              style={[style.ballSecond, { bottom: 0 }]}
-              activeOpacity={0.8}
-              onPress={() => setIndex(2)}
-            >
-              <Img
-                local={true}
-                style={style.ballSecond}
-                src={require('../../Assets/ball.png')}
-                resizeMode={'contain'}
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={[styles.alignCenter, styles.justifyCenter, styles.w_25]}>
-            <Text style={style.subHeading}>{`GENERAL\nRANK`}</Text>
-            <Text style={style.mainHeading}>A</Text>
-          </View>
-        </View>
-      );
-  }
-};
+        <TouchableOpacity
+          style={[style.ballSecond, { bottom: 0 }]}
+          activeOpacity={0.9}
+          onPress={() => setIndex(2)}
+        >
+          <Img
+            local={true}
+            style={style.ballSecond}
+            src={require('../../Assets/ball.png')}
+            resizeMode={'contain'}
+          />
+        </TouchableOpacity>
+      </View>
+      <View style={[styles.alignCenter, styles.justifyCenter, styles.w_25]}>
+        <Text style={style.subHeading}>{`GENERAL\nRANK`}</Text>
+        <Text style={style.mainHeading}>A</Text>
+      </View>
+    </Animatable.View>
+  );
+}
+
 
 const MenuItem = ({ title, icon, onPress = () => { } }) => {
   return (
@@ -645,7 +683,7 @@ const MenuItem = ({ title, icon, onPress = () => { } }) => {
         source={icon}
         style={{ width: 25, height: 25, tintColor: Colors.White }}
       />
-      <Text style={[style.customText, styles.textCenter,{width:50}]}>{title}</Text>
+      <Text style={[style.customText, styles.textCenter, { width: 50 }]}>{title}</Text>
     </TouchableOpacity>
   );
 };
