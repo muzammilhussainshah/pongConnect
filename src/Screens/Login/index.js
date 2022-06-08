@@ -45,9 +45,9 @@ export default function Login({ navigation }) {
             ]}>
             <Logo />
           </View>
-          <Text style={style.labelText}>EMAIL</Text>
+          <Text style={style.labelText}>EMAIL :</Text>
           <TextInput
-            placeholder="Email"
+            placeholder="@email.com"
             placeholderTextHolder={Colors.Grey}
             value={email}
             change={setEmail}
