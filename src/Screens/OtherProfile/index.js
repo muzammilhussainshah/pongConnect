@@ -52,14 +52,40 @@ const COMBOOUTDATA = [
 
 const GameStats = ({ callBack }) => {
   return (
-    <View
+     <Animatable.View 
+    
+    animation="fadeIn" duration={3000}
       style={[
         styles.directionRow,
         styles.alignCenter,
         styles.justifySpaceBetween,
         style.defaultMainView,
+        // {backgroundColor:'red'}
       ]}>
-      <View style={[styles.w_25, styles.alignCenter, styles.justifyCenter]}>
+
+      <View style={{ position: 'absolute', zIndex: 0, width: '100%', height: '100%', opacity: 0.8 }}>
+
+        <Img
+          local={true}
+          style={{ width: '100%', height: '100%', }}
+          src={require('../../Assets/12.png')}
+          resizeMode={'cover'}
+        />
+      </View>
+      <Img
+        local={true}
+        style={[{ width: '100%', height: '20%', opacity: 0.5, position: 'absolute', zIndex: 1, top: -45 }]}
+        src={require('../../Assets/shadow.png')}
+        resizeMode={'cover'}
+      />
+      {/* <Img
+            local={true}
+            style={[{width:'100%',height:'100%',opacity:1,position:'absolute',zIndex:1, bottom:0}]}
+            src={require('../../Assets/whiteshadow.png')}
+            resizeMode={'cover'}
+          /> */}
+      <View style={[styles.w_25, styles.alignCenter, styles.justifyCenter,]}>
+
         <Text
           style={[styles.colorWhite, styles.textCenter, style.customText]}>
           {`GAME\nPLAYED`}
@@ -70,7 +96,14 @@ const GameStats = ({ callBack }) => {
         <Text style={style.subHeading}>WIN RATE</Text>
         <Text style={style.mainHeading}>94%</Text>
         <TouchableOpacity
-          style={[style.ballSecond, { bottom: 0 }]}
+          style={[style.ballSecond, {
+            bottom: 0,
+
+
+
+
+
+          }]}
           activeOpacity={0.8}
           onPress={callBack}>
           <Img
@@ -79,6 +112,7 @@ const GameStats = ({ callBack }) => {
             src={require('../../Assets/ball.png')}
             resizeMode={'contain'}
           />
+
         </TouchableOpacity>
 
       </View>
@@ -86,7 +120,7 @@ const GameStats = ({ callBack }) => {
         <Text style={style.subHeading}>{`GENERAL\nRANK`}</Text>
         <Text style={style.mainHeading}>S</Text>
       </View>
-    </View>
+    </Animatable.View>
   )
 }
 const GameModeDetail = ({ callBack, comboOutDetailDistable }) => {
@@ -123,23 +157,30 @@ const GameModeDetail = ({ callBack, comboOutDetailDistable }) => {
 }
 const GameMode = ({ callBack, gameModeDisable }) => {
   return (
-    <View style={style.menuContainer}>
-      <TouchableOpacity
+    <Animatable.View 
+    
+    animation="fadeIn" duration={3000}
+    
+    style={style.menuContainer}>
+    <TouchableOpacity
         activeOpacity={0.9}
-        style={{
+        onPress={gameModeDisable}
 
-          width: 200 / 1.2,
-          height: 130,
-          position: 'absolute',
-          bottom: 0,
-          right: -15,
-          zIndex: 99,
-        }}
-        onPress={gameModeDisable}>
+        style={[{backgroundColor:'red',zIndex:10}]}>
+
         <Img
           local={true}
-          style={style.ball}
+          style={[style.ball,{top:40}]}
           src={require('../../Assets/ball.png')}
+          resizeMode={'contain'}
+        />
+        <Img
+          local={true}
+          style={[style.ball,{opacity:0.4,width:'60%',height:200,top:-40,
+    transform: [{ rotate: '70deg' }, { scaleX: -1 }],
+
+          }]}
+          src={require('../../Assets/lightEffect.png')}
           resizeMode={'contain'}
         />
       </TouchableOpacity>
@@ -426,7 +467,7 @@ const GameMode = ({ callBack, gameModeDisable }) => {
           <Text style={style.customTextIncreaseBold}>55</Text>
         </View>
       </View>
-    </View>
+    </Animatable.View>
   )
 }
 export default function Login({ navigation }) {
@@ -602,9 +643,9 @@ const GameStatus = ({ status }) => {
     }}>
       <TouchableOpacity
         style={{
-          flex: 2, justifyContent: 'center', alignItems: 'center', flexDirection: 'row', borderRadius: 7,    backgroundColor: win ? Colors.primary : Colors.Blue, fontFamily: 'AgencyFB-Bold',
+          flex: 2, justifyContent: 'center', alignItems: 'center', flexDirection: 'row', borderRadius: 7, backgroundColor: win ? Colors.primary : Colors.Blue, fontFamily: 'AgencyFB-Bold',
         }}
-        // onPress={() => navigate('OtherProfile')}
+      // onPress={() => navigate('OtherProfile')}
       >
         <Image
           source={{ uri: dummy1 }}
@@ -616,37 +657,37 @@ const GameStatus = ({ status }) => {
           }}
         />
         <Text style={{
-    fontSize: 20, marginLeft: 5, color: 'white', fontFamily: 'AgencyFB-Bold', letterSpacing: 1,
+          fontSize: 20, marginLeft: 5, color: 'white', fontFamily: 'AgencyFB-Bold', letterSpacing: 1,
 
         }}>KANNA.Y</Text>
       </TouchableOpacity>
       <View style={{
-    flex: 1, justifyContent: 'center', alignItems: 'center', fontFamily: 'AgencyFB-Bold',
+        flex: 1, justifyContent: 'center', alignItems: 'center', fontFamily: 'AgencyFB-Bold',
 
       }}>
         <Text style={{
-    fontSize: 26, color: 'white', fontFamily: 'AgencyFB-Bold', letterSpacing: 1,
+          fontSize: 26, color: 'white', fontFamily: 'AgencyFB-Bold', letterSpacing: 1,
 
         }}>1:0</Text>
       </View>
       <View style={{
-    flex: 1, justifyContent: 'center', alignItems: 'center', fontFamily: 'AgencyFB-Bold',
+        flex: 1, justifyContent: 'center', alignItems: 'center', fontFamily: 'AgencyFB-Bold',
 
       }}>
         <Text style={{
-    fontSize: 14, color: 'white', fontFamily: 'AgencyFB-Bold', letterSpacing: 1,
+          fontSize: 14, color: 'white', fontFamily: 'AgencyFB-Bold', letterSpacing: 1,
 
         }}>CHALLENGE</Text>
         <Text style={{
-    fontSize: 14, color: 'white', fontFamily: 'AgencyFB-Bold', letterSpacing: 1,
+          fontSize: 14, color: 'white', fontFamily: 'AgencyFB-Bold', letterSpacing: 1,
 
         }}>2/11/2022</Text>
       </View>
       <View style={{
-    flex: 1, justifyContent: 'center', alignItems: 'center', fontFamily: 'AgencyFB-Bold',
+        flex: 1, justifyContent: 'center', alignItems: 'center', fontFamily: 'AgencyFB-Bold',
 
       }}>
-         <Image
+        <Image
           source={
             win
               ? require('../../Assets/crown.png')

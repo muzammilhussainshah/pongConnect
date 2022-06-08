@@ -294,7 +294,7 @@ export default function Home({ navigation }) {
 const MenuData2 = ({ index, setIndex, callBack }) => {
   return (
     <Animatable.View
-      animation="fadeIn" duration={3500} style={{marginTop:'5%'}}
+      animation="fadeIn" duration={3000} style={{marginTop:'5%'}}
     >
       <TouchableOpacity
         activeOpacity={0.9}
@@ -610,7 +610,7 @@ const MenuData2 = ({ index, setIndex, callBack }) => {
 const MenuData1 = ({ index, setIndex, callBack }) => {
   return (
     <Animatable.View
-    animation="fadeIn" duration={3500}
+    animation="fadeIn" duration={3000}
       
     style={[
         styles.directionRow,
