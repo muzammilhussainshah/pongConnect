@@ -30,7 +30,7 @@ const QRScanner = ({ navigation }) => {
                 <View style={styles.buttonTouchable}>
                     <Img
                         local={true}
-                        style={{ height: 250, width: '100%', }}
+                        style={{ height: 250, width: '80%', }}
                         resizeMode="stretch"
                         src={scanning}
                     />
@@ -64,7 +64,10 @@ const styles = StyleSheet.create({
         height: 380,
         width: '100%',
         zIndex: 1,
+        // justifyContent:'center',
+        alignItems:'center',
         backgroundColor: '#050D18',
+        // backgroundColor: 'red',
 
     }
     ,
