@@ -14,7 +14,9 @@ import { scale } from '../../Components/scaling';
 import CountryLists from '../../Components/countryLists';
 import styles from '../styles';
 import style from './styles';
-import DateTimePicker from '@react-native-community/datetimepicker';
+// import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker from "react-native-modal-datetime-picker";
+
 import moment from 'moment';
 
 export default function RegionAndPassword({ navigation, route }) {
@@ -28,8 +30,10 @@ export default function RegionAndPassword({ navigation, route }) {
     const [show, setShow] = useState(false);
     const [datePlaceHolder, setdatePlaceHolder] = useState(null);
     const [countryListsShow, setcountryListsShow] = useState(false);
+    const [isDateTimePickerVisible, setisDateTimePickerVisible] = useState(false);
 
-    const onChange = (event, selectedDate) => {
+    const onChange = (selectedDate) => {
+        console.log( selectedDate,'event, selectedDate')
         const currentDate = moment(selectedDate).format('l');
         setShow(false);
         setDate(selectedDate);
@@ -41,7 +45,9 @@ export default function RegionAndPassword({ navigation, route }) {
         setcountryListsShow(false)
         setregion(item.name)
     };
-
+    const hideDateTimePicker = () => {
+        setShow( false );
+      };
     return (
         <ImgBg type="success">
             {
@@ -77,7 +83,9 @@ export default function RegionAndPassword({ navigation, route }) {
                                     height: 35,
                                     marginBottom: 14,
                                 }]}>
-                                    <TouchableOpacity onPress={() => { setShow(true) }}>
+                                    <TouchableOpacity
+                                    style={{flex:1}}
+                                    onPress={() => { setShow(true) }}>
                                         {
                                             datePlaceHolder != null && <Text style={{ color: Colors.Grey, marginLeft: 15 }} >{datePlaceHolder}</Text>
                                         }
@@ -86,15 +94,12 @@ export default function RegionAndPassword({ navigation, route }) {
                                         }
                                     </TouchableOpacity>
                                     {
-                                        show && (
                                             <DateTimePicker
-                                                testID="dateTimePicker"
-                                                value={date}
-                                                mode={mode}
-                                                // is24Hour={true}
-                                                onChange={onChange}
+                                                isVisible={show}
+                                                onConfirm={onChange }
+                                                onCancel={hideDateTimePicker}
+
                                             />
-                                        )
                                     }
                                 </View>
 

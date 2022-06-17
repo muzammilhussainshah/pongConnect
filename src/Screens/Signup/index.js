@@ -62,7 +62,7 @@ export default function SignUp({ navigation, route }) {
       cropping: true
     }).then(image => {
       console.log(image.sourceURL);
-          setimageUriLocal(image.sourceURL);
+      setimageUriLocal(image.sourceURL);
 
     });
 
@@ -209,21 +209,28 @@ export default function SignUp({ navigation, route }) {
             change={setEmail}
           />
           <View style={[styles.w_90, styles.alignCenter, styles.directionRow]}>
+
             <TouchableOpacity
               activeOpacity={0.9}
-              style={{ flex: 1 }}
+              style={{ flex: 1,}}
               onPress={() => {
                 SheetManager.show('gender');
               }}>
+              <View pointerEvents="none">
               <Text style={style.labelText}>GENDER:</Text>
+
               <TextInput
                 placeholder="Gender"
+
                 placeholderTextHolder={Colors.Grey}
                 isEditable={true}
                 value={gender}
                 change={setGender}
               />
+              </View>
             </TouchableOpacity>
+
+
           </View>
           <View
             style={[
