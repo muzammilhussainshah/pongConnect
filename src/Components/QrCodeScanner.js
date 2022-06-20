@@ -5,6 +5,7 @@ import HeaderCustom from '../Components/Header';
 import Img from '../Components/Img';
 import { RNCamera } from 'react-native-camera';
 const scanning = require('../Assets/scanning.png');
+import ImgBg from '../Components/BackgroundImage';
 
 const QRScanner = ({ navigation }) => {
     const { navigate, goBack } = navigation;
@@ -18,25 +19,71 @@ const QRScanner = ({ navigation }) => {
 
     return (
 
-        <QRCodeScanner
-            onRead={() => onSuccess()}
-            // flashMode={RNCamera.Constants.FlashMode.torch}
-            topContent={
-                <View style={styles.header}>
-                    <HeaderCustom back showLogo={true} goBack={goBack} />
-                </View>
-            }
-            bottomContent={
-                <View style={styles.buttonTouchable}>
-                    <Img
-                        local={true}
-                        style={{ height: 250, width: '80%', }}
-                        resizeMode="stretch"
-                        src={scanning}
-                    />
-                </View>
-            }
-        />
+        <ImgBg>
+            <HeaderCustom back showLogo={true} goBack={goBack} />
+            <View style={{  flex: 1 }}>
+
+
+                <QRCodeScanner
+                    onRead={() => onSuccess()}
+                // flashMode={RNCamera.Constants.FlashMode.torch}
+                // topContent={
+                //     <View style={styles.header}>
+                //         <HeaderCustom back showLogo={true} goBack={goBack} />
+                //     </View>
+                // }
+                // bottomContent={
+                //     <View style={styles.buttonTouchable}>
+                //         <Img
+                //             local={true}
+                //             style={{ height: 250, width: '80%', }}
+                //             resizeMode="stretch"
+                //             src={scanning}
+                //         />
+                //     </View>
+                // }
+                />
+
+
+
+            </View>
+            <View style={{  flex: 1 }}>
+                 <View style={styles.buttonTouchable}>
+                         <Img
+                             local={true}
+                             style={{ height: '100%', width: '100%', }}
+                             resizeMode="stretch"
+                             src={scanning}
+                         />
+                     </View>
+            </View>
+
+
+
+        </ImgBg>
+
+
+
+
+        // <QRCodeScanner
+        //     onRead={() => onSuccess()}
+        //     // flashMode={RNCamera.Constants.FlashMode.torch}
+        //     topContent={
+        //         <View style={styles.header}>
+        //             <HeaderCustom back showLogo={true} goBack={goBack} />
+        //         </View>
+        //     }
+        //     bottomContent={
+        //         <View style={styles.buttonTouchable}>
+        //             <Img
+        //                 local={true}
+        //                 style={{ height: 250, width: '80%', }}
+        //                 resizeMode="stretch"
+        //                 src={scanning}
+        //             />
+        //         </View>
+        //     }
+        // />
     );
 };
 
@@ -65,7 +112,7 @@ const styles = StyleSheet.create({
         width: '100%',
         zIndex: 1,
         // justifyContent:'center',
-        alignItems:'center',
+        alignItems: 'center',
         backgroundColor: '#050D18',
         // backgroundColor: 'red',
 
